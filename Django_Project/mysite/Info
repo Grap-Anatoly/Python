@@ -285,3 +285,71 @@ Delete – Displays a delete confirmation page.
 
 If the value of “Date published” doesn’t match the time when you created the question in Tutorial 1,
 it probably means you forgot to set the correct value for the TIME_ZONE setting. Change it, reload the page and check that the correct value appears.
+
+----------------------------------------------------------------------------
+-----------------------------------VIEW-------------------------------------
+----------------------------------------------------------------------------
+
+A view is a “type” of web page in your Django application that generally serves a specific function and has a specific template. For example, in a blog application, you might have the following views:
+
+Blog homepage – displays the latest few entries.
+Entry “detail” page – permalink page for a single entry.
+Year-based archive page – displays all months with entries in the given year.
+Month-based archive page – displays all days with entries in the given month.
+Day-based archive page – displays all entries in the given day.
+Comment action – handles posting comments to a given entry.
+In our poll application, we’ll have the following four views:
+
+Question “index” page – displays the latest few questions.
+Question “detail” page – displays a question text, with no results but with a form to vote.
+Question “results” page – displays results for a particular question.
+Vote action – handles voting for a particular choice in a particular question.
+
+In Django, web pages and other content are delivered by views. Each view is represented by a Python function (or method, in the case of class-based views).
+ Django will choose a view by examining the URL that’s requested (to be precise, the part of the URL after the domain name).
+
+ -------------------
+
+Each view is responsible for doing one of two things: returning an HttpResponse object containing the content for the requested page, or raising an exception such as Http404. The rest is up to you.
+
+Your view can read records from a database, or not. It can use a template system such as Django’s – or a third-party Python template system – or not.
+It can generate a PDF file, output XML, create a ZIP file on the fly, anything you want, using whatever Python libraries you want.
+
+All Django wants is that HttpResponse.
+
+--------------------
+
+There’s a problem here, though: the page’s design is hard-coded in the view.
+If you want to change the way the page looks, you’ll have to edit this Python code. So let’s use Django’s template system to separate the design from Python by creating a template that the view can use.
+
+First, create a directory called templates in your polls directory. Django will look for templates in there.
+
+Your project’s TEMPLATES setting describes how Django will load and render templates.
+The default settings file configures a DjangoTemplates backend whose APP_DIRS option is set to True. By convention DjangoTemplates looks for a “templates” subdirectory in each of the INSTALLED_APPS.
+
+Within the templates directory you have just created, create another directory called polls, and within that create a file called index.html.
+In other words, your template should be at polls/templates/polls/index.html. Because of how the app_directories template loader works as described above, you can refer to this template within Django as polls/index.html.
+
+----------------------------------------------------------------------------
+-----------------------------------LESSON 4---------------------------------
+----------------------------------------------------------------------------
+
+https://docs.djangoproject.com/en/4.0/intro/tutorial04/
+
+----------------------------------------------------------------------------
+---------------------------LESSON 5 TESTING---------------------------------
+----------------------------------------------------------------------------
+
+https://docs.djangoproject.com/en/4.0/intro/tutorial05/
+
+----------------------------------------------------------------------------
+---------------------------LESSON 6 CUSTOMIZING-----------------------------
+----------------------------------------------------------------------------
+
+https://docs.djangoproject.com/en/4.0/intro/tutorial06/
+
+----------------------------------------------------------------------------
+---------------------------LESSON 7 ADMIN-----------------------------------
+----------------------------------------------------------------------------
+
+https://docs.djangoproject.com/en/4.0/intro/tutorial07/
