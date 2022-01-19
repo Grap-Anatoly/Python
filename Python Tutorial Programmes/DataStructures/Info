@@ -1,0 +1,15 @@
+https://docs.python.org/3/tutorial/datastructures.html
+https://corporatefinanceinstitute.com/resources/knowledge/other/python-data-structures/
+
+
+
+Data Structures:
+-Lists
+-Sets
+-Tuples
+
+The data structures differ based on mutability and order.
+Mutability refers to the ability to change an object after its creation.
+Mutable objects can be modified, added, or deleted after they’ve been created,
+while immutable objects cannot be modified after their creation.
+Order, in this context, relates to whether the position of an element can be used to access the element.
