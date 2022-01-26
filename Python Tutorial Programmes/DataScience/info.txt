@@ -1,0 +1,45 @@
+The SciPy library of Python is built to work with NumPy arrays and provides many user-friendly
+and efficient numerical practices such as routines for numerical integration and optimization.
+Together, they run on all popular operating systems, are quick to install and are free of charge.
+NumPy and SciPy are easy to use, but powerful enough to depend on by some of the world's leading scientists and engineers.
+
+
+# Pandas
+
+# Pandas is an open-source Python Library used for high-performance
+# data manipulation and data analysis using its powerful data structures.
+
+# Key Features of Pandas
+
+# Fast and efficient DataFrame object with default and customized indexing.
+# Tools for loading data into in-memory data objects from different file formats.
+# Data alignment and integrated handling of missing data.
+# Reshaping and pivoting of date sets.
+# Label-based slicing, indexing and subsetting of large data sets.
+# Columns from a data structure can be deleted or inserted.
+# Group by data for aggregation and transformations.
+# High performance merging and joining of data.
+# Time Series functionality.
+
+# Pandas deals with the following three data structures −
+
+# Series
+# DataFrame
+
+# Series - 1D labeled homogeneous array, size-immutable.
+# Data Frames - General 2D labeled, size-mutable tabular structure with potentially heterogeneously typed columns
+
+# Series is a one-dimensional array like structure with homogeneous data.
+# For example, the following series is a collection of integers 10, 23, 56, …
+# 10 23	56 17 52 61	73 90 26 72
+
+# DataFrame is a two-dimensional array with heterogeneous data
+
+# NumPy is a Python package which stands for 'Numerical Python'.
+# It is a library consisting of multidimensional array objects and a collection of routines for processing of array.
+
+# Using NumPy, a developer can perform the following operations −
+
+# Mathematical and logical operations on arrays.
+# Fourier transforms and routines for shape manipulation.
+# Operations related to linear algebra. NumPy has in-built functions for linear algebra and random number generation.
