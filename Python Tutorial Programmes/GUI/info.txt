@@ -1,0 +1,106 @@
+As was mentioned in the introduction, a graphical user interface (GUI)
+is an interface that is drawn on the screen for the user to interact with.
+
+User interfaces have some common components:
+
+Main window
+Menu
+Toolbar
+Buttons
+Text Entry
+Labels
+
+All of these items are known generically as widgets.
+There are many other common widgets and many custom widgets that wxPython supports.
+A developer will take the widgets and arrange them logically on a window for the user to interact with.
+
+Event Loops
+
+A graphical user interface works by waiting for the user to do something.
+The something is called an event.
+Events happen when the user types something while your application is in focus or when the
+user uses their mouse to press a button or other widget.
+
+Underneath the covers, the GUI toolkit is running an infinite loop that is called an event loop.
+The event loop just waits for events to occur and then acts on those events according to what the developer
+has coded the application to do. When the application doesn’t catch an event,
+it effectively ignores that it even happened.
+
+When you are programming a graphical user interface, you will want to keep in mind that
+you will need to hook up each of the widgets to event handlers so that your application will do something.
+
+There is a special consideration that you need to keep in mind when working with event loops: they can be blocked.
+When you block an event loop, the GUI will become unresponsive and appear to freeze to the user.
+
+Any process that you launch in a GUI that will take longer than a quarter second should probably be
+launched as a separate thread or process.
+This will prevent your GUI from freezing and give the user a better user experience.
+
+The wxPython framework has special thread-safe methods that you can use to
+
+communicate back to your application to let it know that the thread is finished or to give it an update.
+
+------------------------------
+
+# In this example, you have two parts: wx.App and the wx.Frame.
+# The wx.App is wxPython’s application object and is required for running your GUI.
+# The wx.App starts something called a .MainLoop().
+# This is the event loop (check info).
+#
+# The other piece of the puzzle is wx.Frame, which will create a window for the user to interact with.
+# In this case, you told wxPython that the frame has no parent and that its title is Hello World.
+
+# Absolute Positioning
+
+# When you provide exact coordinates for your widget’s position,
+# the technique that you used is called absolute positioning.
+# Most GUI toolkits provide this capability, but it’s not actually recommended.
+
+# As your application becomes more complex, it becomes difficult to keep track of all the widget
+# locations and if you have to move the widgets around. Resetting all those positions becomes a nightmare.
+
+# Sizers (Dynamic Sizing)
+
+# The wxPython toolkit includes sizers, which are used for creating dynamic layouts.
+# They manage the placement of your widgets for you and will adjust them when you resize the application window.
+# Other GUI toolkits will refer to sizers as layouts, which is what PyQt does.
+
+# Here are the primary types of sizers that you will see used most often:
+
+# wx.BoxSizer
+# wx.GridSizer
+# wx.FlexGridSizer
+
+# Here you create an instance of a wx.BoxSizer and pass it wx.VERTICAL,
+# which is the orientation that widgets are added to the sizer.
+
+# In this case, the widgets will be added vertically, which means they will be added one at a time from top to bottom.
+# You may also set a BoxSizer’s orientation to wx.HORIZONTAL.
+# When you do that, the widgets would be added from left to right.
+
+# To add a widget to a sizer, you will use .Add(). It accepts up to five arguments:
+
+# window (the widget)
+# proportion
+# flag
+# border
+# userData
+
+The window argument is the widget to be added while proportion sets how much space relative to other widgets
+in the sizer this particular widget should take.
+By default, it is zero, which tells wxPython to leave the widget at its default proportion.
+
+The third argument is flag. You can actually pass in multiple flags if you wish
+as long as you separate them with a pipe character:
+|. The wxPython toolkit uses | to add flags using a series of bitwise ORs.
+
+In this example, you add the text control with the wx.ALL and wx.EXPAND flags.
+The wx.ALL flag tells wxPython that you want to add a border on all sides of the widget while
+wx.EXPAND makes the widgets expand as much as they can within the sizer.
+
+Finally, you have the border parameter, which tells wxPython how many pixels of border you want around the widget.
+The userData parameter is only used when you want to do something complex with your sizing
+of the widget and is actually quite rare to see in practice.
+
+Adding the button to the sizer follows the exact same steps. However, to make things a bit more interesting,
+I went ahead and switched out the wx.EXPAND flag for wx.CENTER so that the button would be centered on-screen.
