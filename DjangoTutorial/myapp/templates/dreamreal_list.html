@@ -1,0 +1,8 @@
+{% extends "inheritanceTemplate.html" %}
+
+{% block content %}
+Dreamreals:<p>
+{% for dr in object_list %}
+{{dr.name}}</p>
+{% endfor %}
+{% endblock %}

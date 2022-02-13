@@ -1,0 +1,201 @@
+Django – Design Philosophies
+Django comes with the following design philosophies −
+
+Loosely Coupled − Django aims to make each element of its stack independent of the others.
+
+Less Coding − Less code so in turn a quick development.
+
+Don't Repeat Yourself (DRY) − Everything should be developed only in exactly one place instead of repeating it again and again.
+
+Fast Development − Django's philosophy is to do all it can to facilitate hyper-fast development.
+
+Clean Design − Django strictly maintains a clean design throughout its own code and makes it easy to follow best web-development practices.
+
+Advantages of Django
+Here are few advantages of using Django which can be listed out here −
+
+Object-Relational Mapping (ORM) Support − Django provides a bridge between the data model and the database engine, and supports a large set of database systems including MySQL, Oracle, Postgres, etc. Django also supports NoSQL database through Django-nonrel fork. For now, the only NoSQL databases supported are MongoDB and google app engine.
+
+Multilingual Support − Django supports multilingual websites through its built-in internationalization system. So you can develop your website, which would support multiple languages.
+
+Framework Support − Django has built-in support for Ajax, RSS, Caching and various other frameworks.
+
+Administration GUI − Django provides a nice ready-to-use user interface for administrative activities.
+
+Development Environment − Django comes with a lightweight web server to facilitate end-to-end application development and testing.
+
+-------------------
+
+MVC
+
+The Model
+The model is responsible for managing the data of the application.
+It responds to the request from the view and it also responds to instructions from the controller to update itself.
+
+The View
+It means presentation of data in a particular format, triggered by a controller's decision to present the data.
+They are script-based templating systems like JSP, ASP, PHP and very easy to integrate with AJAX technology.
+
+The Controller
+The controller is responsible for responding to the user input and perform interactions on the data model objects.
+The controller receives the input, it validates the input and then performs the business operation that modifies the state of the data model.
+
+--------------------
+
+MVT
+
+The Model-View-Template (MVT) is slightly different from MVC.
+In fact the main difference between the two patterns is that Django itself takes care of the Controller part
+(Software Code that controls the interactions between the Model and View), leaving us with the template.
+The template is a HTML file mixed with Django Template Language (DTL).
+
+--------------------
+
+The Project Structure
+The “myproject” folder is just your project container, it actually contains two elements −
+
+    manage.py − This file is kind of your project local django-admin for interacting with your project via
+    command line (start the development server, sync db...).
+    To get a full list of command accessible via manage.py you can use the code −
+
+The “myproject” subfolder − This folder is the actual python package of your project. It contains four files −
+
+    __init__.py − Just for python, treat this folder as package.
+
+    settings.py − As the name indicates, your project settings.
+
+    urls.py − All links of your project and the function to call. A kind of ToC of your project.
+
+    wsgi.py − If you need to deploy your project over WSGI.
+
+---------------------
+
+A project is a sum of many applications. Every application has an objective and can be reused into another project,
+like the contact form on a website can be an application, and can be reused for others.
+See it as a module of your project.
+
+$ python manage.py startapp myapp
+
+    __init__.py − Just to make sure python handles this folder as a package.
+
+    admin.py − This file helps you make the app modifiable in the admin interface.
+
+    models.py − This is where all the application models are stored.
+
+    tests.py − This is where your unit tests are.
+
+    views.py − This is where your application views are.
+
+At this stage we have our "myapp" application, now we need to register it with our Django project "myproject".
+To do so, update INSTALLED_APPS tuple in the settings.py file of your project (add your app name) −
+
+---------------------
+
+Before launching your server, to access your Admin Interface, you need to initiate the database −
+
+$ python manage.py migrate
+
+syncdb will create necessary tables or collections depending on your db type, necessary for the admin interface to run.
+Even if you don't have a superuser, you will be prompted to create one.
+
+If you already have a superuser or have forgotten it, you can always create one using the following code −
+
+$ python manage.py createsuperuser
+
+----------------------
+
+A view function, or “view” for short, is simply a Python function that takes a web request and returns a web response.
+This response can be the HTML contents of a Web page, or a redirect, or a 404 error, or an XML document, or an image,
+etc. Example: You use view to create web pages, note that you need to associate a view to a URL to see it as a web page.
+
+-----------------------
+
+The marked line maps the URL "/home" to the hello view created in myapp/view.py file.
+As you can see above a mapping is composed of three elements −
+
+The pattern − A regexp matching the URL you want to be resolved and map.
+Everything that can work with the python 're' module is eligible for the pattern (useful when you want to pass parameters via url).
+
+The python path to the view − Same as when you are importing a module.
+
+The name − In order to perform URL reversing, you’ll need to use named URL patterns as done in the examples above.
+Once done, just start the server to access your view via :http://127.0.0.1/hello
+
+-----------------------
+
+The Render Function
+This function takes three parameters −
+
+Request − The initial request.
+
+The path to the template − This is the path relative to the TEMPLATE_DIRS option in the project settings.py variables.
+
+Dictionary of parameters − A dictionary that contains all variables needed in the template.
+This variable can be created or you can use locals() to pass all local variable declared in the view.
+
+Filters
+They help you modify variables at display time. Filters structure looks like the following: {{var|filters}}.
+
+Some examples −
+
+{{string|truncatewords:80}} − This filter will truncate the string, so you will see only the first 80 words.
+
+{{string|lower}} − Converts the string to lowercase.
+
+{{string|escape|linebreaks}} − Escapes string contents, then converts line breaks to tags.
+
+----------------------
+
+A model is a class that represents table or collection in our DB, and where every attribute of the class
+is a field of the table or collection. Models are defined in the app/models.py (in our example: myapp/models.py)
+
+After creating your model, you will need Django to generate the actual database −
+
+$python manage.py syncdb
+
+-----------------------
+
+Django comes with a ready and easy-to-use light engine to send e-mail. Similar to
+Python you just need an import of smtplib.
+In Django you just need to import django.core.mail.
+To start sending e-mail, edit your project settings.py file and set the following options −
+
+EMAIL_HOST − smtp server.
+
+EMAIL_HOST_USER − Login credential for the smtp server.
+
+EMAIL_HOST_PASSWORD − Password credential for the smtp server.
+
+EMAIL_PORT − smtp server port.
+
+EMAIL_USE_TLS or _SSL − True if secure connection.
+
+Here is the details of the parameters of send_mail −
+
+subject − E-mail subject.
+
+message − E-mail body.
+
+from_email − E-mail from.
+
+recipient_list − List of receivers’ e-mail address.
+
+fail_silently − Bool, if false send_mail will raise an exception in case of error.
+
+auth_user − User login if not set in settings.py.
+
+auth_password − User password if not set in settings.py.
+
+connection − E-mail backend.
+
+html_message − (new in Django 1.7) if present, the e-mail will be multipart/alternative.
+
+-----------------------
+
+In some cases, writing views, as we have seen earlier is really heavy. Imagine you need a static page or a listing page.
+Django offers an easy way to set those simple views that is called generic views.
+
+Unlike classic views, generic views are classes not functions.
+Django offers a set of classes for generic views in django.views.generic,
+and every generic view is one of those classes or a class that inherits from one of them.
+
