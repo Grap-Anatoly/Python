@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'myapp',
 ]
 
+INSTALLED_APPS += ('django.contrib.sites', 'django.contrib.comments',)
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,6 +83,27 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+CACHES = {
+   'default': {
+      'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+      'LOCATION': 'my_table_name',
+   }
+}
+
+CACHES = {
+   'default': {
+      'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+      'LOCATION': '/var/tmp/django_cache',
+   }
+}
+
+CACHES = {
+   'default': {
+      'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+      'LOCATION': '127.0.0.1:11211',
+   }
 }
 
 
