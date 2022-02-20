@@ -1,0 +1,40 @@
+Whenever we want to use SQLAlchemy to interact with a database, we need to create an Engine.
+Engines, on SQLAlchemy, are used to manage two crucial factors: Pools and Dialects.
+The following two sections will explain what these two concepts are,
+but for now it suffices to say that SQLAlchemy uses them to interact with DBAPI functions.
+
+To create an engine and start interacting with databases,
+we have to import the create_engine function from the sqlalchemy library and issue a call to it
+
+--------------------------------
+
+As SQLAlchemy is a facade that enables Python developers to create applications that communicate
+to different database engines through the same API, we need to make use of Dialects.
+Most of the popular relational databases available out there adhere to the SQL (Structured Query Language) standard,
+but they also introduce proprietary variations.
+These variations are the solely responsible for the existence of dialects.
+
+For example, let's say that we want to fetch the first ten rows of a table called people.
+If our data was being held by a Microsoft SQL Server database engine,
+SQLAlchemy would need to issue the following query:
+
+SELECT TOP 10 * FROM people;
+But, if our data was persisted on MySQL instance, then SQLAlchemy would need to issue:
+
+SELECT * FROM people LIMIT 10;
+Therefore, to know precisely what query to issue, SQLAlchemy needs to be aware of the type of the database
+that it is dealing with. This is exactly what Dialects do. They make SQLAlchemy aware of the dialect it needs to talk.
+
+On its core, SQLAlchemy includes the following list of dialects:
+
+Firebird
+Microsoft SQL Server
+MySQL
+Oracle
+PostgreSQL
+SQLite
+Sybase
+
+Dialects for other database engines, like Amazon Redshift,
+are supported as external projects but can be easily installed.
+Check out the official documentation on SQLAlchemy Dialects to learn more.
