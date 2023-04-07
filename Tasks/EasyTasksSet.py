@@ -81,5 +81,192 @@ def romanToInt(s):
 print(romanToInt("MCMXCIV"))
 
 
+# find the longest common prefix
+def longestCommonPrefix(strs):
+    res = ""
+
+    if "" in strs:
+        return res
+    else:
+        minWord = min((word for word in strs if word), key=len)
+        minWord = str(minWord)
+
+        print(minWord)
+
+        temp = ""
+
+        for l in minWord:
+
+            temp += l
+            tempArr = []
+
+            for w in strs:
+
+                if w.startswith(temp):
+                    tempArr.append(temp)
+
+            print(tempArr)
+
+            if len(tempArr) == len(strs):
+                res = tempArr[0]
+
+        return res
+
+strs = [""]
+
+res = longestCommonPrefix(strs)
+
+print(res)
+
+# Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
+# determine if the input string is valid.
+
+def isValid(s):
+
+    allowed = ['()', '{}', '[]']
+
+    while any(l in s for l in allowed):
+        for br in allowed:
+            s = s.replace(br, '')
+    return not s
+
+    # chunks, chunk_size = len(s), 2
+    # s = [s[i:i + chunk_size] for i in range(0, chunks, chunk_size)]
+    #
+    # allowed = set(["[]", "()", "{}"])
+    #
+    # if set(s) <= allowed:
+    #     return True
+    # else:
+    #     return False
+
+
+s = "()[]{]"
+
+print(isValid(s))
+
+
+# You are given the heads of two sorted linked lists list1 and list2.
+# Merge the two lists in a one sorted list.
+# The list should be made by splicing together the nodes of the first two lists.
+# Return the head of the merged linked list.
+def mergeTwoLists(list1, list2):
+
+    for i in list2:
+        list1.append(i)
+
+    return sorted(list1)
+
+
+list1 = [1, 2, 4]
+list2 = [1, 3, 4]
+
+res = mergeTwoLists(list1, list2)
+
+print(res)
+
+# Remove Duplicates from Sorted Array
+nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+
+def removeDuplicates(nums):
+
+    # res = set(nums)
+    # k = len(res)
+    #
+    # res = list(res)
+    #
+    # while len(res) != len(nums):
+    #     res.append("_")
+    #
+    # return k, res
+
+    nums = set(nums)
+    k = len(nums)
+
+    nums = list(nums)
+    print(nums)
+
+    return k
+
+
+k = removeDuplicates(nums)
+
+print(len(nums), nums)
+print(k)
+
+# Given an integer array nums and an integer val,
+# remove all occurrences of val in nums in-place.
+# The order of the elements may be changed.
+# Then return the number of elements in nums which are not equal to val.
+nums = [0, 1, 2, 2, 3, 0, 4, 2]
+
+def removeElement(nums, val):
+
+    for i in range(len(nums)):
+        print(i)
+        if nums[i] == val:
+            nums[i] = "x"
+            print(nums)
+
+    while "x" in nums:
+        nums.remove("x")
+
+    print(nums)
+    res = len(nums)
+
+    return res
+
+res = removeElement(nums, 2)
+
+print(res)
+
+# Given two strings needle and haystack, return the index of the first occurrence of needle in haystack,
+# or -1 if needle is not part of haystack.
+
+def strStr(haystack, needle):
+    if needle not in haystack:
+        return -1
+    else:
+        return haystack.index(needle)
+
+haystack = "leetcode"
+needle = "leet0"
+
+print(strStr(haystack, needle))
+
+
+# Given a sorted array of distinct integers and a target value, return the index if the target is found.
+# If not, return the index where it would be if it were inserted in order.
+
+def searchInsert(nums, target):
+
+    pos = 0
+
+    if target not in nums:
+        for i in range(len(nums)):
+            print(f"Pos {i}")
+            if i == 0 and target < nums[i]:
+                return i
+            elif i == (len(nums) - 1) and target > nums[i]:
+                return i + 1
+            elif i != (len(nums)-1):
+                if target > nums[i] and target < nums[i+1]:
+                    return i + 1
+
+    else:
+        for n in nums:
+            if n == target:
+                return pos
+            else:
+                pos += 1
+
+
+nums = [3, 4, 7, 9]
+target = 0
+
+print(searchInsert(nums, target))
+
+
+
 
 
