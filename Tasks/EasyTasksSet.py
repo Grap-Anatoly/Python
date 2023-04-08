@@ -267,6 +267,163 @@ target = 0
 print(searchInsert(nums, target))
 
 
+# Given a string s consisting of words and spaces,
+# return the length of the last word in the string.
+
+def lengthOfLastWord(str):
+
+    last = str.split()
+    #last = last[-1]
+    size = len(last[-1])
+
+    return size
 
 
+res = lengthOfLastWord("Hello world my name is Meee")
 
+print(res)
+
+# You are given a large integer represented as an integer array digits,
+# where each digits[i] is the ith digit of the integer.
+# The digits are ordered from most significant to least significant in left-to-right order.
+# The large integer does not contain any leading 0's.
+#
+# Increment the large integer by one and return the resulting array of digits.
+
+def plusOne(digits):
+
+    tempString = ""
+    res = []
+
+    for d in digits:
+        tempString += str(d)
+
+    number = int(tempString)
+    number += 1
+
+    for d in str(number):
+        res.append(int(d))
+
+    return res
+
+digits = [1, 2, 3]
+
+res = plusOne(digits)
+
+print(res)
+
+# Given two binary strings a and b, return their sum as a binary string.
+
+def addBinary(a, b):
+
+    binA = int(a, 2)
+    binB = int(b, 2)
+
+    res = bin(binA + binB)
+
+    return res[2:]
+
+a = "11"
+b = "1"
+
+res = addBinary(a, b)
+
+print(res)
+
+# Given a non-negative integer x, return the square root of x rounded down to the nearest integer.
+# The returned integer should be non-negative as well.
+
+def mySqrt(x):
+
+    if x <= 0:
+        return 0
+    else:
+        res = 0
+        oddN = 1
+
+        while x - oddN >= 0:
+            x = x - oddN
+            res += 1
+            oddN += 2
+
+        # or simple usage of res = (x ** 0,5)
+        return res
+
+
+x = 8
+
+res = mySqrt(x)
+
+print(res)
+
+# You are climbing a staircase. It takes n steps to reach the top.
+# Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+def climbStairs(n):
+    res = 1
+    if n != 1:
+        a, b = 1, 1
+        while res <= n:
+            a, b = b, a + b
+            res += 1
+        return a
+    else:
+        return res
+
+n = 4
+
+res = climbStairs(n)
+
+print(f"Choices: {res}")
+
+# Given the head of a sorted linked list, delete all duplicates such that each element appears only once.
+# Return the linked list sorted as well.
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+def deleteDuplicates(head):
+
+    c = head
+
+    while c:
+        while c.next and c.next.val == c.val:
+            c.next = c.next.next
+        c = c.next
+    return head
+
+# You are given two integer arrays nums1 and nums2,
+# sorted in non-decreasing order, and two integers m and n,
+# representing the number of elements in nums1 and nums2 respectively.
+
+# Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+
+def merge(nums1, m, nums2, n):
+
+    while len(nums1) > m:
+        nums1.pop()
+    while len(nums2) > n:
+        nums2.pop()
+
+    for n in nums2:
+        nums1.append(n)
+
+    r = len(nums1)
+
+    for i in range(r):
+        for j in range(0, r - i - 1):
+            if nums1[j] > nums1[j + 1]:
+                nums1[j], nums1[j + 1] = nums1[j + 1], nums1[j]
+
+    print(nums1)
+
+
+nums1 = [1, 2, 3, 0, 0, 0]
+m = 3
+nums2 = [2, 5, 6]
+n = 3
+
+merge(nums1, m, nums2, n)
