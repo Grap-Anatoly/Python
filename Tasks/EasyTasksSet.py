@@ -427,3 +427,178 @@ nums2 = [2, 5, 6]
 n = 3
 
 merge(nums1, m, nums2, n)
+
+# Binary Tree Traversal
+def preorder(root):
+  return [root.val] + preorder(root.left) + preorder(root.right) if root else []
+
+
+def inorder(root):
+  return  inorder(root.left) + [root.val] + inorder(root.right) if root else []
+
+
+def postorder(root):
+  return  postorder(root.left) + postorder(root.right) + [root.val] if root else []
+
+# Given the roots of two binary trees p and q,
+# write a function to check if they are the same or not.
+
+def isSameTree(p, q):
+    tree1 = []
+    tree2 = []
+
+    if p and q:
+        while p:
+            tree1.append(p.val)
+            p = p.left
+        while q:
+            tree2.append(q.val)
+            q = q.left
+
+        if tree1 == tree2:
+            return True
+        else:
+            return False
+    elif p and not q:
+        return False
+    elif q and not p:
+        return False
+    else:
+        return True
+
+# simple
+def isSameTreeSimple(self, p, q):
+    if p and q:
+        return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+    return p is q
+
+# tuple
+def isSameTreeTuple(self, p, q):
+    def t(n):
+        return n and (n.val, t(n.left), t(n.right))
+    return t(p) == t(q)
+
+# get max depth of binary tree
+def maxDepth(root):
+
+    def counter(root, depth):
+        if not root:
+            return depth
+        else:
+            return max(counter(root.left, depth + 1), counter(root.right, depth + 1))
+
+    return counter(root, 0)
+
+# Given an integer numRows, return the first numRows of Pascal's triangle.
+def generate(numRows):
+    res = [[1] * (i + 1) for i in range(numRows)]
+    for i in range(numRows):
+        for j in range(1, i):
+            res[i][j] = res[i - 1][j - 1] + res[i - 1][j]
+    return res
+
+n = 5
+
+res = generate(n)
+
+print(res)
+
+# Given an integer rowIndex, return the rowIndexth (0-indexed) row of the Pascal's triangle.
+def getRow(rowIndex):
+    res = []
+    one = [1]
+
+    for i in range(rowIndex):
+
+        res.append(one)
+
+        temp = one
+        temp.insert(len(one)+1, 0)
+        temp = temp[::-1]
+
+        for k in range(len(temp)):
+            one[k] = one[k] + temp[k]
+
+    return one
+
+n = 3
+
+result = getRow(n)
+
+print(result)
+
+# You are given an array prices where prices[i] is the price of a given stock
+# on the ith day.
+def maxProfit(prices):
+    buy = 0
+    sell = 1
+    max_profit = 0
+    while sell < len(prices):
+        currentProfit = prices[sell] - prices[buy]  # our current Profit
+        if prices[buy] < prices[sell]:
+            max_profit = max(currentProfit, max_profit)
+        else:
+            buy = sell
+        sell += 1
+    return max_profit
+
+
+prices = [7,1,5,3,6,4]
+
+result = maxProfit(prices)
+
+print(result)
+
+# A phrase is a palindrome if, after converting all uppercase letters into lowercase letters
+# and removing all non-alphanumeric characters,
+# it reads the same forward and backward.
+# Alphanumeric characters include letters and numbers.
+
+def isValidPalindrome(s):
+
+    acceptable = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    res = ""
+
+    for symb in s:
+        if symb in acceptable:
+            res += symb
+
+    print(res)
+
+    if res.lower() == res[::-1].lower():
+        return True
+    else:
+        return False
+
+# s = "A man, a plan, a canal: Panama"
+s = "9,8"
+
+res = isValidPalindrome(s)
+
+print(res)
+
+# Given a non-empty array of integers nums, every element appears twice except for one.
+#
+# Find that single one.
+def singleNumber(nums):
+
+    for n in nums:
+        count = 0
+        for k in nums:
+            if n == k:
+                count += 1
+        if count != 2:
+            return n
+
+def singleNUmberFast(nums):
+    xor = 0
+    for num in nums:
+        xor ^= num
+
+    return xor
+
+nums = [4,1,2,1,2]
+
+res = singleNUmberFast(nums)
+
+print(res)
