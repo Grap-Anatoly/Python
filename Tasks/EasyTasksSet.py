@@ -602,3 +602,105 @@ nums = [4,1,2,1,2]
 res = singleNUmberFast(nums)
 
 print(res)
+
+# binary tree preorder traversion
+def preorderTraversal(root):
+    if root:
+        return [root.val] + preorderTraversal(root.left) + preorderTraversal(root.right)
+    else:
+        return []
+
+# binary tree postorder traversion
+def postorderTraversal(root):
+    if root:
+        return postorderTraversal(root.left) + postorderTraversal(root.right) + [root.val]
+    else:
+        return []
+
+# Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect.
+# If the two linked lists have no intersection at all, return null.
+def getIntersectionNode(headA, headB):
+
+    if headA is None or headB is None:
+        return "No intersection"
+
+    hA = headA
+    hB = headB
+
+    while hA != hB:
+        hA = headB if hA is None else hA.next
+        hB = headA if hB is None else hB.next
+
+    return hA
+
+# Given an integer columnNumber,
+# return its corresponding column title as it appears in an Excel sheet.
+def convertToTitle(columnNumber):
+
+    res = ''
+
+    while (columnNumber > 0):
+        columnNumber -= 1
+        res = chr(columnNumber % 26 + 65) + res
+        columnNumber //= 26
+    return res
+
+# Given an array nums of size n, return the majority element.
+def majorityElement(nums):
+
+    count = {}
+
+    for n in nums:
+        c = 0
+        for k in nums:
+            if n == k:
+                c += 1
+            count[n] = c
+
+    return max(count, key=count.get)
+
+    # Faster method Via usage of set
+    # srt = sorted(nums)
+    # unique = set(srt)
+    # count = {}
+    #
+    # print(unique)
+    #
+    # for n in unique:
+    #     c = 0
+    #     for k in srt:
+    #         if n == k:
+    #             c += 1
+    #         count[n] = c
+    #
+    # return max(count, key=count.get)
+
+nums = [2, 2, 1, 1, 1, 2, 2]
+
+res = majorityElement(nums)
+
+print(res)
+
+# Write a function that takes the binary representation of an unsigned integer and returns the number of '1'
+# bits it has (also known as the Hamming weight).
+
+def hammingWeight(n):
+
+    b = '{0:b}'.format(n)
+    c = 0
+
+    for n in b:
+        if n == "1":
+            c += 1
+
+    return c
+
+
+# Reverse bits of a given 32 bits unsigned integer.
+def reverseBits(n):
+
+    b = '{:032b}'.format(n)
+    b = b[::-1]
+    res = int(b, 2)
+
+    return res
