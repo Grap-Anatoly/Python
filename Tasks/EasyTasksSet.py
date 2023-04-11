@@ -704,3 +704,117 @@ def reverseBits(n):
     res = int(b, 2)
 
     return res
+
+def isHappy(n):
+
+    target = 1
+
+    if n == 1 or n == 7:
+        return True
+    else:
+
+        for r in range(9):
+            s = []
+            num = str(n)
+            for i in num:
+                s.append(int(i))
+            for j in range(len(s)):
+                s[j] = s[j] ** 2
+            n = 0
+            for k in s:
+                n += k
+
+        if target == n:
+            return True
+        else:
+            return False
+
+
+
+
+n = 19
+
+print(isHappy(n))
+
+# Remove elements form linked list
+def removeLinked(head, val):
+    temp = ListNode(-1)
+    temp.next = head
+
+    curr = temp
+    while curr.next != None:
+        if curr.next.val == val:
+            curr.next = curr.next.next
+        else:
+            curr = curr.next
+
+    return temp.next
+
+
+# Isomorphic Strings
+def isIsomorphic(s, t):
+    if len(s) != len(t):
+        return False
+    else:
+        if len(set(s)) == len(set(zip(s,t))) == len(set(t)):
+            return True
+        else:
+            return False
+
+
+s = "paper"
+t = "title"
+
+print(isIsomorphic(s, t))
+
+# Reverse linked list
+def reverseList(head):
+
+    if head is None:
+        return head
+    else:
+        prev = None
+        #
+        curr = head
+        # 1, 2, 3, 4, 5
+        while curr:
+            next = curr.next
+            # 2 - 3 - 4 - 5 - 1
+            curr.next = prev
+            #   - 1 - 2 - 3 - 4
+
+            prev = curr
+            # 1 - 2 - 3 - 4 - 5
+            curr = next
+            # 2 - 3 - 4 - 5 - 1
+
+        return prev
+
+# if list contains duplicates
+
+def containsDuplicate(nums):
+    s = set(nums)
+
+    if len(s) != len(nums):
+        return True
+    else:
+        return False
+
+def containsNearbyDuplicate(nums, k):
+    counter = 0
+    res = 0
+    for n in nums:
+        for l in range(len(nums)+1):
+            if n != nums[l+1]:
+                counter += 1
+            elif counter < k or counter == 1:
+                return True
+            else:
+                return False
+
+nums = [1,2,3,1,2,3]
+k = 2
+
+containsNearbyDuplicate(nums, k)
+
+
