@@ -801,20 +801,113 @@ def containsDuplicate(nums):
         return False
 
 def containsNearbyDuplicate(nums, k):
-    counter = 0
-    res = 0
-    for n in nums:
-        for l in range(len(nums)+1):
-            if n != nums[l+1]:
-                counter += 1
-            elif counter < k or counter == 1:
-                return True
-            else:
-                return False
+
+    vals = {}
+    for i, v in enumerate(nums):
+        if v in vals and i - vals[v] <= k:
+            return True
+        vals[v] = i
+    return False
 
 nums = [1,2,3,1,2,3]
 k = 2
 
-containsNearbyDuplicate(nums, k)
+print(containsNearbyDuplicate(nums, k))
+
+# Implement stack using queues
+class MyStack:
+
+    def __init__(self):
+        self.stack = []
+
+    def push(self, x: int) -> None:
+        l = len(self.stack)
+        self.stack.insert(l + 1, x)
+
+    def pop(self) -> int:
+        l = len(self.stack)
+        res = self.stack[l-1]
+        self.stack.pop(l-1)
+        return res
+
+    def top(self) -> int:
+        l = len(self.stack)
+        return self.stack[l-1]
+
+    def empty(self) -> bool:
+        l = len(self.stack)
+        if l > 0:
+            return False
+        else:
+            return True
+
+# Summary ranges of the list
+def summaryRanges(nums):
+    res = []
+
+    if len(nums) == 0:
+        return []
+    elif len(nums) == 1:
+        for n in nums:
+            res.append(f"{n}")
+            return res
+    else:
+        fill = []
+        dct = {}
+
+        for i in range(nums[-1] + 1):
+            fill.append(i)
+
+        count = 0
+        for n in fill:
+            if n in nums:
+                dct[count] = n
+            else:
+                count = n + 1
+
+        for k, v in dct.items():
+            if k != v:
+                res.append(f"{k}->{v}")
+            else:
+                res.append(f"{v}")
+
+        return res
+
+# for very big numbers(faster)
+def fastSummaryRanges(nums):
+    ranges = []
+    res = []
+    for n in nums:
+        if not ranges or n > ranges[-1][-1] + 1:
+            ranges += [],
+        ranges[-1][1:] = n,
+
+    for r in ranges:
+        if len(r) > 1:
+            res.append(f"{r[0]}->{r[-1]}")
+        else:
+            res.append(f"{r[0]}")
+    return res
 
 
+nums = [0,2,3,4,6,8,9,10,12,16,17]
+# nums = [0,1,2,4,5,7]
+
+
+print(fastSummaryRanges(nums))
+
+def isPowerOfTwo(num):
+    for x in range(1000):
+        if num == 2 ** x:
+            return True
+    return False
+
+    # if n == 0:
+    #     return False
+    # else:
+    #     while n % 2 == 0:
+    #         n /= 2
+    #     return n == 1
+
+
+print(isPowerOfTwo(256))
