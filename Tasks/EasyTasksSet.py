@@ -911,3 +911,109 @@ def isPowerOfTwo(num):
 
 
 print(isPowerOfTwo(256))
+
+#  Implement Queue using Stacks
+class MyQueue:
+
+    def __init__(self):
+        self.l = []
+
+    def push(self, x: int) -> None:
+        self.l.append(x)
+
+    def pop(self) -> int:
+        res = self.l[0]
+        self.l.pop(0)
+        return res
+
+    def peek(self) -> int:
+        return self.l[0]
+
+    def empty(self) -> bool:
+        if len(self.l) == 0:
+            return True
+
+# Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+
+def isPalindrome(head):
+
+    straight = []
+    reverse = []
+
+    while head:
+        reverse = [head.val] + reverse
+        straight.append(head.val)
+        head = head.next
+
+    return reverse == straight
+
+# faster approach
+def isPalindromeFast(head):
+
+    l = []
+
+    while head:
+        l.append(head.val)
+        head = head.next
+
+    return l == l[::-1]
+
+# words are an anagram
+def isAnagram(s, t):
+
+    if sorted(list(s)) == sorted(list(t)):
+            return True
+
+# binary tree path
+def binaryTreePaths(root):
+    res = []
+
+    def findPath(node, path):
+        if not node.left and not node.right:
+            res.append(path)
+
+        if node.left:
+            findPath(node.left, path + "->" + str(node.left.val))
+
+        if node.right:
+            findPath(node.right, path + "->" + str(node.right.val))
+
+    findPath(root, str(root.val))
+
+    return res
+
+# Given an integer num,
+# repeatedly add all its digits until the result has only one digit, and return it.
+def addDigits(num):
+
+    s = str(num)
+    temp = 0
+
+    while len(s) != 1:
+        for i in s:
+            temp += int(i)
+        s = str(temp)
+        temp = 0
+    return s
+
+num = 138
+
+print(addDigits(num))
+
+# An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
+# Given an integer n, return true if n is an ugly number.
+def isUgly(n):
+    if n <= 0:
+        return False
+
+    if n == 1:
+        return True
+
+    elif n % 2 == 0:
+        return isUgly(n / 2)
+    elif n % 3 == 0:
+        return isUgly(n / 3)
+    elif n % 5 == 0:
+        return isUgly(n / 5)
+    else:
+        return False
