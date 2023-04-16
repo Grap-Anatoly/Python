@@ -1017,3 +1017,70 @@ def isUgly(n):
         return isUgly(n / 5)
     else:
         return False
+
+# Given an array nums containing n distinct numbers in the range [0, n],
+# return the only number in the range that is missing from the array.
+def missingNumber(nums):
+
+    srt = set(nums)
+    check = list(range(0, len(srt) + 1))
+
+    number = set(check).difference(srt)
+    number = list(number)
+
+    return number[0]
+
+# You are given an API bool isBadVersion(version) which returns whether version is bad.
+# Implement a function to find the first bad version.
+# You should minimize the number of calls to the API.
+
+def firstBadVersion(n):
+
+    # for i in range(1, n+1):
+    #     if isBadVersion(i) == True:
+    #         return i
+
+    # Fast version
+
+    # right = n - 1
+    # left = 0
+    # while (left <= right):
+    #     mid = left + (right - left) // 2
+    #     if isBadVersion(mid) == True:
+    #         right = mid - 1
+    #     else:
+    #         left = mid + 1
+    # return left
+    pass
+
+# Given an integer array nums,
+# move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+def moveZeroes(nums):
+    zeros = 0
+    for n in nums:
+        if n == 0:
+            zeros += 1
+
+    pointer = 0
+
+    while zeros != 0:
+        if nums[pointer] == 0:
+            nums.pop(pointer)
+            nums.append(0)
+            zeros -= 1
+        else:
+            pointer += 1
+
+moveZeroes([0,0,1])
+
+
+# Given a pattern and a string s, find if s follows the same pattern.
+def wordPattern(pattern,s ):
+    words = s.split()
+
+    if len(pattern) == len(words):
+        return len(set(zip(pattern, words))) == len(set(pattern)) == len(set(words))
+    else:
+        return False
+
+
