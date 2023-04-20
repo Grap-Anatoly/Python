@@ -1083,4 +1083,136 @@ def wordPattern(pattern,s ):
     else:
         return False
 
+# Given an integer array nums, handle multiple queries of the following type:
+# Calculate the sum of the elements of nums between indices left and right inclusive where left <= right.
+class NumArray:
 
+    def __init__(self, nums):
+        self.nums = nums
+
+    def sumRange(self, left: int, right: int) -> int:
+        if left > right:
+            return False
+        else:
+            rng = self.nums[left:right + 1]
+
+            res = 0
+            for n in rng:
+                res += n
+
+            return res
+
+# Given an integer n, return true if it is a power of three.
+# Otherwise, return false.
+def isPowerOfThree(n):
+
+    if n == 0:
+        return False
+    else:
+        while n % 3 == 0:
+            n /= 3
+        return n == 1
+
+# Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n),
+# ans[i] is the number of 1's in the binary representation of i.
+def countBits(n):
+    res = []
+    for i in range(n + 1):
+        bn = str(bin(i)[2:])
+        cnt = 0
+        for k in bn:
+            if k == "1":
+                cnt += 1
+        res.append(cnt)
+    return res
+
+def countBitsShorter(n):
+    res = []
+    for i in range(n + 1):
+        bn = str(bin(i)[2:])
+        res.append(bn.count("1"))
+    return res
+
+# Given an integer n, return true if it is a power of four.
+# Otherwise, return false.
+def isPowerOfFour(n):
+    if n == 0:
+        return False
+    else:
+        while n % 4 == 0:
+            n /= 4
+        return n == 1
+
+# Write a function that reverses a string.
+# The input string is given as an array of characters s.
+def reverseString(s):
+
+    for w in range(len(s) // 2):
+        t = s[w]
+        s[w] = s[-(w + 1)]
+        s[-(w + 1)] = t
+
+# Given a string s, reverse only all the vowels in the string and return it.
+# The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+def reverseVowels(s):
+    vowels = "aeiouAEIOU"
+    res = list(s)
+    v = []
+
+    for w in range(len(res)):
+        if res[w] in vowels:
+            v.append(res[w])
+            res[w] = "vowel"
+
+    for w in range(len(res)):
+        if res[w] == "vowel":
+            res[w] = v[-1]
+            v.pop()
+
+    s = ""
+
+    for r in res:
+        s += r
+
+    return s
+
+# Given two integer arrays nums1 and nums2, return an array of their intersection.
+# Each element in the result must be unique and you may return the result in any order.
+def intersection(nums1, nums2):
+
+    res = []
+
+    for n in nums1:
+        if n in nums2 and n not in res:
+            res.append(n)
+
+    return res
+
+# Given two integer arrays nums1 and nums2, return an array of their intersection.
+# Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+def intersect(nums1, nums2):
+    res = []
+    intersectDict = {}
+
+    for i in nums1:
+        if i not in intersectDict:
+            intersectDict[i] = 1
+        else:
+            intersectDict[i] += 1
+
+    for i in nums2:
+        if i in intersectDict and intersectDict[i] > 0:
+            res.append(i)
+            intersectDict[i] -= 1
+
+    return res
+
+# Given a positive integer num, return true if num is a perfect square or false otherwise.
+#
+# A perfect square is an integer that is the square of an integer.
+# In other words, it is the product of some integer with itself.
+def isPerfectSquare(num):
+    if num ** 0.5 % 1 == 0:
+        return True
+    else:
+        return False
