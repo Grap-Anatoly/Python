@@ -1302,3 +1302,81 @@ def isSubsequence(s, t):
 
 isSubsequence("abc", "ahbgdc")
 
+# Given the root of a binary tree, return the sum of all left leaves.
+# A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.
+def sumOfLeftLeaves(root):
+    if not root:
+        return 0
+
+    if root.left and not root.left.left and not root.left.right:
+        return root.left.val + sumOfLeftLeaves(root.right)
+    else:
+        return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right)
+
+# Given an integer num, return a string representing its hexadecimal representation.
+# For negative integers, two’s complement method is used.
+# All the letters in the answer string should be lowercase characters,
+# and there should not be any leading zeros in the answer except for the zero itself.
+# Note: You are not allowed to use any built-in library method to directly solve this problem.
+def toHex(num):
+    if num >= 0:
+        return hex(num)[2:]
+    else:
+        return hex((num + (1 << 64)) % (1 << 64))[10:]
+
+# Given a string s which consists of lowercase or uppercase letters, return the length of the longest palindrome
+# that can be built with those letters.
+def longestPalindrome(s):
+
+    letterSet = set()
+
+    for l in s:
+        if l not in letterSet:
+            letterSet.add(l)
+        else:
+            letterSet.remove(l)
+
+    if len(letterSet) != 0:
+        return len(s) - len(letterSet) + 1
+    else:
+        return len(s)
+
+# Given an integer n, return a string array answer (1-indexed) where:
+#
+# answer[i] == "FizzBuzz" if i is divisible by 3 and 5.
+# answer[i] == "Fizz" if i is divisible by 3.
+# answer[i] == "Buzz" if i is divisible by 5.
+# answer[i] == i (as a string) if none of the above conditions are true.
+def fizzBuzz(n):
+    res = []
+
+    for i in range(1, n + 1):
+        if i % 3 == 0 and i % 5 == 0:
+            res.append("FizzBuzz")
+        elif i % 3 == 0:
+            res.append("Fizz")
+        elif i % 5 == 0:
+            res.append("Buzz")
+        else:
+            res.append(str(i))
+
+    return res
+
+# Given an integer array nums, return the third distinct maximum number in this array.
+# If the third maximum does not exist, return the maximum number.
+def thirdMax(nums):
+
+    sn = set(sorted(nums))
+    sn = list(sn)
+
+    if len(sn) < 3:
+        return max(sn)
+
+    counter = 1
+
+    while counter != 3:
+        sn.remove(max(sn))
+        counter += 1
+
+    return max(sn)
+
