@@ -1380,3 +1380,70 @@ def thirdMax(nums):
 
     return max(sn)
 
+
+# Given two non-negative integers, num1 and num2 represented as string,
+# return the sum of num1 and num2 as a string.
+def addStrings(num1, num2):
+
+    numDict = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5,
+               '6': 6, '7': 7, '8': 8, '9': 9}
+
+    intNum1 = 0
+    intNum2 = 0
+
+    for n in num1:
+        intNum1 = intNum1 * 10 + numDict[n]
+    for n in num2:
+        intNum2 = intNum2 * 10 + numDict[n]
+
+    return str(intNum1 + intNum2)
+
+# Given a string s, return the number of segments in the string.
+# A segment is defined to be a contiguous sequence of non-space characters.
+def countSegments(s):
+
+    res = s.split()
+
+    return len(res)
+
+# You have n coins and you want to build a staircase with these coins.
+# The staircase consists of k rows where the ith row has exactly i coins.
+# The last row of the staircase may be incomplete.
+import math
+def arrangeCoins(n):
+    res = (math.sqrt(8 * n + 1) - 1) / 2
+
+    return int(res)
+
+
+print(arrangeCoins(18))
+
+#Given an array nums of n integers where nums[i] is in the range [1, n],
+#return an array of all the integers in the range [1, n] that do not appear in nums.
+def findDisappearedNumbers(nums):
+
+        allNums = []
+
+        for i in range(len(nums)):
+            i += 1
+            allNums.append(i)
+
+        return set(allNums).difference(set(nums))
+
+# Each child i has a greed factor g[i], which is the minimum size of a
+# cookie that the child will be content with;
+# and each cookie j has a size s[j]. If s[j] >= g[i],
+# we can assign the cookie j to the child i, and the child i will be content.
+# Your goal is to maximize the number of your content children and output the maximum number.
+def findContentChildren(g, s):
+    g.sort()
+    s.sort()
+
+    chld = 0
+    cook = 0
+
+    while chld < len(g) and cook < len(s):
+        if s[cook] >= g[chld]:
+            chld += 1
+        cook += 1
+    return chld
