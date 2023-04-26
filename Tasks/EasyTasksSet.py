@@ -1447,3 +1447,149 @@ def findContentChildren(g, s):
             chld += 1
         cook += 1
     return chld
+
+# Given a string s, check if it can be constructed by taking a substring
+# of it and appending multiple copies of the substring together.
+def repeatedSubstringPattern(s):
+
+    default = s
+
+    s = s * 2
+
+    s = s[1:-1]
+
+    if default in s:
+        return True
+    else:
+        return False
+
+def hammingDistance(x, y):
+
+    x = list(bin(x)[2:])
+    y = list(bin(y)[2:])
+
+    while len(x) != len(y):
+        if len(x) <= len(y):
+            x.insert(0, '0')
+        else:
+            y.insert(0, '0')
+
+    print(x)
+    print(y)
+
+    count = 0
+
+    for i in range(len(x)):
+        if x[i] != y[i]:
+            count += 1
+
+    return count
+
+print(hammingDistance(1, 4))
+
+
+# You are given row x col grid representing a map
+# where grid[i][j] = 1 represents land and grid[i][j] = 0 represents water.
+#
+# Grid cells are connected horizontally/vertically (not diagonally).
+# The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells).
+#
+# The island doesn't have "lakes", meaning the water inside isn't connected to the water around the island.
+# One cell is a square with side length 1.
+# The grid is rectangular, width and height don't exceed 100. Determine the perimeter of the island.
+def islandPerimeter(grid):
+    res = 0
+    allGrid = len(grid)
+    oneRow = len(grid[0])
+
+    for i in range(allGrid):
+        for j in range(oneRow):
+            res += 4 * grid[i][j]
+            if i > 0:
+                res -= grid[i][j] * grid[i - 1][j]
+            if i < allGrid - 1:
+                res -= grid[i][j] * grid[i + 1][j]
+            if j > 0:
+                res -= grid[i][j] * grid[i][j - 1]
+            if j < oneRow - 1:
+                res -= grid[i][j] * grid[i][j + 1]
+
+    return res
+
+# The complement of an integer is the integer you get when you flip all the 0's to 1's and all the 1's to 0's
+# in its binary representation.
+def findComplement(num):
+
+    num = str(bin(num)[2:])
+    res = ""
+
+    for n in num:
+        if n == "1":
+            res += "0"
+        elif n == "0":
+            res += "1"
+
+    return int(res, 2)
+
+# We want to reformat the string s such that each group contains exactly k characters,
+# except for the first group, which could be shorter than k but still must contain at least one character.
+# Furthermore, there must be a dash inserted between two groups,
+# and you should convert all lowercase letters to uppercase.
+def licenseKeyFormatting(s, k):
+    s = s.upper()
+
+    lst = []
+    for w in s:
+        if w != "-":
+            lst.append(w)
+
+    lst = lst[::-1]
+    res = ""
+    counter = 0
+
+    while len(lst) > 0:
+        if counter < k:
+            res += lst[0]
+            lst.pop(0)
+            counter += 1
+        else:
+            res += "-"
+            counter = 0
+
+    return res[::-1]
+
+licenseKeyFormatting("5F3Z-2e-9-w", 4)
+
+# Given a binary array nums, return the maximum number of consecutive 1's in the array.
+def findMaxConsecutiveOnes(nums):
+    res = 0
+    counter = 0
+
+    while len(nums) != 0:
+        if nums[0] == 1:
+            counter += 1
+            nums.pop(0)
+        else:
+            if counter >= res:
+                res = counter
+                counter = 0
+                nums.pop(0)
+            else:
+                counter = 0
+                nums.pop(0)
+
+    if counter >= res:
+        res = counter
+
+    return res
+
+def findMaxConsecutiveOnesShort(nums):
+    res = 0
+    count = 0
+    for i in nums:
+        if i == 1:
+            count += 1
+            res = max(res, count)
+        else:
+            count = 0
+    return res
