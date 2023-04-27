@@ -1593,3 +1593,69 @@ def findMaxConsecutiveOnesShort(nums):
         else:
             count = 0
     return res
+
+# A web developer needs to know how to design a web page's size.
+# So, given a specific rectangular web page’s area, your job by now is to design a rectangular web page,
+# whose length L and width W satisfy the following requirements:
+def constructRectangle(area):
+    s = []
+
+    for n in range(area):
+        n += 1
+        if area % n == 0:
+            s.append(n)
+    if len(s) % 2 == 0:
+        leftPointer = len(s) // 2 - 1
+        rightPointer = len(s) // 2
+    else:
+        leftPointer = len(s) // 2
+        rightPointer = len(s) // 2
+
+    while s[leftPointer] * s[rightPointer] != area:
+
+        if s[leftPointer] >= 0:
+            leftPointer -= 1
+        if s[rightPointer] < len(s):
+            rightPointer += 1
+
+    return [s[rightPointer], s[leftPointer]]
+
+
+def constructRectangleFast(area):
+    for l in range(int(area ** 0.5), 0, -1):
+        if area % l == 0:
+            return [area // l, l]
+
+# Our hero Teemo is attacking an enemy Ashe with poison attacks! When Teemo attacks Ashe,
+# Ashe gets poisoned for a exactly duration seconds.
+# More formally, an attack at second t will mean Ashe is poisoned during the inclusive time interval
+# [t, t + duration - 1]. If Teemo attacks again before the poison effect ends, the timer for it is reset,
+# and the poison effect will end duration seconds after the new attack.
+def findPoisonedDuration(timeSeries, duration):
+    total = duration * len(timeSeries)
+
+    for i in range(1, len(timeSeries)):
+        total -= max(0, duration - (timeSeries[i] - timeSeries[i - 1]))
+
+    return total
+# The next greater element of some element x in an array is the first greater
+# element that is to the right of x in the same array.
+# You are given two distinct 0-indexed integer arrays nums1 and nums2, where nums1 is a subset of nums2.
+def nextGreaterElement(nums1, nums2):
+    res = []
+
+    for n in nums1:
+        temp = nums2[nums2.index(n) + 1:]
+
+        if len(temp) != 0 and max(temp) > n:
+            tempMax = []
+
+            for t in temp:
+                if t > n:
+                    tempMax.append(t)
+
+            res.append(tempMax[0])
+        else:
+            res.append(-1)
+
+    return res
