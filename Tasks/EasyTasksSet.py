@@ -1659,3 +1659,135 @@ def nextGreaterElement(nums1, nums2):
             res.append(-1)
 
     return res
+
+# Given an array of strings words, return the words that can be typed using
+# letters of the alphabet on only one row of American keyboard
+def findWords(words):
+    first = "qwertyuiopQWERTYUIOP"
+    second = "asdfghjklASDFGHJKL"
+    third = "zxcvbnmZXCVBNM"
+
+    firstRes = []
+    secondRes = []
+    thirdRes = []
+
+    for w in words:
+        s = set(w)
+
+        cnt = 0
+        for i in s:
+            if i not in first:
+                cnt += 1
+        if cnt == 0:
+            firstRes.append(w)
+        cnt = 0
+        for i in s:
+            if i not in second:
+                cnt += 1
+        if cnt == 0:
+            secondRes.append(w)
+        cnt = 0
+        for i in s:
+            if i not in third:
+                cnt += 1
+        if cnt == 0:
+            thirdRes.append(w)
+
+    return firstRes + secondRes + thirdRes
+
+# Given the root of a binary search tree (BST) with duplicates, return all the mode(s)
+# (i.e., the most frequently occurred element) in it.
+def findMode(root):
+    vals = {}
+
+    def find(root, vals):
+        if root.val not in vals:
+            vals[root.val] = 1
+        else:
+            vals[root.val] += 1
+
+        if root.left:
+            find(root.left, vals)
+
+        if root.right:
+            find(root.right, vals)
+
+    find(root, vals)
+
+    max_value = max(vals.values())
+    res = []
+
+    for k, v in vals.items():
+        if v == max_value:
+            res.append(k)
+
+    return res
+
+# Base 7
+def convertToBase7(num):
+    num = list(str(num))
+    rev = []
+
+    for i in range(0, len(num)):
+        rev.append(i)
+
+    rev = rev[::-1]
+    res = 0
+
+    for r in range(len(rev)):
+        res += int(num[r]) * (7 ** rev[r])
+        # += 1 * 49 + 0 * 7 + 0 * 1
+
+    return str(res)
+
+def convertToBase7Check(num):
+
+        if num == 0:
+            return "0"
+
+        check = True
+        if num < 0:
+            check = False
+            num = -num
+
+        digits = []
+        res = ""
+
+        while num:
+            digits.append(int(num % 7))
+            num //= 7
+
+        for d in digits:
+            res += str(d)
+
+        if check == False:
+            return "-" + res[::-1]
+        else:
+            return res[::-1]
+
+
+def findRelativeRanks(score):
+
+    medals = ["Gold Medal", "Silver Medal", "Bronze Medal"]
+
+    res = []
+    for i in range(len(score)):
+        res.append(i)
+
+    dct = {}
+
+    for i in range(len(score)):
+        dct[score[i]] = i
+
+    score = sorted(score)[::-1]
+
+    for i in range(len(score)):
+        if i < 3:
+            res[dct[score[i]]] = medals[i]
+        else:
+            res[dct[score[i]]] = str(i + 1)
+
+    return res
+
+print(findRelativeRanks([5,4,3,2,1]))
+
