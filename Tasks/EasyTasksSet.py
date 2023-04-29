@@ -1791,3 +1791,64 @@ def findRelativeRanks(score):
 
 print(findRelativeRanks([5,4,3,2,1]))
 
+# A perfect number is a positive integer that is equal to the sum of its positive divisors, excluding the number itself.
+# A divisor of an integer x is an integer that can divide x evenly.
+def checkPerfectNumber(num):
+    res = 0
+    counter = 1
+
+    while counter != num:
+        if num % counter == 0:
+            res += counter
+        counter += 1
+
+    if res == num:
+        return True
+    else:
+        return False
+
+# All letters in this word are capitals, like "USA".
+# All letters in this word are not capitals, like "leetcode".
+# Only the first letter in this word is capital, like "Google".
+def detectCapitalUse(word):
+    if word == word.upper():
+        return True
+    elif word == word.lower():
+        return True
+    elif word[0] == word.upper()[0] and word[1:] == word.lower()[1:]:
+        return True
+    else:
+        return False
+
+# Given two strings a and b, return the length of the longest uncommon subsequence between a and b.
+# If the longest uncommon subsequence does not exist, return -1.
+def findLUSlength(a, b):
+    if a == b:
+        return -1
+    else:
+        return max(len(a), len(b))
+
+# Given the root of a Binary Search Tree (BST),
+# return the minimum absolute difference between the values of any two different nodes in the tree.
+def getMinimumDifference(root):
+    res = []
+
+    def go(root):
+        res.append(root.val)
+
+        if root.left:
+            go(root.left)
+        if root.right:
+            go(root.right)
+
+    go(root)
+
+    res = sorted(res)
+    m = res[1] - res[0]
+
+    for i in range(1, len(res)):
+        prev = res[i - 1]
+        if res[i] - prev <= m:
+            m = res[i] - prev
+
+    return m
