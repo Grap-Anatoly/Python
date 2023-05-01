@@ -1914,3 +1914,107 @@ def arrayPairSum(nums):
 
     return sm
 
+# In MATLAB, there is a handy function called reshape which can reshape an m x n matrix into a new one with
+# a different size r x c keeping its original data.
+def matrixReshape(mat, r,c):
+    oneLine = []
+    for i in mat:
+        for j in i:
+            oneLine.append(j)
+
+    res = []
+    temp = []
+
+    while len(res) != r:
+        if len(temp) != c and len(oneLine) != 0:
+            temp.append(oneLine[0])
+            oneLine.pop(0)
+        else:
+            res.append(temp)
+            temp = []
+
+    if len(oneLine) > 0:
+        return mat
+    elif len(res) != r:
+        return mat
+
+    for i in res:
+        if len(i) != c:
+            return mat
+
+    return res
+
+""" !!!!!!!!! Binary tree comparison !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"""
+# Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the
+# same structure and node values of subRoot and false otherwise.
+def isSubtree(root, subRoot):
+
+    def convert(node):
+        if node:
+            return "N: " + str(node.val) + " B: " + convert(node.left) + convert(node.right)
+        else:
+            return "None"
+
+    return convert(subRoot) in convert(root)
+
+
+# Given the integer array candyType of length n, return the maximum number of different types of candies
+# she can eat if she only eats n / 2 of them.
+def distributeCandies(candyType):
+
+    limit = len(candyType) // 2
+
+    unique = set(candyType)
+
+    if len(unique) > limit:
+        return limit
+    else:
+        return len(unique)
+
+def findLHS(nums):
+
+    if len(set(nums)) == 1:
+        return 0
+    else:
+        res = []
+        temp = []
+
+        while len(nums) > 0:
+
+            nums = sorted(nums)
+
+            mx = nums[-1]
+
+            temp.append(mx)
+            nums.pop()
+
+            for r in nums:
+                if r == mx or r == mx - 1:
+                    temp.append(r)
+
+            res.append(temp)
+            temp = []
+
+        mx = 0
+
+        for r in res:
+            if len(r) > mx and len(set(r)) != 1:
+                mx = len(r)
+
+        return mx
+
+def findLHSDict(nums):
+
+    count = {}
+    for n in nums:
+        if n not in count:
+            count[n] = 1
+        else:
+            count[n] += 1
+
+    mx = 0
+
+    for n in count.keys():
+        if count.get(n + 1):
+            mx = max(mx, count[n] + count.get(n + 1))
+    return mx
