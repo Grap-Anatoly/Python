@@ -1852,3 +1852,169 @@ def getMinimumDifference(root):
             m = res[i] - prev
 
     return m
+
+# Given a string s and an integer k, reverse the first k characters for every 2k
+# characters counting from the start of the string.
+def reverseStr(s, k):
+    s = list(s)
+
+    for i in range(0, len(s), 2 * k):
+        s[i: i + k] = s[i: i + k][::-1]
+
+    res = ""
+    for i in s:
+        res += i
+
+    return res
+
+# The student is eligible for an attendance award if they meet both of the following criteria:
+# The student was absent ('A') for strictly fewer than 2 days total.
+# The student was never late ('L') for 3 or more consecutive days.
+def checkRecord(s):
+    if s.count("A") > 1:
+        return False
+
+    if "LLL" in s:
+        return False
+
+    return True
+
+# Given a string s, reverse the order of characters in each word within a sentence while still
+# preserving whitespace and initial word order.
+def reverseWords(s):
+    res = ""
+
+    s = s.split()
+
+    for i in s:
+        if len(res) == 0:
+            res += i[::-1]
+        else:
+            res += " " + i[::-1]
+
+    return res
+
+# Given an integer array nums of 2n integers, group these integers into n pairs (a1, b1), (a2, b2), ..., (an, bn)
+# such that the sum of min(ai, bi) for all i is maximized. Return the maximized sum.
+def arrayPairSum(nums):
+
+    res = []
+
+    nums = sorted(nums)
+
+    counter = 0
+    while len(res) != len(nums) // 2:
+        res.append([nums[counter], nums[counter + 1]])
+        counter += 2
+
+    sm = 0
+
+    for i in res:
+        sm += min(i)
+
+    return sm
+
+# In MATLAB, there is a handy function called reshape which can reshape an m x n matrix into a new one with
+# a different size r x c keeping its original data.
+def matrixReshape(mat, r,c):
+    oneLine = []
+    for i in mat:
+        for j in i:
+            oneLine.append(j)
+
+    res = []
+    temp = []
+
+    while len(res) != r:
+        if len(temp) != c and len(oneLine) != 0:
+            temp.append(oneLine[0])
+            oneLine.pop(0)
+        else:
+            res.append(temp)
+            temp = []
+
+    if len(oneLine) > 0:
+        return mat
+    elif len(res) != r:
+        return mat
+
+    for i in res:
+        if len(i) != c:
+            return mat
+
+    return res
+
+""" !!!!!!!!! Binary tree comparison !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"""
+# Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the
+# same structure and node values of subRoot and false otherwise.
+def isSubtree(root, subRoot):
+
+    def convert(node):
+        if node:
+            return "N: " + str(node.val) + " B: " + convert(node.left) + convert(node.right)
+        else:
+            return "None"
+
+    return convert(subRoot) in convert(root)
+
+
+# Given the integer array candyType of length n, return the maximum number of different types of candies
+# she can eat if she only eats n / 2 of them.
+def distributeCandies(candyType):
+
+    limit = len(candyType) // 2
+
+    unique = set(candyType)
+
+    if len(unique) > limit:
+        return limit
+    else:
+        return len(unique)
+
+def findLHS(nums):
+
+    if len(set(nums)) == 1:
+        return 0
+    else:
+        res = []
+        temp = []
+
+        while len(nums) > 0:
+
+            nums = sorted(nums)
+
+            mx = nums[-1]
+
+            temp.append(mx)
+            nums.pop()
+
+            for r in nums:
+                if r == mx or r == mx - 1:
+                    temp.append(r)
+
+            res.append(temp)
+            temp = []
+
+        mx = 0
+
+        for r in res:
+            if len(r) > mx and len(set(r)) != 1:
+                mx = len(r)
+
+        return mx
+
+def findLHSDict(nums):
+
+    count = {}
+    for n in nums:
+        if n not in count:
+            count[n] = 1
+        else:
+            count[n] += 1
+
+    mx = 0
+
+    for n in count.keys():
+        if count.get(n + 1):
+            mx = max(mx, count[n] + count.get(n + 1))
+    return mx
