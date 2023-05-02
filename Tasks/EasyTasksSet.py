@@ -2018,3 +2018,67 @@ def findLHSDict(nums):
         if count.get(n + 1):
             mx = max(mx, count[n] + count.get(n + 1))
     return mx
+
+# You are given an m x n matrix M initialized with all 0's and an array of operations ops,
+# where ops[i] = [ai, bi] means M[x][y] should be incremented by one for all 0 <= x < ai and 0 <= y < bi.
+# Count and return the number of maximum integers in the matrix after performing all the operations.
+def maxCount( m, n, ops):
+
+    col = min(i for i, _ in ops + [[m, n]])
+    row = min(j for _, j in ops + [[m, n]])
+
+    return col * row
+
+
+# Given two arrays of strings list1 and list2,
+# find the common strings with the least index sum.
+def findRestaurant(list1, list2):
+
+    s1 = set(list1)
+    s2 = set(list2)
+
+    common = list(s1.intersection(s2))
+
+    sumDict = {}
+
+    for c in common:
+        sumDict[c] = list1.index(c) + list2.index(c)
+
+    minK = sumDict[min(sumDict, key=sumDict.get)]
+
+    res = []
+
+    for k, v in sumDict.items():
+        if v == minK:
+            res.append(k)
+
+    return res
+
+def canPlaceFlowers(flowerbed, n):
+    
+    if n == 0:
+        return True
+
+    if len(flowerbed) == 1 and flowerbed[0] == 0:
+        return True
+    elif len(flowerbed) == 1:
+        return False
+
+    for i in range(len(flowerbed)):
+        if i == 0:
+            if flowerbed[i] == 0 and flowerbed[i + 1] == 0:
+                flowerbed[i] = 1
+                n -= 1
+        elif i == len(flowerbed) - 1:
+            if flowerbed[i] == 0 and flowerbed[i - 1] == 0:
+                flowerbed[i] = 1
+                n -= 1
+        elif i < len(flowerbed) - 1:
+            if flowerbed[i] == 0 and flowerbed[i - 1] == 0 and flowerbed[i + 1] == 0:
+                flowerbed[i] = 1
+                n -= 1
+
+        if n == 0:
+            return n == 0
+
+    return n == 0
