@@ -2082,3 +2082,52 @@ def canPlaceFlowers(flowerbed, n):
             return n == 0
 
     return n == 0
+
+# Given the root of a binary tree, construct a string consisting of parenthesis and
+# integers from a binary tree with the preorder traversal way, and return it.
+def tree2str(root):
+
+    if not root:
+        return ""
+
+    left = tree2str(root.left)
+    right = tree2str(root.right)
+
+    if left == "" and right == "":
+        return str(root.val)
+    elif left == "":
+        return str(root.val) + "()" + "(" + right + ")"
+    elif right == "":
+        return str(root.val) + "(" + left + ")"
+    else:
+        return str(root.val) + "(" + left + ")" + "(" + right + ")"
+
+# Given an integer array nums, find three numbers whose product is maximum and return the maximum product.
+def maximumProduct(nums):
+
+    if min(nums) >= 0:
+        nums = sorted(nums)[::-1]
+    else:
+        nums = sorted(nums)
+
+    if min(nums) >= 0:
+        return nums[0] * nums[1] * nums[2]
+    elif min(nums) <= 0 and max(nums) <= 0:
+        return nums[-1] * nums[-2] * nums[-3]
+    else:
+        first = nums[0] * nums[1] * nums[-1]
+        second = nums[-3] * nums[-2] * nums[-1]
+        return max(first, second)
+
+# Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value.
+def findMaxAverage(nums, k):
+    mx = sum(nums[0: k])
+
+    temp = mx
+
+    for i in range(len(nums) - k):
+        temp += nums[i + k] - nums[i]
+        mx = max(temp, mx)
+
+    return mx / k
+
