@@ -2131,3 +2131,116 @@ def findMaxAverage(nums, k):
 
     return mx / k
 
+# Find the number that occurs twice and the number that is missing and return them in the form of an array.
+def findErrorNums(nums):
+
+    correct = list(range(1, len(nums) + 1))
+    correct = set(correct)
+
+    numsSet = set(nums)
+
+    reqValue = list(correct.difference(numsSet))[0]
+
+    check = []
+    twice = 0
+    for i in nums:
+        if i in check:
+            twice = i
+        else:
+            check.append(i)
+
+    res = [twice, reqValue]
+
+    return res
+
+# Given the root of a binary search tree and an integer k, return true if there exist two elements in the BST such
+# that their sum is equal to k, or false otherwise.
+def findTarget(root, k):
+
+    res = []
+
+    def getVals(node):
+        if node:
+            res.append(node.val), getVals(node.left), getVals(node.right)
+
+    getVals(root)
+
+    for i in res:
+        for j in res:
+            if i != j:
+                if i + j == k:
+                    return True
+
+# There is a robot starting at the position (0, 0), the origin, on a 2D plane.
+# Given a sequence of its moves, judge if this robot ends up at (0, 0) after it completes its moves.
+#
+# You are given a string moves that represents the move sequence of the robot where moves[i] represents its ith move.
+# Valid moves are 'R' (right), 'L' (left), 'U' (up), and 'D' (down).
+#
+# Return true if the robot returns to the origin after it finishes all of its moves, or false otherwise
+def judgeCircle(moves):
+
+    movesCount = {
+        "U": 0,
+        "D": 0,
+        "L": 0,
+        "R": 0
+    }
+
+    for i in moves:
+        if i in movesCount:
+            movesCount[i] += 1
+        else:
+            movesCount[i] = 1
+
+    if movesCount["U"] == movesCount["D"] and movesCount["L"] == movesCount["R"]:
+        return True
+
+# Given such a binary tree, you need to output the second minimum value in the set made of all the nodes'
+# value in the whole tree.
+def findSecondMinimumValue(root):
+    res = []
+
+    def getVals(node):
+        if node:
+            res.append(node.val), getVals(node.left), getVals(node.right)
+
+    getVals(root)
+
+    res = sorted(res)
+
+    firstMin = res[0]
+    secondMin = 0
+
+    for i in res:
+        if i != firstMin:
+            return i
+    return -1
+
+# Given an unsorted array of integers nums, return the length of the longest continuous increasing subsequence
+# (i.e. subarray). The subsequence must be strictly increasing.
+def findLengthOfLCIS(nums):
+    res = []
+    temp = []
+
+    for i in range(len(nums)):
+
+        if i < len(nums) - 1:
+            if nums[i] < nums[i + 1]:
+                temp.append(nums[i])
+            else:
+                temp.append(nums[i])
+                res.append(temp)
+                temp = []
+        else:
+            if nums[i - 1] > nums[i]:
+                temp.append(nums[i])
+            else:
+                temp.append(nums[i])
+                res.append(temp)
+                temp = []
+
+    if len(res) > 0:
+        return len(max(res, key=len))
+    else:
+        return 0
