@@ -2244,3 +2244,83 @@ def findLengthOfLCIS(nums):
         return len(max(res, key=len))
     else:
         return 0
+
+def validPalindrome(s):
+    leftPointer = 0
+    rightPointer = len(s) - 1
+
+    while leftPointer <= rightPointer:
+
+        if s[leftPointer] != s[rightPointer]:
+            checkString1 = s[:leftPointer] + s[leftPointer + 1:]
+            checkstring2 = s[:rightPointer] + s[rightPointer + 1:]
+
+            return checkString1 == checkString1[::-1] or checkstring2 == checkstring2[::-1]
+
+        leftPointer += 1
+        rightPointer -= 1
+
+    return True
+
+print(validPalindrome("abc"))
+
+
+def calPoints(operations):
+    res = []
+
+    for i in operations:
+        if i.lstrip('-').isdigit():
+            res.append(int(i))
+        else:
+            if i == "C":
+                res.pop()
+            if i == "D":
+                res.append(res[-1] * 2)
+            if i == "+":
+                res.append(res[-1] + res[-2])
+
+    print(res)
+
+    sm = 0
+    for i in res:
+        sm += i
+
+    return sm
+
+print(calPoints(["5","-2","4","C","D","9","+","+"]))
+
+# Given a positive integer, check whether it has alternating bits: namely,
+# if two adjacent bits will always have different values.
+def hasAlternatingBits(n):
+    bn = bin(n)[2:]
+    bn = list(bn)
+
+    for i in range(len(bn)):
+        if i != len(bn) - 1:
+            if bn[i] == bn[i + 1]:
+                return False
+
+    return True
+
+# Given a positive integer, check whether it has alternating bits:
+# namely, if two adjacent bits will always have different values.
+def countBinarySubstrings(s):
+    res = 0
+
+    curent = 0
+    previous = 0
+
+    currentValue = None
+
+    for i in s:
+        if i != currentValue:
+            previous = curent
+            currentValue = i
+            curent = 1
+        else:
+            curent += 1
+
+        if curent <= previous:
+            res += 1
+
+    return res
