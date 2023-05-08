@@ -2324,3 +2324,104 @@ def countBinarySubstrings(s):
             res += 1
 
     return res
+
+# Given a binary array bits that ends with 0, return true if the last character must be a one-bit character.
+def isOneBitCharacter(bits):
+    chars = ["11", "10", "0"]
+
+    bits.pop()
+
+    print(bits)
+
+    for c in chars:
+
+        counter = 0
+        lastChar = 0
+
+        while counter < len(bits):
+            if bits[counter] == 0:
+                lastChar = 0
+                counter += 1
+
+            elif bits[counter] == 1:
+                lastChar = 1
+                counter += 2
+
+        return lastChar == 0
+
+isOneBitCharacter([1,0,0])
+
+# Given an array of integers nums, calculate the pivot index of this array.
+# The pivot index is the index where the sum of all the numbers strictly to the left of the
+# index is equal to the sum of all the numbers strictly to the index's right.
+def pivotIndex(nums):
+    if nums[0] == sum(nums[0:]):
+        return 0
+
+    for n in range(len(nums)):
+        print(n)
+        if sum(nums[n + 1:]) == sum(nums[:n]):
+            return n
+
+    return -1
+
+# Same task
+def findMiddleIndex(nums) :
+    if nums[0] == sum(nums[0:]):
+        return 0
+
+    for n in range(len(nums)):
+        print(n)
+        if sum(nums[n + 1:]) == sum(nums[:n]):
+            return n
+
+    return -1
+
+# l = [1,7,3,6,5,6]
+l = [-1,-1,-1,-1,-1,0]
+
+print(pivotIndex(l))
+
+# Given two integers left and right, return a list of all the self-dividing numbers in the range [left, right].
+# A self-dividing number is a number that is divisible by every digit it contains.
+# For example, 128 is a self-dividing number because 128 % 1 == 0, 128 % 2 == 0, and 128 % 8 == 0.
+def selfDividingNumbers(left, right):
+    res = []
+
+    for i in range(left, right + 1):
+        number = ""
+        for j in str(i):
+            if int(j) != 0:
+                if i % int(j) == 0:
+                    number += j
+
+        if number != "":
+            if i == int(number):
+                res.append(i)
+                number = ""
+            else:
+                number = ""
+
+    return res
+
+def toLowerCase(s):
+    return s.lower()
+
+# You are given an array of characters letters that is sorted in non-decreasing order, and a character target.
+# There are at least two different characters in letters.
+
+def nextGreatestLetter(letters, target):
+    letters.append(target)
+    letters = sorted(letters)
+
+    res = {}
+
+    for i, j in enumerate(letters):
+        res[j] = i
+
+    if target == max(res, key=res.get):
+        return min(res, key=res.get)
+    else:
+        for k, v in res.items():
+            if res[k] > res[target]:
+                return k
