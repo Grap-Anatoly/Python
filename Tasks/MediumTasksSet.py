@@ -1,3 +1,5 @@
+import math
+
 # Given an integer array nums sorted in non-decreasing order,
 # remove some duplicates in-place such that each unique element appears at most twice.
 # The relative order of the elements should be kept the same.
@@ -130,7 +132,116 @@ class RandomizedSet:
     #     return self.data[randrange(len(self.data))]
 
 
+# Given an integer array nums, return an array answer such that answer[i]
+# is equal to the product of all the elements of nums except nums[i].
 
+# For small lists
+def productExceptSelf(nums):
+    res = []
+
+    for i in range(len(nums)):
+        temp = []
+        temp = temp + nums
+        temp.pop(i)
+
+        product = 1
+        for j in temp:
+            product *= j
+
+        res.append(product)
+
+    return res
+
+def productExceptSelfSymmetrical(nums):
+    res = []
+
+    for i in nums:
+        left = nums[:i]
+        right = nums[i + 1:]
+
+        res.append(math.prod(left) * math.prod(right))
+
+    return res
+
+def productExceptSelfSuffPreff(nums):
+
+    res = [1] * len(nums)
+    left = 1
+    right = 1
+
+    for i in range(len(nums)):
+        res[i] *= left
+        left *= nums[i]
+
+        res[-1 - i] *= right
+        right *= nums[-1 - i]
+
+    return res
+
+print(productExceptSelf([1,2,3,4]))
+print(productExceptSelfSymmetrical([1,2,3,4]))
+
+# Given an integer, convert it to a roman numeral.
+def intToRoman(num):
+    res = ""
+    roman = [[1000, "M"],
+             [900, "CM"],
+             [500, "D"],
+             [400, "CD"],
+             [100, "C"],
+             [90, "XC"],
+             [50, "L"],
+             [40, "XL"],
+             [10, "X"],
+             [9, "IX"],
+             [5, "V"],
+             [4, "IV"],
+             [1, "I"]]
+
+    for i in range(len(roman)):
+        while num >= roman[i][0]:
+            res += roman[i][1]
+            num -= roman[i][0]
+            print(num)
+
+    return res
+
+# Given an input string s, reverse the order of the words.
+def reverseWords(s):
+    lst = s.split()
+    res = ""
+
+    for w in lst[::-1]:
+        res += " " + w
+
+    return res[1:]
+
+# Given an integer n, return the number of trailing zeroes in n!.
+def trailingZeroes(n):
+    fact = 1
+    for i in range(1, n + 1):
+        fact *= i
+
+    res = 0
+
+    for i in str(fact)[::-1]:
+        if i == "0":
+            res += 1
+        if int(i) > 0:
+            break
+
+    return res
+
+def trailingZeroesByDivision(n):
+    res = 0
+
+    while n > 0:
+        n = n // 5
+        res = res + n
+
+    return res
+
+trailingZeroes(11)
 
 
 
