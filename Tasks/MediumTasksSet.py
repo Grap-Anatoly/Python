@@ -244,4 +244,51 @@ def trailingZeroesByDivision(n):
 trailingZeroes(11)
 
 
+def groupAnagramsForSmallLists(strs):
+    res = []
+    temp = []
+
+    for s in strs:
+        temp.append([s, sorted(list(s))])
+
+    words = []
+    for s in temp:
+
+        counter = 0
+
+        while counter < len(temp):
+            if s[1] == temp[counter][1]:
+                words.append(temp[counter][0])
+            counter += 1
+
+        if words not in res:
+            res.append(words)
+
+        words = []
+
+    return res
+
+def groupAnagrams(strs):
+
+    wordsDict = {}
+
+    for s in strs:
+        key = "".join(sorted(s))
+        if key in wordsDict:
+            temp = wordsDict[key]
+            temp.append(s)
+            wordsDict[key] = temp
+        else:
+            wordsDict[key] = [s]
+
+    res = []
+    for k, v in wordsDict.items():
+        res.append(v)
+
+    return res[::-1]
+
+groupAnagramsForSmallLists(["eat","tea","tan","ate","nat","bat"])
+
+
+
 
