@@ -2426,3 +2426,57 @@ def nextGreatestLetter(letters, target):
             if res[k] > res[target]:
                 return k
 
+# You are given an integer array cost where cost[i] is the cost of ith step on a staircase.
+# Once you pay the cost, you can either climb one or two steps.
+# You can either start from the step with index 0, or the step with index 1.
+# Return the minimum cost to reach the top of the floor.
+def minCostClimbingStairs(cost):
+
+    costLen = len(cost)
+    totalCost = [0] * (costLen + 1)
+
+    for i in range(2, costLen + 1):
+        totalCost[i] = min(totalCost[i - 1] + cost[i - 1], totalCost[i - 2] + cost[i - 2])
+
+    return totalCost[-1]
+
+    return totalCost
+
+
+# minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1])
+minCostClimbingStairs([10,15,20])
+
+# Determine whether the largest element in the array is at least twice as much as every other number in the array.
+# If it is, return the index of the largest element, or return -1 otherwise.
+def dominantIndex(nums):
+    m = max(nums)
+
+    for n in nums:
+        if n != m:
+            if n * 2 > m:
+                return -1
+
+    return nums.index(m)
+
+def shortestCompletingWord(licensePlate, words):
+    letters = "qwertyuiopasdfghjklzxcvbnm"
+
+    licensePlate = list(licensePlate.lower())
+    licensePlateSet = []
+
+    for w in licensePlate:
+        if w in letters:
+            licensePlateSet.append(w)
+
+    res = []
+    for w in words:
+        for i in range(len(licensePlateSet)):
+            temp = w.count(licensePlateSet[i])
+            if w.count(licensePlateSet[i]) < licensePlateSet.count(licensePlateSet[i]):
+                break
+            if i == len(licensePlateSet) - 1:
+                res.append(w)
+
+    return min(res, key=len)
+
+shortestCompletingWord("1s3 PSt", words = ["step","steps","stripe","stepple"])
