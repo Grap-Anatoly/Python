@@ -2480,3 +2480,99 @@ def shortestCompletingWord(licensePlate, words):
     return min(res, key=len)
 
 shortestCompletingWord("1s3 PSt", words = ["step","steps","stripe","stepple"])
+
+
+# Given two integers left and right, return the count of numbers in the inclusive range [left, right]
+# having a prime number of set bits in their binary representation.
+# Recall that the number of set bits an integer has is the number of 1's present when written in binary.
+def countPrimeSetBits(left, right):
+    def isPrime(n):
+        if n != 1:
+            for i in range(2, n):
+                if (n % i) == 0:
+                    return False
+            return True
+
+    bits = []
+    for i in range(left, right + 1):
+        b = bin(i)[2:]
+        bits.append(b.count("1"))
+
+    res = 0
+    for n in bits:
+        if isPrime(n) == True:
+            res += 1
+
+    return res
+
+# Given a n-ary tree, find its maximum depth.
+def maxDepthNTree(root):
+
+    if not root:
+        return 0
+
+    depth = 0
+    for child in root.children:
+        depth = max(depth, maxDepthNTree(child))
+
+    return depth + 1
+
+# Given the root of an n-ary tree, return the preorder traversal of its nodes' values.
+def preorderNTree(root):
+
+    if not root:
+        return []
+
+    res = []
+    res.append(root.val)
+
+    def traverse(root, res):
+        for child in root.children:
+            res.append(child.val)
+            traverse(child, res)
+
+    traverse(root, res)
+
+    return res
+
+# Given the root of an n-ary tree, return the postorder traversal of its nodes' values.
+def postorderNTree(root):
+
+    if not root:
+        return []
+
+    res = []
+    res.append(root.val)
+
+    def traverse(root, res):
+        for child in root.children[::-1]:
+            res.append(child.val)
+            traverse(child, res)
+
+    traverse(root, res)
+
+    return res[::-1]
+
+def numJewelsInStones(jewels, stones):
+    jewels = list(jewels)
+    stones = list(stones)
+
+    res = 0
+
+    for i in stones:
+        if i in jewels:
+            res += 1
+
+    return res
+
+# Add element to the list and return kth largest value
+class KthLargest:
+
+    def __init__(self, k, nums):
+        self.k = k
+        self.nums = nums
+
+    def add(self, val: int) -> int:
+        self.nums.append(val)
+        self.nums = sorted(self.nums)
+        return self.nums[-self.k]
