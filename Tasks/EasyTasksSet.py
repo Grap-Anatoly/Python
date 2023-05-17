@@ -2576,3 +2576,122 @@ class KthLargest:
         self.nums.append(val)
         self.nums = sorted(self.nums)
         return self.nums[-self.k]
+
+# Given an array of integers nums which is sorted in ascending order,
+# and an integer target, write a function to search target in nums.
+# If target exists, then return its index. Otherwise, return -1.
+def search(nums, target):
+
+    left = nums[:len(nums) // 2][::-1]
+    right = nums[len(nums) // 2:]
+
+    for i in range(len(left)):
+        if target > left[i]:
+            break
+        else:
+            if left[i] == target:
+                return nums.index(left[i])
+
+    for i in range(len(right)):
+        if target < right[i]:
+            break
+        else:
+            if right[i] == target:
+                return nums.index(right[i])
+
+    return -1
+
+# Given the root of a Binary Search Tree (BST),
+# return the minimum difference between the values of any two different nodes in the tree.
+def minDiffInBST(root):
+
+    vals = []
+
+    def getValues(node, vals):
+
+        if not node.left and not node.right:
+            vals.append(node.val)
+        if node.left:
+            vals.append(node.val)
+            getValues(node.left, vals)
+        if node.right:
+            if node.val not in vals:
+                vals.append(node.val)
+            getValues(node.right, vals)
+
+    getValues(root, vals)
+
+    vals = sorted(vals)[::-1]
+    m = vals[0] - vals[1]
+
+    for i in range(len(vals)):
+        if i < len(vals) - 1:
+            if m > vals[i] - vals[i + 1]:
+                m = vals[i] - vals[i + 1]
+        else:
+            if m > vals[i - 1] - vals[i]:
+                m = vals[i - 1] - vals[i]
+
+    return m
+
+# Given two strings s and goal, return true if and only if s can become goal after some number of shifts on s.
+# A shift on s consists of moving the leftmost character of s to the rightmost position.
+def rotateString(s, goal):
+    s = list(s)
+    goal = list(goal)
+
+    if len(s) != len(goal):
+        return False
+
+    for i in range(len(s)):
+        if s == goal:
+            return True
+        else:
+            s.append(s[0])
+            s.pop(0)
+
+    return False
+
+# Create hashSet with specified number of operations
+class MyHashSet:
+
+    def __init__(self):
+        self.hashSet = list()
+
+    def add(self, key: int) -> None:
+        if key not in self.hashSet:
+            self.hashSet.append(key)
+
+    def remove(self, key: int) -> None:
+        if key in self.hashSet:
+            self.hashSet.pop(self.hashSet.index(key))
+        else:
+            return False
+
+    def contains(self, key: int) -> bool:
+        if key in self.hashSet:
+            return True
+        else:
+            return False
+
+# Given an array of strings words where each word can be written as a concatenation of the Morse code of each letter.
+# For example, "cab" can be written as "-.-..--...", which is the concatenation of "-.-.", ".-", and "-...".
+# We will call such a concatenation the transformation of a word.
+# Return the number of different transformations among all words we have.
+def uniqueMorseRepresentations(words):
+    letters = {'a': ".-", 'b': "-...", 'c': "-.-.", 'd': "-..", 'e': ".",
+               'f': "..-.", 'g': "--.", 'h': "....", 'i': "..", 'j': ".---",
+               'k': "-.-", 'l': ".-..", 'm': "--", 'n': "-.", 'o': "---",
+               'p': ".--.", 'q': "--.-", 'r': ".-.", 's': "...", 't': "-",
+               'u': "..-", 'v': "...-", 'w': ".--", 'x': "-..-", 'y': "-.--",
+               'z': "--.."}
+
+    morse = []
+
+    for w in words:
+        temp = ""
+        for l in w:
+            temp += letters[l]
+        morse.append(temp)
+
+    return len(set(morse))
