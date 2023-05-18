@@ -2695,3 +2695,94 @@ def uniqueMorseRepresentations(words):
         morse.append(temp)
 
     return len(set(morse))
+
+# You are given a string s of lowercase English letters and an array widths denoting how many pixels wide each
+# lowercase English letter is.
+# Specifically, widths[0] is the width of 'a', widths[1] is the width of 'b', and so on.
+
+# Return an array result of length 2 where:
+# result[0] is the total number of lines.
+# result[1] is the width of the last line in pixels.
+def numberOfLines(widths, s):
+
+    dct = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0,
+           'f': 0, 'g': 0, 'h': 0, 'i': 0, 'j': 0,
+           'k': 0, 'l': 0, 'm': 0, 'n': 0, 'o': 0,
+           'p': 0, 'q': 0, 'r': 0, 's': 0, 't': 0,
+           'u': 0, 'v': 0, 'w': 0, 'x': 0, 'y': 0,
+           'z': 0}
+
+    s = list(s)
+
+    for k, v in dct.items():
+        dct[k] = widths[0]
+        widths.pop(0)
+
+    letters = []
+    pixels = []
+
+    temp = []
+    counter = 0
+
+    while len(s) != 0:
+        if (counter + dct[s[0]]) <= 100:
+            temp.append(s[0])
+            counter += dct[s[0]]
+
+            s.pop(0)
+        else:
+            letters.append(temp)
+            pixels.append(counter)
+
+            temp = []
+            counter = 0
+
+    if len(temp) > 0:
+        letters.append(temp)
+        pixels.append(counter)
+
+    return [len(letters), pixels[-1]]
+
+# Given a string paragraph and a string array of the banned words banned, return the most frequent
+# word that is not banned.
+# It is guaranteed there is at least one word that is not banned, and that the answer is unique.
+def mostCommonWord(paragraph, banned):
+
+    s = "!?',;."
+
+    for i in s:
+        paragraph = paragraph.replace(i, " ")
+
+    paragraph = paragraph.lower()
+    paragraph = paragraph.split()
+
+    res = {}
+
+    for w in paragraph:
+        if w not in res and w not in banned:
+            res[w] = 1
+        elif w not in banned:
+            res[w] += 1
+
+    return max(res, key=res.get)
+
+def toGoatLatin(sentence):
+
+    res = ""
+    counter = 1
+
+    for s in sentence.split():
+        if s[0] in "aeiouAEIOU":
+            s += "ma"
+        else:
+            first = s[0]
+            s += first
+            s += "ma"
+            s = s[1:]
+
+        s += "a" * counter
+        counter += 1
+
+        res += s + " "
+
+    return res[:-1]
