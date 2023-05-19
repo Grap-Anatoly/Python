@@ -2786,3 +2786,106 @@ def toGoatLatin(sentence):
         res += s + " "
 
     return res[:-1]
+
+# In a string s of lowercase letters, these letters form consecutive groups of the same character.
+def largeGroupPositions(s):
+    i = 0
+    res = []
+
+    while i < len(s):
+        j = i + 1
+        while j < len(s) and s[j] == s[i]:
+            j = j + 1
+        if (j - i) > 2:
+            res.append([i, j - 1])
+        i = j
+
+    return res
+
+
+largeGroupPositions("abbxxxxzzy")
+
+# Given an n x n binary matrix image, flip the image horizontally, then invert it, and return the resulting image.
+def flipAndInvertImage(image):
+
+    res = []
+
+    for i in image:
+        temp = i[::-1]
+        for j in range(len(temp)):
+            if temp[j] == 0:
+                temp[j] = 1
+            else:
+                temp[j] = 0
+        res.append(temp)
+
+    return res
+
+flipAndInvertImage([[1,1,0],[1,0,1],[0,0,0]])
+
+# An axis-aligned rectangle is represented as a list [x1, y1, x2, y2], where (x1, y1)
+# is the coordinate of its bottom-left corner,
+# and (x2, y2) is the coordinate of its top-right corner.
+# Its top and bottom edges are parallel to the X-axis, and its left and right edges are parallel to the Y-axis.
+def isRectangleOverlap(rec1, rec2):
+
+    if rec1[2] <= rec2[0] or rec1[1] >= rec2[3] or rec1[0] >= rec2[2] or rec1[3] <= rec2[1]:
+        return False
+    else:
+        return True
+
+# Given two strings s and t, return true if they are equal when both are typed into empty text editors.
+# '#' means a backspace character.
+def backspaceCompare(s, t):
+
+    s = list(s)
+    t = list(t)
+
+    def convert(defaultList):
+        resultList = []
+
+        for i in range(len(defaultList)):
+            if defaultList[i] != "#":
+                resultList.append(defaultList[i])
+            else:
+                if len(resultList) != 0:
+                    resultList.pop()
+
+        return resultList
+
+    return convert(s) == convert(t)
+
+# At a lemonade stand, each lemonade costs $5. Customers are standing in a queue to buy from you and order one at a time
+# (in the order specified by bills). Each customer will only buy one lemonade and pay with either
+# a $5, $10, or $20 bill.
+# You must provide the correct change to each customer so that the net transaction is that the customer pays $5.
+def lemonadeChange(bills):
+
+    change = []
+
+    for i in bills:
+        if i == 5:
+            change.append(i)
+        if i == 10:
+            if 5 in change:
+                change.pop(change.index(5))
+                change.append(i)
+            else:
+                return False
+        if i == 20:
+            if 5 in change and 10 in change:
+                change.pop(change.index(5))
+                change.pop(change.index(10))
+
+                change.append(i)
+            elif change.count(5) >= 3:
+                for i in range(3):
+                    change.pop(change.index(5))
+
+                change.append(i)
+            else:
+                return False
+
+
+lemonadeChange([5,5,5,10,5,5,10,20,20,20])
+
