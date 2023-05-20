@@ -2674,6 +2674,7 @@ class MyHashSet:
         else:
             return False
 
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Given an array of strings words where each word can be written as a concatenation of the Morse code of each letter.
 # For example, "cab" can be written as "-.-..--...", which is the concatenation of "-.-.", ".-", and "-...".
 # We will call such a concatenation the transformation of a word.
@@ -2889,3 +2890,101 @@ def lemonadeChange(bills):
 
 lemonadeChange([5,5,5,10,5,5,10,20,20,20])
 
+# Given a 2D integer array matrix, return the transpose of matrix.
+# The transpose of a matrix is the matrix flipped over its main diagonal,
+# switching the matrix's row and column indices.
+def transpose(matrix):
+    res = [[0 for x in range(len(matrix))] for x in range(len(matrix[0]))]
+
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            res[j][i] = matrix[i][j]
+
+    return res
+
+transpose([[1,2,3],[4,5,6]])
+
+# Given a positive integer n, find and return the longest distance between any two adjacent 1's
+# in the binary representation of n. If there are no two adjacent 1's, return 0.
+def binaryGap(n):
+    b = bin(n)[2:]
+
+    if str(b).count("1") == 1:
+        return 0
+
+    b = str(b).split("1")
+
+    if "0" in b[-1]:
+        b.pop()
+
+    m = 0
+    for i in b:
+        if len(i) >= m:
+            m = len(i)
+
+    return m + 1
+
+binaryGap(232)
+
+# Return true if and only if the two given trees with head nodes root1 and root2 are leaf-similar.
+def leafSimilar(root1, root2):
+    root1Values = []
+    root2Values = []
+
+    def getValues(node, res):
+        if not node.left and not node.right:
+            res.append(node.val)
+        if node.left:
+            getValues(node.left, res)
+        if node.right:
+            getValues(node.right, res)
+
+    getValues(root1, root1Values)
+    getValues(root2, root2Values)
+
+    return root1Values == root2Values
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Given the head of a singly linked list, return the middle node of the linked list.
+# If there are two middle nodes, return the second middle node.
+def middleNode(head):
+    step = head
+    twoSteps = head
+
+    while twoSteps and twoSteps.next:
+        step = step.next
+        twoSteps = twoSteps.next.next
+
+    return step
+
+# You are given an n x n grid where we place some 1 x 1 x 1 cubes that are axis-aligned with the x, y, and z axes.
+# We view the projection of these cubes onto the xy, yz, and zx planes.
+
+# A projection is like a shadow, that maps our 3-dimensional figure to a 2-dimensional plane. We are viewing the
+# "shadow" when looking at the cubes from the top, the front, and the side.
+# Return the total area of all three projections.
+def projectionArea(grid):
+
+    top = 0
+    front = 0
+    side = 0
+
+    for i in grid:
+        for j in i:
+            if j > 0:
+                top += 1
+
+    for i in grid:
+        front += max(i)
+
+    temp = []
+    for i in range(len(grid[0])):
+        mx = 0
+        for j in grid:
+            if j[i] >= mx:
+                mx = j[i]
+        temp.append(mx)
+
+    side = sum(temp)
+
+    return top + front + side
