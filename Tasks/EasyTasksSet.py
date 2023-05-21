@@ -2988,3 +2988,102 @@ def projectionArea(grid):
     side = sum(temp)
 
     return top + front + side
+
+# Given two sentences s1 and s2, return a list of all the uncommon words. You may return the answer in any order.
+# A word is uncommon if it appears exactly once in one of the sentences,
+# and does not appear in the other sentence.
+def uncommonFromSentences(s1, s2):
+
+    s1d = {}
+    s2d = {}
+
+    for w in s1.split():
+        if w in s1d:
+            s1d[w] += 1
+        else:
+            s1d[w] = 1
+
+    for w in s2.split():
+        if w in s2d:
+            s2d[w] += 1
+        else:
+            s2d[w] = 1
+
+    res = []
+
+    for k, v in s1d.items():
+        if v == 1 and k not in s2d:
+            res.append(k)
+
+    for k, v in s2d.items():
+        if v == 1 and k not in s1d:
+            res.append(k)
+
+    return res
+
+# Alice and Bob have a different total number of candies. You are given two integer arrays aliceSizes and bobSizes
+# where aliceSizes[i] is the number of candies of the ith box of candy that Alice has and bobSizes[j]
+# is the number of candies of the jth box of candy that Bob has.
+#
+# Since they are friends, they would like to exchange one candy box each so that after the exchange,
+# they both have the same total amount of candy.
+# The total amount of candy a person has is the sum of the number of candies in each box they have.
+#
+#Return an integer array answer where answer[0] is the number of candies in the box that Alice must exchange,
+# and answer[1] is the number of candies in the box that Bob must exchange.
+# If there are multiple answers, you may return any one of them.
+# It is guaranteed that at least one answer exists.
+def fairCandySwap(aliceSizes, bobSizes):
+
+    diff = (sum(aliceSizes) - sum(bobSizes)) // 2
+    aliceSizes = set(aliceSizes)
+
+    for i in set(bobSizes):
+        if i + diff in aliceSizes:
+            return [diff + i, i]
+
+# Given an integer array nums, return true if the given array is monotonic, or false otherwise.
+# An array is monotonic if it is either monotone increasing or monotone decreasing.
+def isMonotonic(nums):
+    inc = sorted(nums)
+    dec = sorted(nums)[::-1]
+
+    if inc == nums or dec == nums:
+        return True
+# Given the root of a binary search tree, rearrange the tree in in-order so that the leftmost node in the
+# tree is now the root of the tree, and every node has no left child and only one right child.
+# def increasingBST(root):
+#
+#     newRoot = TreeNode(0)
+#     self.temp = newRoot
+#
+#     def inorder(root):
+#         if root is None:
+#             return None
+#
+#         inorder(root.left)
+#
+#         new = TreeNode(root.val)
+#         self.temp.right = new
+#         self.temp = self.temp.right
+#
+#         inorder(root.right)
+#
+#     inorder(root)
+#
+#     return newRoot.right
+
+# Given an integer array nums, move all the even integers at the beginning of the array followed
+# by all the odd integers.
+def sortArrayByParity(nums):
+    res = []
+
+    for i in nums:
+        if i % 2 == 0:
+            res.insert(0, i)
+        else:
+            res.append(i)
+
+    return res
+
+
