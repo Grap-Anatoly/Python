@@ -3086,4 +3086,39 @@ def sortArrayByParity(nums):
 
     return res
 
+# The score of nums is the difference between the maximum and minimum elements in nums.
+# Return the minimum score of nums after applying the mentioned operation at most once for each index in it.
+def smallestRangeI(nums, k):
 
+    mn = min(nums)
+    mx = max(nums)
+
+    minDiff = (mx - k) - (mn + k)
+
+    if minDiff >= 0:
+        return minDiff
+    else:
+        return 0
+# You are given an integer array deck where deck[i] represents the number written on the ith card.
+# Partition the cards into one or more groups such that:
+# Each group has exactly x cards where x > 1, and
+# All the cards in one group have the same integer written on them.
+from functools import reduce
+def hasGroupsSizeX(deck):
+
+    sets = {}
+    setsVals = []
+
+    for n in deck:
+        if n in sets:
+            sets[n] += 1
+        else:
+            sets[n] = 1
+
+    for v in sets.values():
+        setsVals.append(v)
+
+    gcd = reduce(math.gcd, setsVals)
+
+    if gcd > 1:
+        return True
