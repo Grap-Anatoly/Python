@@ -3122,3 +3122,80 @@ def hasGroupsSizeX(deck):
 
     if gcd > 1:
         return True
+
+# Given a string s, reverse the string according to the following rules:
+# All the characters that are not English letters remain in the same position.
+# All the English letters (lowercase or uppercase) should be reversed.
+# Return s after reversing it.
+def reverseOnlyLetters(s):
+    letters = "qwertyuiopasdfghjklzxcvbnm"
+    letters = letters + letters.upper()
+
+    symbols = {}
+
+    temp = list(s)
+    counter = 0
+    while len(temp) != 0:
+        if temp[0] not in letters:
+            symbols[counter] = temp[0]
+        counter += 1
+        temp.pop(0)
+
+    for i in s:
+        if i not in letters:
+            s = s.replace(i, "")
+
+    s = list(s[::-1])
+
+    for k, v in symbols.items():
+        s.insert(k, v)
+
+    return "".join(s)
+
+# Sort the array so that whenever nums[i] is odd, i is odd, and whenever nums[i] is even, i is even.
+def sortArrayByParityII(nums):
+
+    res = ["_"] * len(nums)
+
+    odd = 0
+    even = 1
+    for i in nums:
+        if i % 2 == 0:
+            res.insert(odd, i)
+            res.pop(odd + 1)
+            odd += 2
+
+        else:
+            res.insert(even, i)
+            res.pop(even + 1)
+            even += 2
+
+    return res
+
+# You examine the typed characters of the keyboard. Return True if it is possible that it was your friends name,
+# with some characters (possibly none) being long pressed.
+def isLongPressedName(name, typed):
+
+    i = 0
+    for j in range(len(typed)):
+        if i < len(name) and name[i] == typed[j]:
+            i += 1
+        elif j == 0 or typed[j] != typed[j - 1]:
+            return False
+
+    return i == len(name)
+
+# Given an array of strings emails where we send one email to each emails[i],
+# return the number of different addresses that actually receive mails.
+def numUniqueEmails(emails):
+
+    res = []
+    for i in emails:
+        left, right = i.split("@")
+
+        left = left.split("+")[0]
+        left = left.replace(".", "")
+
+        res.append(f"{left}@{right}")
+
+    return len(set(res))
