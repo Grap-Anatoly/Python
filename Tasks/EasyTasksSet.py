@@ -3199,3 +3199,46 @@ def numUniqueEmails(emails):
         res.append(f"{left}@{right}")
 
     return len(set(res))
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# int ping(int t) Adds a new request at time t, where t represents some time in milliseconds,
+# and returns the number of requests that has happened in the past 3000 milliseconds (including the new request).
+# Specifically, return the number of requests that have happened in the inclusive range [t - 3000, t].
+import bisect
+class RecentCounter:
+
+    def __init__(self):
+        self.counter = []
+
+    def ping(self, t):
+        self.counter.append(t)
+
+        left = bisect.bisect_left(self.counter, t - 3000)
+        right = bisect.bisect_right(self.counter, t)
+
+        return right - left
+
+# Return sum of all root values in range[low, high]
+def rangeSumBST(root, low, high):
+
+    values = []
+
+    def getValues(bean):
+        if bean:
+            return [bean.val] + getValues(bean.left) + getValues(bean.right)
+        else:
+            return []
+
+    values = getValues(root)
+    values = sorted(values)
+
+    left = bisect.bisect_left(values, low)
+    right = bisect.bisect_left(values, high)
+
+    sm = 0
+    for i in values[left:right + 1]:
+        sm += i
+
+    return sm
+
+
