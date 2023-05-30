@@ -3241,4 +3241,79 @@ def rangeSumBST(root, low, high):
 
     return sm
 
+# A permutation perm of n + 1 integers of all the integers in the range [0, n]
+# can be represented as a string s of length n where:
+# s[i] == 'I' if perm[i] < perm[i + 1], and
+# s[i] == 'D' if perm[i] > perm[i + 1].
+# Given a string s, reconstruct the permutation perm and return it.
+# If there are multiple valid permutations perm, return any of them.
+def diStringMatch(s):
+
+        res = []
+
+        mn = 0
+        mx = len(s)
+
+        for i in s:
+            if i == "I":
+                res.append(mn)
+                mn += 1
+            else:
+                res.append(mx)
+                mx -= 1
+
+        if res[-1] == "I":
+            res.append(mn)
+        else:
+            res.append(mx)
+
+        return res
+
+# You want to delete the columns that are not sorted lexicographically. In the above example (0-indexed),
+# columns 0 ('a', 'b', 'c') and 2 ('c', 'e', 'e') are sorted,
+# while column 1 ('b', 'c', 'a') is not, so you would delete column 1.
+def minDeletionSize(strs):
+    lst = []
+    for s in strs:
+        temp = []
+        for i in s:
+            temp.append(i)
+        lst.append(temp)
+
+    converted = []
+    for j in range(len(lst[0])):
+        temp = []
+        for i in lst:
+            temp.append(i[j])
+        converted.append(temp)
+
+    res = 0
+    for s in converted:
+        if s != sorted(s):
+            res += 1
+
+    return res
+
+# Return the element that is repeated n times.
+def repeatedNTimes(nums):
+    n = len(nums) / 2
+    numsSet = set(nums)
+
+    for s in numsSet:
+        if nums.count(s) == n:
+            return s
+
+# A binary tree is uni-valued if every node in the tree has the same value.
+# Given the root of a binary tree, return true if the given tree is uni-valued, or false otherwise.
+def isUnivalTree(root):
+
+    def getValues(bean):
+        if bean:
+            return [bean.val] + getValues(bean.left) + getValues(bean.right)
+        else:
+            return []
+
+    vals = getValues(root)
+
+    return len(set(vals)) == 1
 
