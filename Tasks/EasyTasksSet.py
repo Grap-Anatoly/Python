@@ -3317,3 +3317,94 @@ def isUnivalTree(root):
 
     return len(set(vals)) == 1
 
+# Calculate sum of last 2 values in Fibonacchi sequence
+def fib(n):
+    res = []
+
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+
+    for i in range(n):
+        if i == 0:
+            res.append(0)
+        elif i == 1:
+            res.append(1)
+        else:
+            prv = res[-2]
+            nxt = res[-1]
+            fibb = prv + nxt
+            res.append(fibb)
+
+    return res[-1] + res[-2]
+
+# Given an integer array nums, return the largest perimeter of a triangle with a non-zero area,
+# formed from three of these lengths. If it is impossible to form any triangle of a non-zero area, return 0.
+def largestPerimeter(nums):
+
+    nums = sorted(nums)[::-1]
+    res = []
+
+    for i in range(len(nums)):
+        if i < len(nums) - 2:
+            if nums[i] < nums[i + 1] + nums[i + 2]:
+                res.append(nums[i] + nums[i + 1] + nums[i + 2])
+            else:
+                res.append(0)
+        else:
+            pass
+
+    return max(res)
+
+# Given an integer array nums sorted in non-decreasing order,
+# return an array of the squares of each number sorted in non-decreasing order.
+def sortedSquares(nums):
+
+    res = []
+    for i in nums:
+        res.append(i ** 2)
+
+    return sorted(res)
+
+# The array-form of an integer num is an array representing its digits in left to right order.
+# For example, for num = 1321, the array form is [1,3,2,1].
+# Given num, the array-form of an integer, and an integer k, return the array-form of the integer num + k.
+def addToArrayForm(num, k):
+
+    numStr = ""
+    for i in num:
+        numStr += str(i)
+
+    sm = int(numStr) + k
+
+    res = []
+    for i in str(sm):
+        res.append(int(i))
+
+    return res
+
+# Given the root of a binary tree with unique values and the values of two different nodes of the tree x and y,
+# return true if the nodes corresponding to the values x and y in the tree are cousins, or false otherwise.
+
+# Two nodes of a binary tree are cousins if they have the same depth with different parents.
+def isCousins(root, x, y):
+
+    depth = 0
+    parent = []
+
+    def getValues(bean, depth, parent):
+        if bean:
+            depth += 1
+            return [[bean.val, depth, parent]] + getValues(bean.left, depth, parent=bean.val) + getValues(
+                bean.right, depth, parent=bean.val)
+        else:
+            return []
+
+    values = getValues(root, depth, parent)
+
+    valuesDict = {}
+    for i in values:
+        valuesDict[i[0]] = [i[1], i[2]]
+
+    return valuesDict[x][0] == valuesDict[y][0] and valuesDict[x][1] != valuesDict[y][1]
