@@ -3408,3 +3408,34 @@ def isCousins(root, x, y):
         valuesDict[i[0]] = [i[1], i[2]]
 
     return valuesDict[x][0] == valuesDict[y][0] and valuesDict[x][1] != valuesDict[y][1]
+
+def findJudge(n, trust):
+
+    if n == 1:
+        return 1
+    if len(trust) == 0:
+        return -1
+
+    trustDict = {}
+
+    for i in trust:
+        if i[0] in trustDict:
+            temp = trustDict[i[0]]
+            temp.append(i[1])
+            trustDict[i[0]] = temp
+        else:
+            trustDict[i[0]] = [i[1]]
+    print(trustDict)
+    trustee = {}
+    for k, v in trustDict.items():
+        for i in v:
+            if i in trustee:
+                trustee[i] += 1
+            else:
+                trustee[i] = 1
+
+    for k, v in trustee.items():
+        if v == len(trustDict):
+            return k
+        else:
+            return -1
