@@ -3439,3 +3439,73 @@ def findJudge(n, trust):
             return k
         else:
             return -1
+
+# On an 8 x 8 chessboard, there is exactly one white rook 'R' and some number of white bishops 'B',
+# black pawns 'p', and empty squares '.'.
+# Return the number of available captures for the white rook.
+def numRookCaptures(board):
+
+    pawns = 0
+
+    for i in range(len(board)):
+        if "R" in board[i]:
+            rook = [i, board[i].index("R")]
+
+    for i in range(rook[0] - 1, -1, -1):
+        if board[i][rook[1]] == 'p':
+            pawns += 1
+            break
+        elif board[i][rook[1]] == 'B':
+            break
+
+    for i in range(rook[0] + 1, 8):
+        if board[i][rook[1]] == 'p':
+            pawns += 1
+            break
+        elif board[i][rook[1]] == 'B':
+            break
+
+    for i in range(rook[1] - 1, -1, -1):
+        if board[rook[0]][i] == 'p':
+            pawns += 1
+            break
+        elif board[rook[0]][i] == 'B':
+            break
+
+    for i in range(rook[1] + 1, 8):
+        if board[rook[0]][i] == 'p':
+            pawns += 1
+            break
+        elif board[rook[0]][i] == 'B':
+            break
+
+    return pawns
+
+# Given a string array words, return an array of all characters that show up in all strings within the words
+# (including duplicates). You may return the answer in any order.
+def commonChars(words):
+
+    if len(words) == 1 or 0:
+        return words
+
+    letters = set(words[0])
+
+    res = []
+    for l in letters:
+        n = min([letter.count(l) for letter in words])
+        if n:
+            res += [l] * n
+    return res
+
+# Given an integer array nums and an integer k, modify the array in the following way:
+# choose an index i and replace nums[i] with -nums[i].
+# You should apply this process exactly k times. You may choose the same index i multiple times.
+# Return the largest possible sum of the array after modifying it in this way.
+def largestSumAfterKNegations(nums, k):
+
+    while k != 0:
+        m = min(nums)
+        nums[nums.index(m)] = m * -1
+        k -= 1
+
+    return reduce(lambda num1, num2: num1 + num2, nums)
