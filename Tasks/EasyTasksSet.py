@@ -3509,3 +3509,40 @@ def largestSumAfterKNegations(nums, k):
         k -= 1
 
     return reduce(lambda num1, num2: num1 + num2, nums)
+
+# The complement of an integer is the integer you get when you flip all the 0's to 1's and all the 1's to 0's
+# in its binary representation.
+# For example, The integer 5 is "101" in binary and its complement is "010" which is the integer 2.
+def bitwiseComplement(n):
+
+    n = bin(n)[2:]
+    res = ""
+
+    for i in str(n):
+        if i == "0":
+            res += "1"
+        else:
+            res += "0"
+
+    return int(res, 2)
+
+# Given an array of integers arr, return true if we can partition the array into three non-empty parts with equal sums.
+def canThreePartsEqualSum(arr):
+    listSum = sum(arr)
+    if listSum % 3 != 0:
+        return False
+
+    partSum = listSum // 3
+
+    subSum = 0
+    parts = 0
+    print(arr)
+    for n in arr[:-1]:
+        subSum += n
+        if subSum == partSum:
+            if parts == 1:
+                return True
+            subSum = 0
+            parts = 1
+
+    return False
