@@ -3546,3 +3546,67 @@ def canThreePartsEqualSum(arr):
             parts = 1
 
     return False
+
+# You are given a binary array nums (0-indexed).
+# We define xi as the number whose binary representation is the subarray nums[0..i]
+# (from most-significant-bit to least-significant-bit).
+# For example, if nums = [1,0,1], then x0 = 1, x1 = 2, and x2 = 5.
+# Return an array of booleans answer where answer[i] is true if xi is divisible by 5.
+def prefixesDivBy5(nums):
+
+    converted = []
+    temp = ""
+    for i in nums:
+        temp += str(i)
+        converted.append(int(temp, 2))
+
+    res = []
+    for i in converted:
+        if i % 5 == 0:
+            res.append(True)
+        else:
+            res.append(False)
+
+    return res
+
+# A valid parentheses string is either empty "", "(" + A + ")", or A + B, where A and B are valid parentheses strings,
+# and + represents string concatenation.
+# For example, "", "()", "(())()", and "(()(()))" are all valid parentheses strings.
+# A valid parentheses string s is primitive if it is nonempty, and there does not exist a way to
+# split it into s = A + B, with A and B nonempty valid parentheses strings.
+# Given a valid parentheses string s, consider its primitive decomposition: s = P1 + P2 + ... + Pk,
+# where Pi are primitive valid parentheses strings.
+# Return s after removing the outermost parentheses of every primitive string in the primitive decomposition of s.
+def removeOuterParentheses(s):
+    res = ""
+    count = 0
+    for i in range(len(s)):
+        if s[i] == '(' and count == 0:
+            count += 1
+        elif s[i] == '(' and count >= 1:
+            res += s[i]
+            count += 1
+        elif s[i] == ')' and count > 1:
+            res += s[i]
+            count -= 1
+        elif s[i] == ')' and count == 1:
+            count -= 1
+
+    return res
+
+# Given a valid (IPv4) IP address, return a defanged version of that IP address.
+# A defanged IP address replaces every period "." with "[.]".
+def defangIPaddr(address):
+
+    return address.replace(".", "[.]")
+
+# Given an integer array arr, return the mean of the remaining integers after removing
+# the smallest 5% and the largest 5% of the elements.
+# Answers within 10-5 of the actual answer will be considered accepted.
+def trimMean(arr):
+    arr = sorted(arr)
+    fivePercent = int(len(arr) * 0.05)
+
+    arr = arr[fivePercent:-fivePercent]
+
+    return sum(arr) / len(arr)
