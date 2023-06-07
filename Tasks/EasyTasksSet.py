@@ -3610,3 +3610,36 @@ def trimMean(arr):
     arr = arr[fivePercent:-fivePercent]
 
     return sum(arr) / len(arr)
+
+# Given an integer array sorted in non-decreasing order,
+# there is exactly one integer in the array that occurs more than 25% of the time, return that integer.
+def findSpecialInteger(arr):
+
+    twentyFive = len(arr) * 0.25
+
+    arrSet = set(arr)
+
+    for i in arrSet:
+        if arr.count(i) > twentyFive:
+            return i
+
+# Given a list of dominoes, dominoes[i] = [a, b] is equivalent to dominoes[j] = [c, d]
+# if and only if either (a == c and b == d), or (a == d and b == c) - that is, one domino can be rotated to be equal
+# to another domino.
+# Return the number of pairs (i, j) for which 0 <= i < j < dominoes.length,
+# and dominoes[i] is equivalent to dominoes[j].
+# def numEquivDominoPairs(dominoes):
+#
+#     dominoesDict = defaultdict(int)
+#     res = 0
+#
+#     for i in dominoes:
+#
+#         pair = (sorted(i)[0], sorted(i)[1])
+#
+#         if pair in dominoesDict:
+#             res += dominoesDict[pair]
+#
+#         dominoesDict[pair] += 1
+#
+#     return res
