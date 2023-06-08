@@ -3643,3 +3643,70 @@ def findSpecialInteger(arr):
 #         dominoesDict[pair] += 1
 #
 #     return res
+
+# Given an array arr, replace every element in that array with the greatest element among the elements to its right,
+# and replace the last element with -1.
+def replaceElements(arr):
+
+    res = []
+    for i in range(1, len(arr)):
+        temp = arr[i: len(arr)]
+        res.append(max(temp))
+
+    res.append(-1)
+
+    return res
+
+def replaceElementsFaster(arr):
+
+    m = arr[-1]
+
+    for i in range(len(arr) - 2, -1, -1):
+        curr = arr[i]
+        arr[i] = m
+        if curr > m:
+            m = curr
+
+    arr[-1] = -1
+
+    return arr
+
+# The Tribonacci sequence Tn is defined as follows:
+# T0 = 0, T1 = 1, T2 = 1, and Tn+3 = Tn + Tn+1 + Tn+2 for n >= 0.
+# Given n, return the value of Tn.
+def tribonacci(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    if n == 2:
+        return 1
+
+    fibb = [0, 1, 1]
+    c = n - 2
+
+    for i in range(c):
+        firstPrv = fibb[-3]
+        secondPrv = fibb[-2]
+        thirdPrv = fibb[-1]
+        fibb.append(firstPrv + secondPrv + thirdPrv)
+
+    return fibb[-1]
+
+def decompressRLElist(nums):
+
+    res = []
+    freq = []
+    val = []
+
+    for i in range(len(nums)):
+        if i % 2 == 0:
+            freq.append(nums[i])
+        else:
+            val.append(nums[i])
+
+    for i in range(len(val)):
+        for j in range(freq[i]):
+            res.append(val[i])
+
+    return res
