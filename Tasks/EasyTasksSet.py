@@ -3734,3 +3734,19 @@ def arrayRankTransform(arr):
         res.append(arrDct[i])
 
     return res
+
+# Return number of words from text list that can be typed with keyboard where number of letters
+# from brokenLetters list cannot be typed
+def canBeTypedWords(text, brokenLetters):
+
+    words = text.split(" ")
+
+    res = 0
+    for i in words:
+        for j in i:
+            if j in brokenLetters:
+                res -= 1
+                break
+        res += 1
+
+    return res
