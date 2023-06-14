@@ -3750,3 +3750,30 @@ def canBeTypedWords(text, brokenLetters):
         res += 1
 
     return res
+
+# Convert the date string to the format YYYY-MM-DD, where:
+# YYYY denotes the 4 digit year.
+# MM denotes the 2 digit month.
+# DD denotes the 2 digit day.
+def reformatDate(date):
+    months = {
+        "Jan":"01", "Feb":"02", "Mar":"03", "Apr":"04", "May":"05", "Jun":"06",
+        "Jul":"07", "Aug":"08", "Sep":"09", "Oct":"10", "Nov":"11", "Dec":"12"
+    }
+
+    date = date.split(" ")[::-1]
+
+    res = ""
+    res += f"{date[0]}-"
+
+    for k,v in months.items():
+        if k == date[1]:
+            res += f"{v}-"
+
+    day = date[2][:-2]
+    if len(day) == 1:
+        day = "0" + day
+
+    res += day
+
+    return res
