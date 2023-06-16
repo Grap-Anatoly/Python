@@ -3795,3 +3795,45 @@ def distanceBetweenBusStops(distance, start, destination):
     right = sum(distance[:start] + distance[destination:])
 
     return min(left, right)
+
+# Given a date, return the corresponding day of the week for that date.
+import datetime
+def dayOfTheWeek(day, month, year) -> str:
+
+    x = datetime.datetime(year, month, day)
+    return x.strftime("%A")
+
+def dayOfTheWeekZeller(day, month, year) -> str:
+
+    ZellersWeekDays = {0: "Saturday", 1: "Sunday", 2: "Monday", 3: "Tuesday",
+                       4: "Wednesday", 5: "Thursday", 6: "Friday", 7: "Saturday"}
+
+    if month == 1 or month == 2:
+        month += 12
+        year -= 1
+
+    yearOfCentury = year % 100
+    century = year // 100
+    decade = month
+
+    weekday = (day + (13 * (decade + 1) // 5) + yearOfCentury + (yearOfCentury // 4) + (century // 4) - (
+                2 * century)) % 7
+
+    for k, v in ZellersWeekDays.items():
+        if k == weekday:
+            return v
+        
+# Given an integer array arr, return true if there are three consecutive odd numbers in the array.
+# Otherwise, return false.
+def threeConsecutiveOdds(arr):
+    res = 0
+    for i in arr:
+        if i % 2 != 0:
+            res += 1
+        else:
+            res = 0
+
+        if res == 3:
+            return True
+
+    return False
