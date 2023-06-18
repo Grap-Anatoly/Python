@@ -3855,3 +3855,19 @@ def maxNumberOfBalloons(text):
     mn = min(balloon, key=balloon.get)
 
     return balloon[mn]
+
+# A fancy string is a string where no three consecutive characters are equal.
+# Given a string s, delete the minimum possible number of characters from s to make it fancy.
+def makeFancyString(s):
+
+    res = ""
+    for i in s:
+        if len(res) < 2:
+            res += i
+        else:
+            if res[-1] == i and res[-2] == i:
+                pass
+            else:
+                res += i
+
+    return res
