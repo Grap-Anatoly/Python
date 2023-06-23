@@ -3891,3 +3891,19 @@ def minimumAbsDifference(arr):
             res.append([arr[i - 1], arr[i]])
 
     return sorted(res)
+
+# Given an array of integers arr, return true if the number of occurrences of each value in the array
+# is unique or false otherwise.
+def uniqueOccurrences(arr):
+
+    arrSet = set(arr)
+    res = []
+
+    for i in arrSet:
+        cnt = arr.count(i)
+        if cnt in res:
+            return False
+        else:
+            res.append(cnt)
+
+    return True
