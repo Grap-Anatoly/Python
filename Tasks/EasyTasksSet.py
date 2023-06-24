@@ -3907,3 +3907,22 @@ def uniqueOccurrences(arr):
             res.append(cnt)
 
     return True
+
+# Balanced strings are those that have an equal quantity of 'L' and 'R' characters.
+# Given a balanced string s, split it into some number of substrings such that:
+# Each substring is balanced.
+# Return the maximum number of balanced strings you can obtain.
+def balancedStringSplit(s):
+
+    res = 0
+    bal = 0
+    for i in s:
+        if i == "L":
+            bal += 1
+        else:
+            bal -= 1
+
+        if bal == 0:
+            res += 1
+
+    return res
