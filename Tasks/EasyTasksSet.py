@@ -3945,3 +3945,20 @@ def checkStraightLine(coordinates):
             return False
 
     return True
+
+# Given a string of English letters s, return the greatest English letter which occurs as both a
+# lowercase and uppercase letter in s. The returned letter should be in uppercase. If no such letter exists,
+# return an empty string.
+# An English letter b is greater than another letter a if b appears after a in the English alphabet.
+def greatestLetter(s):
+
+    hasLowerCase = []
+    for i in s:
+        if i == i.upper():
+            if i.lower() in s:
+                hasLowerCase.append(i)
+
+    if len(hasLowerCase) == 0:
+        return ""
+
+    return sorted(hasLowerCase)[-1]
