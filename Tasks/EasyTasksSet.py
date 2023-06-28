@@ -3962,3 +3962,24 @@ def greatestLetter(s):
         return ""
 
     return sorted(hasLowerCase)[-1]
+
+# You are given an integer income representing the amount of money you earned.
+# Return the amount of money that you have to pay in taxes.
+def calculateTax(brackets, income):
+
+    if income == 0:
+        return float(0)
+
+    res = 0.0
+    for i in range(len(brackets)):
+
+        if i == 0:
+            tax = (min(income, brackets[i][0]) - 0) * (brackets[i][1] / 100)
+            if tax >= 0:
+                res += tax
+        else:
+            tax = (min(income, brackets[i][0]) - brackets[i - 1][0]) * (brackets[i][1] / 100)
+            if tax >= 0:
+                res += tax
+
+    return res
