@@ -3983,3 +3983,73 @@ def calculateTax(brackets, income):
                 res += tax
 
     return res
+
+# Given a 2D grid of size m x n and an integer k. You need to shift the grid k times.
+# In one shift operation:
+# Element at grid[i][j] moves to grid[i][j + 1].
+# Element at grid[i][n - 1] moves to grid[i + 1][0].
+# Element at grid[m - 1][n - 1] moves to grid[0][0].
+# Return the 2D grid after applying shift operation k times.
+def shiftGrid(grid, k):
+
+    gridSize = len(grid[0])
+    oneDimm = []
+
+    for i in grid:
+        for j in i:
+            oneDimm.append(j)
+
+    for i in range(k):
+        last = oneDimm[-1]
+        oneDimm.insert(0, last)
+        oneDimm.pop()
+
+    res = []
+    temp = []
+    while len(oneDimm) > 0:
+        if len(temp) != gridSize:
+            temp.append(oneDimm[0])
+            oneDimm.pop(0)
+        else:
+            res.append(temp)
+            temp = []
+
+    if len(temp) > 0:
+        res.append(temp)
+
+    return res
+
+# Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where:
+# answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
+# answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
+# Note that the integers in the lists may be returned in any order.
+def findDifference(nums1, nums2):
+
+    res = []
+    temp = []
+
+    for i in nums1:
+        if i not in nums2 and i not in temp:
+            temp.append(i)
+
+    res.append(temp)
+
+    temp = []
+    for i in nums2:
+        if i not in nums1 and i not in temp:
+            temp.append(i)
+
+    res.append(temp)
+
+    return res
+
+# As set
+def findDifferenceSet(nums1, nums2):
+
+    nums1 = set(nums1)
+    nums2 = set(nums2)
+
+    diff1 = nums1.difference(nums2)
+    diff2 = nums2.difference(nums1)
+
+    return [list(diff1), list(diff2)]
