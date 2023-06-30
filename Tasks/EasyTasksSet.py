@@ -4053,3 +4053,49 @@ def findDifferenceSet(nums1, nums2):
     diff2 = nums2.difference(nums1)
 
     return [list(diff1), list(diff2)]
+
+# Given an integer number n, return the difference between the product of its digits and the sum of its digits.
+def subtractProductAndSum(n):
+
+    vals = []
+    for i in str(n):
+        vals.append(i)
+
+    product = 1
+    sm = 0
+
+    for i in vals:
+        product *= int(i)
+        sm += int(i)
+
+    return product - sm
+
+# Given head which is a reference node to a singly-linked list.
+# The value of each node in the linked list is either 0 or 1.
+# The linked list holds the binary representation of a number.
+# Return the decimal value of the number in the linked list.
+def getDecimalValue(head):
+
+    number = ""
+
+    def getNumber(bean, number):
+
+        number = number + str(bean.val)
+
+        if bean.next:
+            return getNumber(bean.next, number)
+        else:
+            return number
+
+    number = getNumber(head, number)
+
+    return int(number, 2)
+
+def findNumbers(nums):
+
+    res = 0
+    for i in nums:
+        if len(str(i)) % 2 == 0:
+            res += 1
+
+    return res
