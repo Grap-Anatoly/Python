@@ -4099,3 +4099,46 @@ def findNumbers(nums):
             res += 1
 
     return res
+
+# Given an integer n, return any array containing n unique integers such that they add up to 0.
+def sumZero(n):
+
+    if n == 1:
+        return [0]
+    elif n % 2 == 0:
+        res = []
+    else:
+        res = [0]
+
+    counter = 1
+    while len(res) != n:
+        res.insert(0, counter * -1)
+        res.append(counter)
+        counter += 1
+
+    return res
+
+# You are given a string s formed by digits and '#'. We want to map s to English lowercase characters as follows:
+#
+# Characters ('a' to 'i') are represented by ('1' to '9') respectively.
+# Characters ('j' to 'z') are represented by ('10#' to '26#') respectively.
+# Return the string formed after mapping.
+#
+# The test cases are generated so that a unique mapping will always exist.
+def freqAlphabets(s):
+
+    words = {"1": "a", "2": "b", "3": "c", "4": "d", "5": "e", "6": "f", "7": "g", "8": "h", "9": "i",
+             "10#": "j", "11#": "k", "12#": "l", "13#": "m", "14#": "n", "15#": "o", "16#": "p",
+             "17#": "q", "18#": "r", "19#": "s", "20#": "t", "21#": "u", "22#": "v", "23#": "w",
+             "24#": "x", "25#": "y", "26#": "z"}
+
+    res = ""
+    while len(s) != 0:
+        if len(s) > 2 and s[2] == "#":
+            res += words[s[0] + s[1] + s[2]]
+            s = s[3:]
+        else:
+            res += words[s[0]]
+            s = s[1:]
+
+    return res
