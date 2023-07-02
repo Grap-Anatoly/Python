@@ -4142,3 +4142,34 @@ def freqAlphabets(s):
             s = s[1:]
 
     return res
+
+# No-Zero integer is a positive integer that does not contain any 0 in its decimal representation.
+# Given an integer n, return a list of two integers [a, b] where:
+# a and b are No-Zero integers.
+# a + b = n
+# The test cases are generated so that there is at least one valid solution. If there are many valid solutions,
+# you can return any of them.
+def getNoZeroIntegers(n):
+
+    if n % 2 == 0:
+        div = n // 2
+        if str(div)[-1] == "0":
+            return [int(div - 1), int(div + 1)]
+        else:
+            return [int(div), int(div)]
+    if n % 2 != 0:
+        div = n // 2
+        if str(div)[-1] == "0":
+            return [int(div - 1), int(n - (div - 1))]
+        else:
+            return [int(div), int(n - div)]
+
+# Compact
+def getNoZeroIntegers(n):
+
+    counter = 1
+    while counter != n:
+        if "0" not in str(n - counter) and "0" not in str(counter):
+            return [counter, n - counter]
+        else:
+            counter += 1
