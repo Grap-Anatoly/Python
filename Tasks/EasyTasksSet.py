@@ -4173,3 +4173,33 @@ def getNoZeroIntegers(n):
             return [counter, n - counter]
         else:
             counter += 1
+
+# Given an integer num, return the number of steps to reduce it to zero.
+# In one step, if the current number is even, you have to divide it by 2, otherwise, you have to subtract 1 from it.
+def numberOfSteps(num):
+
+    res = 0
+    while num > 0:
+        if num % 2 == 0:
+            num /= 2
+            res += 1
+        if num % 2 != 0:
+            num -= 1
+            res += 1
+
+    return res
+
+# You are given a positive integer num consisting only of digits 6 and 9.
+# Return the maximum number you can get by changing at most one digit (6 becomes 9, and 9 becomes 6).
+def maximum69Number(num):
+
+    res = []
+    for i in range(len(str(num))):
+        res.append(str(num)[i])
+
+    for i in range(len(res)):
+        if res[i] == "6":
+            res[i] = "9"
+            break
+
+    return int("".join(res))
