@@ -4203,3 +4203,62 @@ def maximum69Number(num):
             break
 
     return int("".join(res))
+
+# You are given an integer array arr. Sort the integers in the array in ascending order by the number of 1's in
+# their binary representation and in case of two or more integers have the same number of 1's
+# you have to sort them in ascending order.
+# Return the array after sorting it.
+def sortByBits(arr):
+
+    bits = []
+    for i in arr:
+        bits.append([str(bin(i)[2:]).count("1"), i])
+
+    bits = sorted(bits)
+
+    res = []
+    for i in bits:
+        res.append(i[1])
+
+    return res
+
+# You are given an m x n binary matrix mat of 1's (representing soldiers) and 0's (representing civilians).
+# The soldiers are positioned in front of the civilians.
+# That is, all the 1's will appear to the left of all the 0's in each row.
+#
+# A row i is weaker than a row j if one of the following is true:
+#
+# The number of soldiers in row i is less than the number of soldiers in row j.
+# Both rows have the same number of soldiers and i < j.
+# Return the indices of the k weakest rows in the matrix ordered from weakest to strongest.
+def kWeakestRows(mat, k):
+    rows = {}
+    for i in range(len(mat)):
+        rows[i] = mat[i].count(1)
+
+    return sorted(rows, key=rows.get)[:k]
+
+# Given an array arr of integers, check if there exist two indices i and j such that :
+#
+# i != j
+# 0 <= i, j < arr.length
+# arr[i] == 2 * arr[j]
+def checkIfExist(arr):
+
+    for i in range(len(arr)):
+        for j in range(len(arr)):
+            first = False
+            second = False
+            third = False
+
+            if i != j:
+                first = True
+            if i >= 0 and j < len(arr):
+                second = True
+            if arr[i] == arr[j] * 2:
+                third = True
+
+            if first == True and second == True and third == True:
+                return True
+
+    return False
