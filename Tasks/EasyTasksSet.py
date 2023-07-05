@@ -4262,3 +4262,16 @@ def checkIfExist(arr):
                 return True
 
     return False
+
+# Given a m x n matrix grid which is sorted in non-increasing order both row-wise and column-wise,
+# return the number of negative numbers in grid.
+def countNegatives(grid):
+
+    res = 0
+    for i in grid:
+        if i[-1] < 0:
+            for j in i:
+                if j < 0:
+                    res += 1
+
+    return res
