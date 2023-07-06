@@ -4275,3 +4275,17 @@ def countNegatives(grid):
                     res += 1
 
     return res
+
+# Given the array nums, for each nums[i] find out how many numbers in the array are smaller than it.
+# That is, for each nums[i] you have to count the number of valid j's such that j != i and nums[j] < nums[i].
+def smallerNumbersThanCurrent(nums):
+
+    res = []
+    for i in nums:
+        temp = 0
+        for j in nums:
+            if i > j:
+                temp += 1
+        res.append(temp)
+
+    return res
