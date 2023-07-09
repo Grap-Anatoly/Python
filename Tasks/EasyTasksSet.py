@@ -4326,3 +4326,26 @@ def generateTheString(n):
         for i in range(n):
             res += "a"
         return res
+
+# Given an m x n matrix of distinct numbers, return all lucky numbers in the matrix in any order.
+# A lucky number is an element of the matrix such that it is the minimum element in its row and maximum in its column.
+def luckyNumbers(matrix):
+
+    rows = []
+    for j in range(len(matrix[0])):
+        temp = []
+        for i in matrix:
+            temp.append(i[j])
+        rows.append(temp)
+
+    res = []
+    for i in matrix:
+        for j in i:
+            if min(i) == j:
+                for r in rows:
+                    if j in r:
+                        if max(r) == j:
+                            res.append(j)
+
+    return res
+
