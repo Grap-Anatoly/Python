@@ -4349,3 +4349,31 @@ def luckyNumbers(matrix):
 
     return res
 
+# Given two arrays of integers nums and index. Your task is to create target array under the following rules:
+#
+# Initially target array is empty.
+# From left to right read nums[i] and index[i], insert at index index[i] the value nums[i] in target array.
+# Repeat the previous step until there are no elements to read in nums and index.
+# Return the target array.
+def createTargetArray(nums, index):
+
+    res = []
+    for i in range(len(nums)):
+        res.insert(index[i], nums[i])
+
+    return res
+
+# Given an array of integers arr, a lucky integer is an integer that has a frequency in the array equal to its value.
+#
+# Return the largest lucky integer in the array. If there is no lucky integer return -1.
+def findLucky(arr):
+
+    res = []
+    for i in arr:
+        if i == arr.count(i):
+            res.append(i)
+
+    if len(res) == 0:
+        return -1
+    else:
+        return max(res)
