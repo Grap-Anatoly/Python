@@ -4377,3 +4377,30 @@ def findLucky(arr):
         return -1
     else:
         return max(res)
+
+# Given an array of integers nums, you start with an initial positive value startValue.
+#
+# In each iteration, you calculate the step by step sum of startValue plus elements in nums (from left to right).
+#
+# Return the minimum positive value of startValue such that the step by step sum is never less than 1.
+def minStartValue(nums):
+
+    if min(nums) > 0:
+        return 1
+    else:
+        minVal = False
+        res = 1
+        while minVal == False:
+
+            temp = [res, True]
+
+            for i in nums:
+                temp[0] = temp[0] + i
+                if temp[0] <= 0:
+                    temp[1] = False
+
+            if temp[1] == True:
+                minVal = True
+                return res
+            else:
+                res += 1
