@@ -4404,3 +4404,40 @@ def minStartValue(nums):
                 return res
             else:
                 res += 1
+
+# Given the array nums, obtain a subsequence of the array whose sum of elements
+# is strictly greater than the sum of the non included elements in such subsequence.
+#
+# If there are multiple solutions, return the subsequence with minimum size and if there still exist multiple solutions,
+# return the subsequence with the maximum total sum of all its elements. A subsequence of an array can be
+# obtained by erasing some (possibly zero) elements from the array.
+#
+# Note that the solution with the given constraints is guaranteed to be unique.
+# Also return the answer sorted in non-increasing order.
+def minSubsequence(nums):
+
+    nums = sorted(nums)[::-1]
+
+    res = []
+    for i in range(len(nums)):
+        res.append(nums[i])
+        if sum(res) > sum(nums[i + 1:]):
+            return res
+
+    return []
+
+# Given an array of string words, return all strings in words that is a substring of another word.
+# You can return the answer in any order.
+#
+# A substring is a contiguous sequence of characters within a string
+def stringMatching(words):
+
+    words = sorted(words)
+
+    res = []
+    for i in words:
+        for j in words:
+            if i != j and i in j and i not in res:
+                res.append(i)
+
+    return res
