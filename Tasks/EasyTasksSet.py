@@ -4441,3 +4441,58 @@ def stringMatching(words):
                 res.append(i)
 
     return res
+
+# There are n kids with candies. You are given an integer array candies, where each candies[i]
+# represents the number of candies the ith kid has, and an integer extraCandies,
+# denoting the number of extra candies that you have.
+#
+# Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies,
+# they will have the greatest number of candies among all the kids, or false otherwise.
+#
+# Note that multiple kids can have the greatest number of candies.
+def kidsWithCandies(candies, extraCandies):
+
+    res = []
+    for i in candies:
+        if i + extraCandies >= max(candies):
+            res.append(True)
+        else:
+            res.append(False)
+
+    return res
+
+# You are given an alphanumeric string s. (Alphanumeric string is a string consisting of
+# lowercase English letters and digits).
+#
+# You have to find a permutation of the string where no letter is followed by another letter and no digit is followed
+# by another digit. That is, no two adjacent characters have the same type.
+#
+# Return the reformatted string or return an empty string if it is impossible to reformat the string.
+def reformat(s):
+
+    num = "1234567890"
+
+    letters = []
+    numbers = []
+
+    for i in s:
+        if i in num:
+            numbers.append(i)
+        else:
+            letters.append(i)
+
+    if len(numbers) < len(letters):
+        numbers, letters = letters, numbers
+
+    if len(numbers) - len(letters) > 1:
+        return ""
+
+    res = []
+    for i in range(len(numbers) + len(letters)):
+        if i % 2 == 0:
+            res += numbers[i // 2]
+        else:
+            res += letters[i // 2]
+
+    return "".join(res)
+
