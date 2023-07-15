@@ -4496,3 +4496,16 @@ def reformat(s):
 
     return "".join(res)
 
+# Given a string s of zeros and ones, return the maximum score after splitting the string into two non-empty
+# substrings (i.e. left substring and right substring).
+#
+# The score after splitting a string is the number of zeros in the left
+# substring plus the number of ones in the right substring.
+def maxScore(s):
+
+    res = []
+    for i in range(len(s) - 1):
+        res.append(s[:i + 1].count("0") + s[i + 1:].count("1"))
+
+    return max(res)
+
