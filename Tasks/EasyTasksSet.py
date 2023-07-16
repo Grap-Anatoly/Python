@@ -4509,3 +4509,28 @@ def maxScore(s):
 
     return max(res)
 
+# The power of the string is the maximum length of a non-empty substring that contains only one unique character.
+#
+# Given a string s, return the power of s
+def maxPower(s):
+
+    if len(set(s)) == 1:
+        return len(s)
+    else:
+        res = []
+        temp = 1
+        for i in range(len(s)):
+            if i < len(s) - 1:
+                if s[i] == s[i + 1]:
+                    temp += 1
+                else:
+                    res.append(temp)
+                    temp = 1
+            else:
+                if s[i] == s[i - 1]:
+                    res.append(temp)
+                else:
+                    res.append(temp)
+                    temp = 1
+        return max(res)
+
