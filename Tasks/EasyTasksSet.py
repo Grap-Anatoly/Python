@@ -4557,3 +4557,19 @@ def destCity(paths):
     diff = set(cities["End"]).difference(set(cities["Start"]))
 
     return "".join(diff)
+
+# Given an binary array nums and an integer k, return true if all 1's are at least k places away from each other,
+# otherwise return false.
+def kLengthApart(nums, k):
+
+    count = k
+
+    for i in nums:
+        if i == 1:
+            if count < k:
+                return False
+            count = 0
+        else:
+            count += 1
+
+    return True
