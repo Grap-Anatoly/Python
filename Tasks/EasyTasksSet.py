@@ -4573,3 +4573,15 @@ def kLengthApart(nums, k):
             count += 1
 
     return True
+
+# You are given two integer arrays of equal length target and arr. In one step,
+# you can select any non-empty subarray of arr and reverse it. You are allowed to make any number of steps.
+#
+# Return true if you can make arr equal to target or false otherwise.
+def canBeEqual(target, arr):
+
+    for i in arr:
+        if i not in target or target.count(i) != arr.count(i):
+            return False
+
+    return True
