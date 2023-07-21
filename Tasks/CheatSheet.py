@@ -45,3 +45,25 @@ def fibonacci(n):
         fibb.append(prv + nxt)
 
     return fibb
+
+
+"""
+ Check if sentence has target prefix in any of it`s words
+
+    sentence = "i love eating burger"
+    prefix = "burg"
+    result: 4 (word with prefix)
+"""
+
+
+def hasPrefix(sentence, prefix):
+
+    sentence = sentence.split(" ")
+
+    for s in sentence:
+        # Check if target prefix in word(s)
+        # and check if its position is at the beginning of the word
+        if prefix in s and prefix[0:len(prefix)] == s[0:len(prefix)]:
+            return sentence.index(s) + 1
+
+    return "There is no prefix in input sentence"
