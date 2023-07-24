@@ -4648,3 +4648,21 @@ def finalPrices(prices):
             res.append(prices[i])
 
     return res
+
+# Given the array of integers nums, you will choose two different indices i and j of that array.
+# Return the maximum value of (nums[i]-1)*(nums[j]-1).
+def maxProduct(nums):
+    mx = []
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            if i != j:
+                mx.append((nums[i] - 1) * (nums[j] - 1))
+
+    return max(mx)
+
+
+def maxProductFast(nums):
+
+    nums = sorted(nums)[::-1]
+
+    return (nums[0] - 1) * (nums[1] - 1)
