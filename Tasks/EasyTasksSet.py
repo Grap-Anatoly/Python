@@ -4680,3 +4680,13 @@ def shuffle(nums, n):
         res.append(y[i])
 
     return res
+
+# You are given an array of unique integers salary where salary[i] is the salary of the ith employee.
+#
+# Return the average salary of employees excluding the minimum and maximum salary.
+# Answers within 10-5 of the actual answer will be accepted.
+def average(salary):
+    salary = sorted(salary)[1:-1]
+
+    return sum(salary) / len(salary)
+
