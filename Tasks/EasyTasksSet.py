@@ -4690,3 +4690,12 @@ def average(salary):
 
     return sum(salary) / len(salary)
 
+# Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
+#
+# Return the running sum of nums.
+def runningSum(nums):
+    res = []
+    for i in range(len(nums)):
+        res.append(sum(nums[:i + 1]))
+
+    return res
