@@ -4699,3 +4699,20 @@ def runningSum(nums):
         res.append(sum(nums[:i + 1]))
 
     return res
+
+# You are given an integer n and an integer start.
+#
+# Define an array nums where nums[i] = start + 2 * i (0-indexed) and n == nums.length.
+#
+# Return the bitwise XOR of all elements of nums.
+def xorOperation(n, start):
+
+    nums = []
+    for i in range(n):
+        nums.append(start + 2 * i)
+
+    res = 0
+    for i in nums:
+        res = res ^ i
+
+    return res
