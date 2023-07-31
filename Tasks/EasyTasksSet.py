@@ -4746,3 +4746,17 @@ def countOdds(low, high):
         return ((high - low) // 2 - 1) + 2
     else:
         return ((high - low) // 2) + 1
+
+# Given an array of integers nums, return the number of good pairs.
+# A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+def numIdenticalPairs(nums):
+
+    res = []
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            if nums[i] == nums[j] and i < j:
+                res.append([i, j])
+
+    return len(res)
+
+    
