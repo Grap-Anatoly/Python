@@ -4759,4 +4759,15 @@ def numIdenticalPairs(nums):
 
     return len(res)
 
-    
+# Given an array arr of positive integers sorted in a strictly increasing order, and an integer k.
+#
+# Return the kth positive integer that is missing from this array.
+def findKthPositive(arr, k):
+
+    diff = []
+    for i in range(1, arr[-1] + (k + 1)):
+        if i not in arr:
+            diff.append(i)
+
+    return diff[k - 1]
+
