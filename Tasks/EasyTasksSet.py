@@ -4771,3 +4771,21 @@ def findKthPositive(arr, k):
 
     return diff[k - 1]
 
+# You are given a string s and an integer array indices of the same length.
+# The string s will be shuffled such that the character at the ith position moves to indices[i] in the shuffled string.
+#
+# Return the shuffled string.
+def restoreString(s, indices):
+
+    combined = []
+    for i in range(len(indices)):
+        combined.append([indices[i], s[i]])
+
+    combined = sorted(combined)
+
+    res = []
+    for i in combined:
+        res.append(i[1])
+
+    return "".join(res)
+
