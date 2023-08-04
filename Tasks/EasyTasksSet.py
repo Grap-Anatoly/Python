@@ -4812,3 +4812,20 @@ def countGoodTriplets(arr, a, b, c):
 
     return res
 
+# Given an integer n, add a dot (".") as the thousands separator and return it in string format.
+def thousandSeparator(n):
+
+    n = list(str(n))[::-1]
+    res = []
+    counter = 0
+
+    for i in n:
+        if counter < 3:
+            res.append(i)
+            counter += 1
+        else:
+            res.append(".")
+            res.append(i)
+            counter = 1
+
+    return "".join(res[::-1])
