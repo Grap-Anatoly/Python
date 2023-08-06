@@ -4860,3 +4860,23 @@ def makeGood(s):
 
     return "".join(res)
 
+# Given a square matrix mat, return the sum of the matrix diagonals.
+#
+# Only include the sum of all the elements on the primary diagonal and all the elements on the secondary
+# diagonal that are not part of the primary diagonal.
+def diagonalSum(mat):
+
+    res = 0
+    if len(mat) % 2 == 0:
+        for i in range(len(mat)):
+            res += mat[i][i] + mat[i][len(mat) - i - 1]
+    else:
+        middle = len(mat) // 2
+        res += mat[middle][middle]
+        mat[middle][middle] = 0
+
+        for i in range(len(mat)):
+            res += mat[i][i] + mat[i][len(mat) - i - 1]
+
+    return res
+
