@@ -4897,3 +4897,22 @@ def containsPattern(arr, m, k):
 
     return False
 
+# Given an array of positive integers arr, return the sum of all possible odd-length subarrays of arr.
+#
+# A subarray is a contiguous subsequence of the array.
+def sumOddLengthSubarrays(arr):
+
+    subarr = []
+    for i in range(1, len(arr) + 1):
+        if i % 2 != 0:
+            for j in range(len(arr)):
+                s = arr[j:j + i]
+                if len(s) == i:
+                    subarr.append(s)
+
+    res = 0
+    for i in subarr:
+        res += sum(i)
+
+    return res
+
