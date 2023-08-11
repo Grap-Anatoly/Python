@@ -4916,3 +4916,26 @@ def sumOddLengthSubarrays(arr):
 
     return res
 
+# Given a string s containing only lowercase English letters and the '?' character,
+# convert all the '?' characters into lowercase letters such that the
+# final string does not contain any consecutive repeating characters. You cannot modify the non '?' characters.
+def modifyString(s):
+
+    letters = "qwertyuiopasdfghjklzxcvbnm"
+    letters = sorted(list(letters))
+
+    s = list(s)
+    for i in range(len(s)):
+        if s[i] == "?" and i < len(s) - 1:
+            for l in letters:
+                if s[i - 1] != l and s[i + 1] != l:
+                    s[i] = l
+                    break
+        elif s[i] == "?" and i == len(s) - 1:
+            for l in letters:
+                if s[i - 1] != l:
+                    s[i] = l
+                    break
+
+    return "".join(s)
+
