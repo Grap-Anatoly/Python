@@ -5014,3 +5014,38 @@ def reorderSpaces(text):
 
         return res
 
+# You are given a list of strings logs where logs[i] is the operation performed by the user at the ith step.
+#
+# The file system starts in the main folder, then the operations in logs are performed.
+#
+# Return the minimum number of operations needed to go back to the main folder after the change folder operations.
+def minOperations(logs):
+
+    res = 0
+    for i in logs:
+        if i != "./" and i != "../":
+            res += 1
+        if i == "../" and res > 0:
+            res -= 1
+
+    return res
+
+# You are given an array nums of non-negative integers. nums is considered special if
+# there exists a number x such that there are exactly x numbers in nums that are greater than or equal to x.
+#
+# Notice that x does not have to be an element in nums.
+#
+# Return x if the array is special, otherwise, return -1. It can be proven that if nums is special,
+# the value for x is unique.
+def specialArray(nums):
+
+    for i in range(len(nums)):
+        temp = 0
+        for j in nums:
+            if j >= i + 1:
+                temp += 1
+
+        if temp == i + 1:
+            return i + 1
+
+    return -1
