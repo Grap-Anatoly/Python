@@ -5049,3 +5049,22 @@ def specialArray(nums):
             return i + 1
 
     return -1
+
+# Find max number of consecutive parentless
+def maxDepth(s):
+
+    vals = []
+    brackets = 0
+
+    for i in s:
+        if i == "(":
+            brackets += 1
+            vals.append(brackets)
+        if i == ")":
+            brackets -= 1
+            vals.append(brackets)
+
+    if len(vals) != 0:
+        return max(vals)
+    else:
+        return 0
