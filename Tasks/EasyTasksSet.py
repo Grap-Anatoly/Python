@@ -5051,7 +5051,7 @@ def specialArray(nums):
     return -1
 
 # Find max number of consecutive parentless
-def maxDepth(s):
+def maxDepthParentless(s):
 
     vals = []
     brackets = 0
@@ -5068,3 +5068,17 @@ def maxDepth(s):
         return max(vals)
     else:
         return 0
+
+# Given a string s, return the length of the longest substring between two equal characters,
+# excluding the two characters. If there is no such substring return -1.
+#
+# A substring is a contiguous sequence of characters within a string.
+def maxLengthBetweenEqualCharacters(s):
+
+    res = -1
+
+    for i in range(len(s)):
+        for j in range(i + 1, len(s)):
+            if s[i] == s[j]:
+                res = max(res, j - i - 1)
+    return res
