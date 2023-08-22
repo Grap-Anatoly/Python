@@ -52,7 +52,7 @@ def canFormArray(arr, pieces):
 # If word is not a substring of sequence, word's maximum k-repeating value is 0.
 #
 # Given strings sequence and word, return the maximum k-repeating value of word in sequence.
-def maxRepeating(self, sequence: str, word: str) -> int:
+def maxRepeating(sequence, word):
 
     res = 0
     sub = word
@@ -63,3 +63,25 @@ def maxRepeating(self, sequence: str, word: str) -> int:
         sub += word
 
     return res
+
+# You are given an integer n. A 0-indexed integer array nums of length n + 1 is generated in the following way:
+#
+# nums[0] = 0
+# nums[1] = 1
+# nums[2 * i] = nums[i] when 2 <= 2 * i <= n
+# nums[2 * i + 1] = nums[i] + nums[i + 1] when 2 <= 2 * i + 1 <= n
+# Return the maximum integer in the array nums​​​.
+def getMaximumGenerated(n):
+
+    res = [0, 1]
+
+    if n == 0:
+        return 0
+    else:
+        for i in range(2, n + 1):
+            if i % 2 == 0:
+                res.append(res[i // 2])
+            else:
+                res.append(res[i // 2] + res[(i // 2) + 1])
+
+        return max(res)
