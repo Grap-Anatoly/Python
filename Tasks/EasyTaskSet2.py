@@ -92,3 +92,24 @@ def getMaximumGenerated(n):
 def arrayStringsAreEqual(word1, word2):
 
     return "".join(word1) == "".join(word2)
+
+# You are given a string allowed consisting of distinct characters and an array of strings words.
+# A string is consistent if all characters in the string appear in the string allowed.
+#
+# Return the number of consistent strings in the array words.
+def countConsistentStrings(allowed, words):
+
+    allowed = list(allowed)
+
+    for i in range(len(words)):
+        for j in words[i]:
+            if j not in allowed:
+                words[i] = ""
+
+    res = 0
+
+    for i in words:
+        if i != "":
+            res += 1
+
+    return res
