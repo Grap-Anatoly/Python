@@ -125,3 +125,26 @@ def maximumWealth(accounts):
         totalWealth.append(sum(i))
 
     return max(totalWealth)
+
+# You own a Goal Parser that can interpret a string command.
+# The command consists of an alphabet of "G", "()" and/or "(al)" in some order.
+# The Goal Parser will interpret "G" as the string "G", "()" as the string "o", and "(al)" as the string "al".
+# The interpreted strings are then concatenated in the original order.
+#
+# Given the string command, return the Goal Parser's interpretation of command.
+def interpret(command):
+
+    res = []
+    counter = 0
+    while counter < len(command):
+        if command[counter] == "G":
+            res.append("G")
+            counter += 1
+        elif command[counter] == "(" and command[counter + 1] == ")":
+            res.append("o")
+            counter += 2
+        elif command[counter] == "(" and command[counter + 1] == "a":
+            res.append("al")
+            counter += 4
+
+    return "".join(res)
