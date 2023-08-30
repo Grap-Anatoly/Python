@@ -166,3 +166,39 @@ def numberOfMatches(n):
         n -= n // 2
 
     return res
+
+# You are given a phone number as a string number. number consists of digits, spaces ' ', and/or dashes '-'.
+#
+# You would like to reformat the phone number in a certain manner. Firstly, remove all spaces and dashes.
+# Then, group the digits from left to right into blocks of length 3 until there are 4 or fewer digits.
+# The final digits are then grouped as follows:
+#
+# 2 digits: A single block of length 2.
+# 3 digits: A single block of length 3.
+# 4 digits: Two blocks of length 2 each.
+# The blocks are then joined by dashes. Notice that the reformatting process should never produce any blocks
+# of length 1 and produce at most two blocks of length 2.
+#
+# Return the phone number after formatting.
+def reformatNumber(number):
+
+    check = "1234567890"
+
+    formatted = []
+    for i in number:
+        if i in check:
+            formatted.append(i)
+
+    res = ""
+    while len(formatted) > 0:
+        if len(formatted) == 4:
+            res += "".join(formatted[0:2]) + "-" + "".join(formatted[2:])
+            break
+        if len(formatted) == 3 or len(formatted) == 2:
+            res += "".join(formatted)
+            break
+        else:
+            res += "".join(formatted[0:3]) + "-"
+            formatted = formatted[3:]
+
+    return res
