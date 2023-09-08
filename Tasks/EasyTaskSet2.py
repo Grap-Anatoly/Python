@@ -356,5 +356,18 @@ def countBalls(lowLimit, highLimit):
 
     return res[max(res, key=res.get)]
 
+# You are given an integer array nums. The unique elements of an array are the elements that
+# appear exactly once in the array.
+#
+# Return the sum of all the unique elements of nums.
+def sumOfUnique(nums):
+
+    unique = []
+    for i in nums:
+        if nums.count(i) == 1:
+            unique.append(i)
+
+    return sum(unique)
+
 
 
