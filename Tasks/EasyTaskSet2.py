@@ -369,5 +369,42 @@ def sumOfUnique(nums):
 
     return sum(unique)
 
+# You are given a string time in the form of  hh:mm,
+# where some of the digits in the string are hidden (represented by ?).
+#
+# The valid times are those inclusively between 00:00 and 23:59.
+#
+# Return the latest valid time you can get from time by replacing the hidden digits.
+def maximumTime(time):
+
+    hours = list(time[:2])
+    minutes = list(time[3:])
+
+    if hours[0] == "?" and hours[1] == "?":
+        hours[0] = "2"
+        hours[1] = "3"
+    else:
+        if hours[1] == "?" and hours[0] == "2":
+            hours[1] = "3"
+        elif hours[1] == "?":
+            hours[1] = "9"
+
+        if hours[0] == "?" and int(hours[1]) > 3:
+            hours[0] = "1"
+        elif hours[0] == "?":
+            hours[0] = "2"
+
+    if minutes[0] == "?" and minutes[1] == "?":
+        minutes[0] = "5"
+        minutes[1] = "9"
+    else:
+        if minutes[1] == "?":
+            minutes[1] = "9"
+
+        if minutes[0] == "?":
+            minutes[0] = "5"
+
+    return "".join(hours) + ":" + "".join(minutes)
+
 
 
