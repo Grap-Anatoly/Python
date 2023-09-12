@@ -426,5 +426,31 @@ def check(nums):
 
     return False
 
+# You are given a string s consisting only of the characters '0' and '1'.
+# In one operation, you can change any '0' to '1' or vice versa.
+#
+# The string is called alternating if no two adjacent characters are equal.
+# For example, the string "010" is alternating, while the string "0100" is not.
+#
+# Return the minimum number of operations needed to make s alternating.
+def minOperations(s):
+
+    forvard = 0
+    reverse = 0
+
+    for i in range(len(s)):
+        if i % 2 == 0:
+            if s[i] == "1":
+                forvard += 1
+            if s[i] == "0":
+                reverse += 1
+        else:
+            if s[i] == "0":
+                forvard += 1
+            if s[i] == "1":
+                reverse += 1
+
+    return min(forvard, reverse)
+
 
 
