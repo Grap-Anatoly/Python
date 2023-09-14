@@ -472,5 +472,24 @@ def nearestValidPoint(x, y, points):
     else:
         return -1
 
+# You are given two strings word1 and word2.
+# Merge the strings by adding letters in alternating order, starting with word1.
+# If a string is longer than the other, append the additional letters onto the end of the merged string.
+#
+# Return the merged string.
+def mergeAlternately(word1, word2):
 
+    word1, word2 = list(word1), list(word2)
+    l = max(len(word1), len(word2))
+
+    res = []
+    for i in range(l):
+        if len(word1) != 0:
+            res.append(word1[0])
+            word1.pop(0)
+        if len(word2) != 0:
+            res.append(word2[0])
+            word2.pop(0)
+
+    return "".join(res)
 
