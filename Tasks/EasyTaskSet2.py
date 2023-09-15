@@ -493,3 +493,25 @@ def mergeAlternately(word1, word2):
 
     return "".join(res)
 
+# You are given an array items, where each items[i] = [typei, colori, namei] describes the type, color,
+# and name of the ith item. You are also given a rule represented by two strings, ruleKey and ruleValue.
+#
+# The ith item is said to match the rule if one of the following is true:
+#
+# ruleKey == "type" and ruleValue == typei.
+# ruleKey == "color" and ruleValue == colori.
+# ruleKey == "name" and ruleValue == namei.
+# Return the number of items that match the given rule.
+def countMatches(items, ruleKey, ruleValue):
+
+    res = 0
+    for i in range(len(items)):
+        if ruleKey == "type" and items[i][0] == ruleValue:
+            res += 1
+        if ruleKey == "color" and items[i][1] == ruleValue:
+            res += 1
+        if ruleKey == "name" and items[i][2] == ruleValue:
+            res += 1
+
+    return res
+
