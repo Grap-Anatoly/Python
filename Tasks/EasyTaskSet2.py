@@ -515,3 +515,20 @@ def countMatches(items, ruleKey, ruleValue):
 
     return res
 
+# Given an alphanumeric string s, return the second largest numerical digit that appears in s,
+# or -1 if it does not exist.
+#
+# An alphanumeric string is a string consisting of lowercase English letters and digits.
+def secondHighest(s):
+
+    num = "1234567890"
+    res = []
+    for i in s:
+        if i in num and int(i) not in res:
+            res.append(int(i))
+
+    if len(res) > 1:
+        return sorted(res)[::-1][1]
+    else:
+        return -1
+
