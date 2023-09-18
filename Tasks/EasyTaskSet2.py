@@ -532,7 +532,7 @@ def secondHighest(s):
     else:
         return -1
 
-# Given a binary string s ​​​​​without leading zeros, return true​​​ if s
+# Given a binary string s without leading zeros, return true if s
 # contains at most one contiguous segment of ones. Otherwise, return false.
 def checkOnesSegment(s):
 
@@ -540,4 +540,34 @@ def checkOnesSegment(s):
         return False
     else:
         return True
+
+# There is an undirected star graph consisting of n nodes labeled from 1 to n. A star graph is a graph where
+# there is one center node and exactly n - 1 edges that connect the center node with every other node.
+#
+# You are given a 2D integer array edges where each edges[i] = [ui, vi] indicates that there is an edge between
+# the nodes ui and vi. Return the center of the given star graph.
+def findCenter(edges):
+
+    for i in edges[0]:
+        count = 0
+        for j in edges:
+            if i in j:
+                count += 1
+        if count == len(edges):
+            return i
+
+def findCenterViaDict(edges):
+
+    count = {}
+    for i in edges:
+        for j in i:
+            if j in count:
+                count[j] += 1
+            else:
+                count[j] = 1
+
+    m = max(count, key=count.get)
+
+    return m
+
 
