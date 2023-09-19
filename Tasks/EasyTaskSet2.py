@@ -570,4 +570,42 @@ def findCenterViaDict(edges):
 
     return m
 
+# You are given coordinates, a string that represents the coordinates of a square of the chessboard.
+# Below is a chessboard for your reference.
+#
+# Return true if the square is white, and false if the square is black.
+def squareIsWhite(coordinates):
+
+    squares = [['a', 1], ['b', 2], ['c', 3], ['d', 4], ['e', 5], ['f', 6], ['g', 7], ['h', 8]]
+    coordinates = list(coordinates)
+
+    for i in squares:
+        if coordinates[0] == i[0]:
+            coordinates[0] = i[1]
+
+    if coordinates[0] % 2 == 0:
+        if int(coordinates[1]) % 2 == 0:
+            return False
+        else:
+            return True
+    else:
+        if int(coordinates[1]) % 2 == 0:
+            return True
+        else:
+            return False
+
+def squareIsWhiteAlt(coordinates):
+
+    coordinates = list(coordinates)
+
+    if coordinates[0] in ('a', 'c', 'e', 'g'):
+        if coordinates[1] in ('1', '3', '5', '7'):
+            return False
+        else:
+            return True
+    else:
+        if coordinates[1] in ('1', '3', '5', '7'):
+            return True
+        else:
+            return False
 
