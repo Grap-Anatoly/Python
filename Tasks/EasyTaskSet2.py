@@ -724,5 +724,29 @@ def truncateSentence(s, k):
 
     return res[:-1]
 
+# There is a function signFunc(x) that returns:
+#
+# 1 if x is positive.
+# -1 if x is negative.
+# 0 if x is equal to 0.
+# You are given an integer array nums. Let product be the product of all values in the array nums.
+#
+# Return signFunc(product).
+#
+#
+def arraySign(nums):
+
+    prod = nums[0]
+    for i in range(1, len(nums)):
+        prod *= nums[i]
+
+    if prod > 0:
+        return 1
+    elif prod < 0:
+        return -1
+    else:
+        return 0
+
+
 
 
