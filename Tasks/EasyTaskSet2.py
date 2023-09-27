@@ -747,6 +747,32 @@ def arraySign(nums):
     else:
         return 0
 
+# You are given a 0-indexed string s that has lowercase English letters in its even indices and digits in its odd
+# indices.
+#
+# There is a function shift(c, x), where c is a character and x is a digit, that returns the xth character after c.
+#
+# For example, shift('a', 5) = 'f' and shift('x', 0) = 'x'.
+# For every odd index i, you want to replace the digit s[i] with shift(s[i-1], s[i]).
+#
+# Return s after replacing all digits. It is guaranteed that shift(s[i-1], s[i]) will never exceed 'z'.
+def replaceDigits(s):
+
+    words = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+             'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+             'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+             'y', 'z']
+
+    s = list(s)
+    res = []
+    for i in range(len(s)):
+        if i % 2 != 0:
+            res.append(words[words.index(s[i - 1]) + int(s[i])])
+        else:
+            res.append(s[i])
+
+    return "".join(res)
+
 
 
 
