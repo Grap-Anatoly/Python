@@ -827,6 +827,20 @@ def sortSentence(s):
 
     return res[:-1]
 
+# Given an integer array nums (0-indexed) and two integers target and start,
+# find an index i such that nums[i] == target and abs(i - start) is minimized.
+# Note that abs(x) is the absolute value of x.
+#
+# Return abs(i - start).
+#
+# It is guaranteed that target exists in nums.
+def getMinDistance(nums, target, start):
 
+    res = []
+    for i in range(len(nums)):
+        if nums[i] == target:
+            res.append(abs(i - start))
+
+    return min(res)
 
 
