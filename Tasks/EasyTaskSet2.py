@@ -843,4 +843,35 @@ def getMinDistance(nums, target, start):
 
     return min(res)
 
+# You are given a 2D integer array logs where each logs[i] = [birthi, deathi]
+# indicates the birth and death years of the ith person.
+#
+# The population of some year x is the number of people alive during that year.
+# The ith person is counted in year x's population if x is in the inclusive range [birthi, deathi - 1].
+# Note that the person is not counted in the year that they die.
+#
+# Return the earliest year with the maximum population.
+def maximumPopulation(logs):
+
+    born = []
+    for i in logs:
+        born.append(i[0])
+
+    population = {}
+    for i in born:
+        temp = 0
+        for j in logs:
+            if i >= j[0] and i < j[1]:
+                temp += 1
+        population[i] = temp
+
+    maxCount = population[max(population, key=population.get)]
+
+    res = []
+    for k, v in population.items():
+        if v == maxCount:
+            res.append(k)
+
+    return min(res)
+
 
