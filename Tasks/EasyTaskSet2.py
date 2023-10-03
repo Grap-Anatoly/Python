@@ -874,4 +874,27 @@ def maximumPopulation(logs):
 
     return min(res)
 
+# A string is good if there are no repeated characters.
+#
+# Given a string s, return the number of good substrings of length three in s.
+#
+# Note that if there are multiple occurrences of the same substring, every occurrence should be counted.
+#
+# A substring is a contiguous sequence of characters in a string.
+def countGoodSubstrings(s):
+
+    s = list(s)
+
+    sub = []
+    for i in range(0, len(s) - 1):
+        if i < len(s) - 2:
+            sub.append(s[i:i + 3])
+
+    res = 0
+    for i in sub:
+        if len(set(i)) == len(i):
+            res += 1
+
+    return res
+
 
