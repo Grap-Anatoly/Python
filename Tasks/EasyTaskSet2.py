@@ -897,4 +897,48 @@ def countGoodSubstrings(s):
 
     return res
 
+# Given a binary string s, return true if the longest contiguous segment of 1's is strictly longer
+# than the longest contiguous segment of 0's in s, or return false otherwise.
+#
+# For example, in s = "110100010" the longest continuous segment of 1s has length 2,
+# and the longest continuous segment of 0s has length 3.
+# Note that if there are no 0's, then the longest continuous segment of 0's is considered to have a length 0.
+# The same applies if there is no 1's.
+def checkZeroOnes(s):
+
+    s = list(s)
+
+    if len(s) == 1:
+        if s[0] == "1":
+            return True
+        else:
+            return False
+
+    zeros = [0]
+    ones = [0]
+
+    count = 1
+
+    for i in range(1, len(s)):
+        if s[i] == s[i - 1]:
+            count += 1
+        else:
+            if count > 1:
+                if s[i - 1] == "1":
+                    ones.append(count)
+                else:
+                    zeros.append(count)
+                count = 1
+
+    if count > 1:
+        if s[-1] == "1":
+            ones.append(count)
+        else:
+            zeros.append(count)
+
+    if max(ones) > max(zeros):
+        return True
+    else:
+        return False
+
 
