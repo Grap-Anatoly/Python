@@ -994,3 +994,30 @@ def isSumEqual(firstWord, secondWord, targetWord):
         target += str(words[i])
 
     return int(first) + int(second) == int(target)
+
+# Given two n x n binary matrices mat and target, return true if it is possible to make mat equal to
+# target by rotating mat in 90-degree increments, or false otherwise.
+def findRotation(mat, target):
+
+    def rotateMatrix(matrix):
+
+        rotated = []
+        i = 0
+        for row in matrix:
+            temp = [item[i] for item in matrix]
+            rotated.append(temp)
+            i += 1
+
+        return rotated[::-1]
+
+    r = rotateMatrix(mat)
+
+    if r == target:
+        return True
+    else:
+        for i in range(3):
+            r = rotateMatrix(r)
+            if r == target:
+                return True
+
+    return False
