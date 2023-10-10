@@ -1059,3 +1059,20 @@ def makeEqual(words):
             return False
 
     return True
+
+# A square triple (a,b,c) is a triple where a, b, and c are integers and a2 + b2 = c2.
+#
+# Given an integer n, return the number of square triples such that 1 <= a, b, c <= n.
+import math
+def countTriples(n):
+
+    res = 0
+
+    for i in range(1, n + 1):
+        for j in range(1, n + 1):
+            if i != j:
+                t = math.sqrt(pow(i, 2) + pow(j, 2))
+                if t.is_integer() and t <= n:
+                    res += 1
+
+    return res
