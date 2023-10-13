@@ -1099,3 +1099,23 @@ def buildArray(nums):
         res.append(nums[nums[i]])
 
     return res
+
+# Given a string s, return true if s is a good string, or false otherwise.
+#
+# A string s is good if all the characters that appear in s have the same number of occurrences (i.e.,
+# the same frequency).
+def areOccurrencesEqual(s):
+
+    c = {}
+
+    for i in list(s):
+        if i in c:
+            c[i] += 1
+        else:
+            c[i] = 1
+
+    cList = []
+    for v in c.values():
+        cList.append(v)
+
+    return min(cList) == max(cList)
