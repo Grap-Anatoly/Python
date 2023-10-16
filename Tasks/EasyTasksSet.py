@@ -5119,3 +5119,21 @@ def slowestKey(releaseTimes, keysPressed):
 
     return max(resList)
 
+# Given an integer n, return true if n has exactly three positive divisors. Otherwise, return false.
+#
+# An integer m is a divisor of n if there exists an integer k such that n = k * m.
+def isThree(n):
+
+    c = 1
+    res = 0
+
+    while c <= n:
+        if n % c == 0:
+            res += 1
+
+        c += 1
+
+        if res > 3:
+            break
+
+    return res == 3
