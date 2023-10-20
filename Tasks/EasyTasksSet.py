@@ -5166,3 +5166,16 @@ def numOfStrings(patterns, word):
             res += 1
 
     return res
+
+# Given an integer array nums, return the greatest common divisor of the smallest number and largest number in nums.
+#
+# The greatest common divisor of two numbers is the largest positive integer that evenly divides both numbers.
+def findGCD(nums):
+
+    def getDivisor(mn, mx):
+        if (mx == 0):
+            return mn
+        else:
+            return getDivisor(mx, mn % mx)
+
+    return getDivisor(min(nums), max(nums))
