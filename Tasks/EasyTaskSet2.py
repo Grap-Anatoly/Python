@@ -1175,3 +1175,20 @@ def getLucky(s, k):
 
     return int(numbers)
 
+# Given an integer array nums and an integer k, return the number of pairs (i, j) where i < j such that |nums[i] -
+# nums[j]| == k.
+#
+# The value of |x| is defined as:
+#
+# x if x >= 0.
+# -x if x < 0.
+def countKDifference(nums, k):
+
+    res = 0
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            if i < j and abs(nums[i] - nums[j]) == k:
+                res += 1
+
+    return res
+
