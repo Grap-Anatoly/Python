@@ -1192,3 +1192,20 @@ def countKDifference(nums, k):
 
     return res
 
+
+# Given a 0-indexed integer array nums, return the number of distinct quadruplets (a, b, c, d) such that:
+#
+# nums[a] + nums[b] + nums[c] == nums[d], and
+# a < b < c < d
+def countQuadruplets(nums):
+
+    res = 0
+    for i in range(len(nums) - 3):
+        for j in range(i + 1, len(nums) - 2):
+            for k in range(j + 1, len(nums) - 1):
+                for m in range(k + 1, len(nums)):
+                    if nums[i] + nums[j] + nums[k] == nums[m]:
+                        res += 1
+
+    return res
+
