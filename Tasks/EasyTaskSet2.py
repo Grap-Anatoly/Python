@@ -1216,7 +1216,7 @@ def countQuadruplets(nums):
 # For example, if word = "abcdefd" and ch = "d", then you should reverse the segment that starts at 0 and ends at 3
 # (inclusive). The resulting string will be "dcbaefd".
 # Return the resulting string.
-def reversePrefix(sword, ch):
+def reversePrefix(word, ch):
 
     word = list(word)
     if ch in word:
@@ -1226,5 +1226,29 @@ def reversePrefix(sword, ch):
 
     else:
         return "".join(word)
+
+# You are given a 0-indexed 1-dimensional (1D) integer array original, and two integers, m and n. You are tasked with
+# creating a 2-dimensional (2D) array with  m rows and n columns using all the elements from original.
+#
+# The elements from indices 0 to n - 1 (inclusive) of original should form the first row of the constructed 2D array,
+# the elements from indices n to 2 * n - 1 (inclusive) should form the second row of the constructed 2D array,
+# and so on.
+#
+# Return an m x n 2D array constructed according to the above procedure, or an empty 2D array if it is impossible.
+def construct2DArray(original, m, n):
+
+    if n * m != len(original):
+        return []
+    else:
+        res = []
+        counter = 0
+        for i in range(m):
+            temp = []
+            for j in range(n):
+                temp.append(original[counter])
+                counter += 1
+            res.append(temp)
+
+        return res
 
 
