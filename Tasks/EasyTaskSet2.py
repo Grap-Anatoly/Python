@@ -1227,6 +1227,7 @@ def reversePrefix(word, ch):
     else:
         return "".join(word)
 
+
 # You are given a 0-indexed 1-dimensional (1D) integer array original, and two integers, m and n. You are tasked with
 # creating a 2-dimensional (2D) array with  m rows and n columns using all the elements from original.
 #
@@ -1250,5 +1251,26 @@ def construct2DArray(original, m, n):
             res.append(temp)
 
         return res
+
+
+# There is a programming language with only four operations and one variable X:
+#
+# ++X and X++ increments the value of the variable X by 1.
+# --X and X-- decrements the value of the variable X by 1.
+# Initially, the value of X is 0.
+#
+# Given an array of strings operations containing a list of operations, return the final value of X after
+# performing all the operations.
+def finalValueAfterOperations(operations):
+
+    res = 0
+    for i in operations:
+        if i == "++X" or i == "X++":
+            res += 1
+        else:
+            res -= 1
+
+    return res
+
 
 
