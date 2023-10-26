@@ -1273,4 +1273,22 @@ def finalValueAfterOperations(operations):
     return res
 
 
+# Given a 0-indexed integer array nums of size n, find the maximum difference between nums[i] and nums[j] (i.e.,
+# nums[j] - nums[i]), such that 0 <= i < j < n and nums[i] < nums[j].
+#
+# Return the maximum difference. If no such i and j exists, return -1.
+def maximumDifference(nums):
+
+    diff = []
+    for i in range(len(nums)):
+        for j in range(1, len(nums)):
+            if i < j and nums[i] < nums[j]:
+                diff.append(nums[j] - nums[i])
+
+    if len(diff) > 0:
+        return max(diff)
+    else:
+        return -1
+
+
 
