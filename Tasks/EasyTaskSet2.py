@@ -1308,3 +1308,25 @@ def minimumMoves(s):
             counter += 3
             res += 1
     return res
+
+
+# Given three integer arrays nums1, nums2, and nums3, return a distinct array containing all the values that are
+# present in at least two out of the three arrays. You may return the values in any order.
+def twoOutOfThree(nums1, nums2, nums3):
+
+    res = []
+
+    temp = list(set(nums1).intersection(set(nums2)))
+    res = temp
+
+    temp = list(set(nums2).intersection(set(nums3)))
+    for i in temp:
+        if i not in res:
+            res.append(i)
+
+    temp = list(set(nums1).intersection(set(nums3)))
+    for i in temp:
+        if i not in res:
+            res.append(i)
+
+    return res
