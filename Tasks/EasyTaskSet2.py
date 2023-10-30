@@ -1330,3 +1330,21 @@ def twoOutOfThree(nums1, nums2, nums3):
             res.append(i)
 
     return res
+
+# A distinct string is a string that is present only once in an array.
+#
+# Given an array of strings arr, and an integer k, return the kth distinct string present in arr.
+# If there are fewer than k distinct strings, return an empty string "".
+#
+# Note that the strings are considered in the order in which they appear in the array.
+def kthDistinct(arr, k):
+
+    dist = []
+    for i in arr:
+        if arr.count(i) < 2:
+            dist.append(i)
+
+    if len(dist) >= k:
+        return dist[k - 1]
+    else:
+        return ""
