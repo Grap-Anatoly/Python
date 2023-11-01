@@ -1373,3 +1373,51 @@ def areNumbersAscending(s):
             return False
 
     return True
+
+# A sentence consists of lowercase letters ('a' to 'z'), digits ('0' to '9'), hyphens ('-'), punctuation marks ('!',
+# '.', and ','), and spaces (' ') only. Each sentence can be broken down into one or more tokens separated by one or
+# more spaces ' '.
+#
+# A token is a valid word if all three of the following are true:
+#
+# It only contains lowercase letters, hyphens, and/or punctuation (no digits).
+# There is at most one hyphen '-'. If present, it must be surrounded by lowercase characters ("a-b" is valid, but "-ab"
+# and "ab-" are not valid).
+# There is at most one punctuation mark. If present, it must be at the end of the token ("ab,", "cd!", and "." are
+# valid, but "a!b" and "c.," are not valid).
+# Examples of valid words include "a-b.", "afad", "ba-c", "a!", and "!".
+#
+# Given a string sentence, return the number of valid words in sentence.
+def countValidWords(sentence):
+    letters = 'qwertyuiopasdfghjklzxcvbnm'
+    sentence = list(sentence.split())
+    res = 0
+
+    for i in sentence:
+        valid = True
+        for j in i:
+            if j.isdigit():
+                valid = False
+                break
+            if j != j.lower():
+                valid = False
+                break
+            if j == "-":
+                if i.count(j) > 1:
+                    valid = False
+                    break
+                if i.index(j) == 0 or i.index(j) == len(i) - 1:
+                    valid = False
+                    break
+                elif i[i.index(j) - 1] not in letters or i[i.index(j) + 1] not in letters:
+                    valid = False
+                    break
+            if j in ("!", ".", ",") and i.index(j) != len(i) - 1:
+                valid = False
+                break
+
+        if valid == True:
+            res += 1
+
+    return res
+
