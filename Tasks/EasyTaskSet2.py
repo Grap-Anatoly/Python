@@ -1421,3 +1421,32 @@ def countValidWords(sentence):
 
     return res
 
+
+# Two strings word1 and word2 are considered almost equivalent if the differences between the frequencies of each
+# letter from 'a' to 'z' between word1 and word2 is at most 3.
+#
+# Given two strings word1 and word2, each of length n, return true if word1 and word2 are almost equivalent,
+# or false otherwise.
+#
+# The frequency of a letter x is the number of times it occurs in the string.
+def checkAlmostEquivalent(word1, word2):
+    word1 = list(word1)
+    word2 = list(word2)
+
+    res = []
+    for i in range(len(word1)):
+        if word1[i] in word2:
+            res.append(abs(word1.count(word1[i]) - word2.count(word1[i])))
+        else:
+            res.append(word1.count(word1[i]))
+
+    for i in range(len(word1)):
+        if word2[i] in word1:
+            res.append(abs(word2.count(word2[i]) - word1.count(word2[i])))
+        else:
+            res.append(word2.count(word2[i]))
+
+    if max(res) <= 3:
+        return True
+
+
