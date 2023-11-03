@@ -1450,3 +1450,20 @@ def checkAlmostEquivalent(word1, word2):
         return True
 
 
+# Given a 0-indexed integer array nums, return the smallest index i of nums such that i mod 10 ==
+# nums[i], or -1 if such index does not exist.
+#
+# x mod y denotes the remainder when x is divided by y.
+def smallestEqual(nums):
+
+    res = []
+    for i in range(len(nums)):
+        if i % 10 == nums[i]:
+            res.append(i)
+
+    if len(res) > 0:
+        return min(res)
+    else:
+        return -1
+
+
