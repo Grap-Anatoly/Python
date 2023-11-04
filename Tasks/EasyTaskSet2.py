@@ -1466,4 +1466,16 @@ def smallestEqual(nums):
     else:
         return -1
 
+# Given two string arrays words1 and words2, return the number of strings that appear exactly once in each
+# of the two arrays.
+def countWords(words1, words2):
+
+    common = list(set(words1).intersection(set(words2)))
+    res = 0
+
+    for i in common:
+        if words1.count(i) == 1 and words2.count(i) == 1:
+            res += 1
+
+    return res
 
