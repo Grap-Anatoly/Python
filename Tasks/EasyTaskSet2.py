@@ -1541,3 +1541,23 @@ def maxSubsequence(nums, k):
         nums.remove(min(nums))
 
     return nums
+
+# You are given a 0-indexed integer array nums and a target element target.
+#
+# A target index is an index i such that nums[i] == target.
+#
+# Return a list of the target indices of nums after sorting nums in non-decreasing order.
+# If there are no target indices, return an empty list. The returned list must be sorted in increasing order.
+def targetIndices(nums, target):
+
+    nums = sorted(nums)
+    res = []
+
+    for i in range(len(nums)):
+        if target in nums[i:]:
+            if target == nums[i]:
+                res.append(i)
+        else:
+            break
+
+    return res
