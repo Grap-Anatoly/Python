@@ -5179,3 +5179,4 @@ def findGCD(nums):
             return getDivisor(mx, mn % mx)
 
     return getDivisor(min(nums), max(nums))
+
