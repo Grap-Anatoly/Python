@@ -1667,3 +1667,9 @@ def isSameAfterReversals(num):
         num = int(str(num)[::-1])
 
     return initial == num
+
+# Given a string s consisting of only the characters 'a' and 'b', return true if every 'a'
+# appears before every 'b' in the string. Otherwise, return false.
+def checkString(s):
+
+    return s == "".join(sorted(s))
