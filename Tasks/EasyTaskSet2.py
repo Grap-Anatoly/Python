@@ -1698,3 +1698,25 @@ def minimumCost(cost):
             temp = 2
 
     return res
+
+# An n x n matrix is valid if every row and every column contains all the integers from 1 to n (inclusive).
+#
+# Given an n x n integer matrix matrix, return true if the matrix is valid. Otherwise, return false.
+def checkValid(matrix):
+
+    for i in range(0, len(matrix)):
+        row = []
+        col = []
+        for j in range(0, len(matrix)):
+            if (matrix[i][j]) in row:
+                return False
+            else:
+                row.append(matrix[i][j])
+
+            if (matrix[j][i]) in col:
+                return False
+            else:
+                col.append(matrix[j][i])
+
+    return True
+
