@@ -1766,3 +1766,20 @@ def minimumSum(num):
 
     return pair1 + pair2
 
+# Given an integer array nums, return the number of elements that have both a strictly smaller and
+# a strictly greater element appear in nums.
+def countElements(nums):
+    elem = []
+    numsUnique = sorted(set(nums))
+
+    for i in range(1, len(numsUnique) - 1):
+        if numsUnique[i - 1] < numsUnique[i] and numsUnique[i + 1] > numsUnique[i]:
+            elem.append(numsUnique[i])
+
+    res = 0
+    for i in elem:
+        res += nums.count(i)
+
+    return res
+
+
