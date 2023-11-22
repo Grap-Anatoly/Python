@@ -1798,4 +1798,18 @@ def findFinalValue(nums, original):
 
     return original
 
+# Given a 0-indexed integer array nums of length n and an integer k, return the number of pairs (i, j) where
+# 0 <= i < j < n, such that nums[i] == nums[j] and (i * j) is divisible by k.
+#
+def countPairs(nums, k):
+
+    res = 0
+    for i in range(len(nums)):
+        for j in range(1, len(nums)):
+            if 0 <= i < j < len(nums):
+                if nums[i] == nums[j] and (i * j) % k == 0:
+                    res += 1
+
+    return res
+
 
