@@ -127,3 +127,40 @@ def capitalizeTitle(title):
     res[-1] = f
 
     return "".join(res)
+
+
+"""
+ Get list of all Excel indexes in range, represented as a string "<col><row>":
+ 
+    <col> denotes the column number c of the cell. It is represented by alphabetical letters.
+    For example, the 1st column is denoted by 'A', the 2nd by 'B', the 3rd by 'C', and so on.
+    <row> is the row number r of the cell. The rth row is represented by the integer r.
+
+    Inputs are in the format "<col1><row1>:<col2><row2>", where <col1> represents the column c1,
+    <row1> represents the row r1, <col2> represents the column c2, and <row2> represents the row r2,
+    
+    Returns all items in given range/
+    Input: s = "K1:L2"
+    Output: ["K1","K2","L1","L2"]
+    
+    Input: s = "A1:F1"
+    Output: ["A1","B1","C1","D1","E1","F1"]  
+"""
+
+def cellsInRange(s):
+
+    letters = {"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7, "h": 8, "i": 9, "j": 10, "k": 11,
+               "l": 12, "m": 13, "n": 14, "o": 15, "p": 16, "q": 17, "r": 18, "s": 19, "t": 20, "u": 21,
+               "v": 22, "w": 23, "x": 24, "y": 25, "z": 26}
+
+    s = list(s)
+
+    rows = [letters[s[0].lower()], letters[s[3].lower()]]
+    cols = [int(s[1]), int(s[-1])]
+
+    res = []
+    for i in range(rows[0], rows[1] + 1):
+        for j in range(cols[0], cols[1] + 1):
+            res.append("%s%d" % (list(letters.keys())[list(letters.values()).index(i)].upper(), j))
+
+    return res
