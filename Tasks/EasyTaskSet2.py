@@ -1988,5 +1988,19 @@ def countHillValley(nums):
             res += 1
     return res
 
+# You are given a 0-indexed integer array nums and two integers key and k. A k-distant index is an index i of nums for
+# which there exists at least one index j such that |i - j| <= k and nums[j] == key.
+#
+# Return a list of all k-distant indices sorted in increasing order.
+def findKDistantIndices(nums, key, k):
+
+    res = []
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            if abs(i - j) <= k and nums[j] == key:
+                res.append(i)
+
+    return list(set(res))
+
 
 
