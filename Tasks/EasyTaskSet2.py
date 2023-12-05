@@ -2021,5 +2021,35 @@ def minBitFlips(start, goal):
 
     return res
 
+# You are given a positive integer num. You may swap any two digits of num that have the same parity (i.e.
+# both odd digits or both even digits).
+#
+# Return the largest possible value of num after any number of swaps.
+def largestInteger(num):
+
+    odd = []
+    even = []
+    orig = []
+    for i in str(num):
+        if int(i) % 2 == 0:
+            even.append(i)
+            orig.append("even")
+        else:
+            odd.append(i)
+            orig.append("odd")
+
+    odd = sorted(odd)[::-1]
+    even = sorted(even)[::-1]
+
+    res = []
+    for i in orig:
+        if i == "even":
+            res.append(even[0])
+            even.pop(0)
+        else:
+            res.append(odd[0])
+            odd.pop(0)
+
+    return int("".join(res))
 
 
