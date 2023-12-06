@@ -2052,4 +2052,27 @@ def largestInteger(num):
 
     return int("".join(res))
 
+# Given a 2D integer array nums where nums[i] is a non-empty array of distinct positive integers, return the list of
+# integers that are present in each array of nums sorted in ascending order.
+def intersection(nums):
+
+    n = nums[0]
+    for i in nums:
+        if len(i) > len(n):
+            n = i
+
+    res = []
+    for i in n:
+        count = 0
+        for j in nums:
+            if i in j:
+                count += 1
+
+        if count == len(nums):
+            res.append(i)
+        else:
+            count = 0
+
+    return sorted(res)
+
 
