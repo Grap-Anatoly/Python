@@ -2130,3 +2130,25 @@ def largestGoodInteger(num):
         return sorted(res)[-1]
     else:
         return ""
+
+# Given an integer array nums of size n, return the number with the value closest to 0 in nums.
+# If there are multiple answers, return the number with the largest value.
+def findClosestNumber(nums):
+
+    lower = []
+    bigger = []
+    for i in nums:
+        if i < 0:
+            lower.append(i)
+        else:
+            bigger.append(i)
+
+    if len(lower) > 0 and len(bigger) > 0:
+        if abs(sorted(lower)[-1]) < sorted(bigger)[0]:
+            return sorted(lower)[-1]
+        else:
+            return sorted(bigger)[0]
+    elif len(lower) == 0:
+        return sorted(bigger)[0]
+    else:
+        return sorted(lower)[-1]
