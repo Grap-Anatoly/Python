@@ -2202,3 +2202,30 @@ def percentageLetter(s, letter):
     c = s.count(letter)
 
     return int(c / len(s) * 100)
+
+# You are given two 0-indexed strings s and target. You can take some letters from s and rearrange them to form new
+# strings.
+#
+# Return the maximum number of copies of target that can be formed by taking letters from s and rearranging them.
+def rearrangeCharacters(s, target):
+
+    def countOccurances(string):
+        res = {}
+        for i in string:
+            if i in res:
+                res[i] += 1
+            else:
+                res[i] = 1
+        return res
+
+    sCount = countOccurances(s)
+    tCount = countOccurances(target)
+
+    res = []
+    for k, v in tCount.items():
+        if k in sCount.keys():
+            res.append(sCount[k] // tCount[k])
+        else:
+            return 0
+
+    return min(res)
