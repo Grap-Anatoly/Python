@@ -2229,3 +2229,14 @@ def rearrangeCharacters(s, target):
             return 0
 
     return min(res)
+
+# You are given a 0-indexed string num of length n consisting of digits.
+#
+# Return true if for every index i in the range 0 <= i < n, the digit i occurs num[i] times in num, otherwise
+# return false.
+def digitCount(num):
+    for i in range(len(num)):
+        if num.count(str(i)) != int(num[i]):
+            return False
+
+    return True
