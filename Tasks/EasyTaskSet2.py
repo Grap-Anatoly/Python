@@ -2275,3 +2275,48 @@ def minMaxGame(nums):
         nums = newNums
 
     return nums[0]
+
+# A password is said to be strong if it satisfies all the following criteria:
+#
+# It has at least 8 characters.
+# It contains at least one lowercase letter.
+# It contains at least one uppercase letter.
+# It contains at least one digit.
+# It contains at least one special character. The special characters are the characters in the following string: "!@#$%^&*()-+".
+# It does not contain 2 of the same character in adjacent positions (i.e., "aab" violates this condition, but "aba" does not).
+# Given a string password, return true if it is a strong password. Otherwise, return false.
+def strongPasswordCheckerII(password):
+
+    if len(password) < 8:
+        return False
+
+    if password == password.upper():
+        return False
+
+    if password == password.lower():
+        return False
+
+    digit = False
+    for i in "1234567890":
+        if i in password:
+            digit = True
+            break
+
+    if digit == False:
+        return False
+
+    special = False
+    for i in "!@#$%^&*()-+":
+        if i in password:
+            special = True
+            break
+
+    if special == False:
+        return False
+
+    password = list(password)
+    for i in range(len(password) - 1):
+        if password[i] == password[i + 1]:
+            return False
+
+    return True
