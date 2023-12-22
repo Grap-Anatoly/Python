@@ -2320,3 +2320,22 @@ def strongPasswordCheckerII(password):
             return False
 
     return True
+
+# A square matrix is said to be an X-Matrix if both of the following conditions hold:
+#
+# All the elements in the diagonals of the matrix are non-zero.
+# All other elements are 0.
+# Given a 2D integer array grid of size n x n representing a square matrix, return true if grid is an X-Matrix. Otherwise, return false.
+def checkXMatrix(grid):
+
+    xMatrix = True
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if i == j or i == len(grid) - 1 - j:
+                if grid[i][j] == 0:
+                    xMatrix = False
+            else:
+                if grid[i][j] != 0:
+                    xMatrix = False
+
+    return xMatrix == True
