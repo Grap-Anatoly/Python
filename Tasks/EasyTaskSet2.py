@@ -2356,3 +2356,42 @@ def countAsterisks(s):
             res += s[i].count("*")
 
     return res
+
+# You are given the strings key and message, which represent a cipher key and a secret message, respectively.
+# The steps to decode message are as follows:
+#
+# Use the first appearance of all 26 lowercase English letters in key as the order of the substitution table.
+# Align the substitution table with the regular English alphabet.
+# Each letter in message is then substituted using the table.
+# Spaces ' ' are transformed to themselves.
+# For example, given key = "happy boy" (actual key would have at least one instance of each letter in the alphabet),
+# we have the partial substitution table of ('h' -> 'a', 'a' -> 'b', 'p' -> 'c', 'y' -> 'd', 'b' -> 'e', 'o' -> 'f').
+# Return the decoded message.
+def decodeMessage(key, message):
+
+        letters = {1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h", 9: "i", 10: "j", 11: "k",
+                   12: "l", 13: "m", 14: "n", 15: "o", 16: "p", 17: "q", 18: "r", 19: "s", 20: "t", 21: "u",
+                   22: "v", 23: "w", 24: "x", 25: "y", 26: "z"}
+
+        code = {}
+        clean = []
+        key = list(key)
+
+        for i in key:
+            if i not in clean:
+                clean.append(i)
+
+        pointer = 1
+        for i in range(len(clean)):
+            if clean[i] != ' ':
+                code[clean[i]] = pointer
+                pointer += 1
+
+        res = []
+        for i in list(message):
+            if i != " ":
+                res.append(letters[code[i]])
+            else:
+                res.append(' ')
+
+        return "".join(res)
