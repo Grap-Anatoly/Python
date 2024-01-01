@@ -2520,3 +2520,20 @@ def bestHand(self, ranks: List[int], suits: List[str]) -> str:
     for k, v in res.items():
         if v == 1:
             return k
+
+# You are given a non-negative integer array nums. In one operation, you must:
+#
+# Choose a positive integer x such that x is less than or equal to the smallest non-zero element in nums.
+# Subtract x from every positive element in nums.
+# Return the minimum number of operations to make every element in nums equal to 0.
+def minimumOperations(nums):
+    res = 0
+    for i in nums:
+        if set(nums) != 0:
+            if i != 0:
+                for j in range(len(nums)):
+                    if i == nums[j]:
+                        nums[j] = 0
+                res += 1
+
+    return res
