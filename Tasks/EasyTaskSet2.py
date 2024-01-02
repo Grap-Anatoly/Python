@@ -2537,3 +2537,22 @@ def minimumOperations(nums):
                 res += 1
 
     return res
+
+# You are given a 0-indexed, strictly increasing integer array nums and a positive integer diff. A triplet (i, j, k)
+# is an arithmetic triplet if the following conditions are met:
+#
+# i < j < k,
+# nums[j] - nums[i] == diff, and
+# nums[k] - nums[j] == diff.
+# Return the number of unique arithmetic triplets.
+def arithmeticTriplets(nums, diff):
+
+    res = 0
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            for k in range(len(nums)):
+                if i < j < k:
+                    if nums[j] - nums[i] == diff and nums[k] - nums[j] == diff:
+                        res += 1
+
+    return res
