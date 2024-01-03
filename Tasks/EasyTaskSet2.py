@@ -2556,3 +2556,32 @@ def arithmeticTriplets(nums, diff):
                         res += 1
 
     return res
+
+# You are given two 2D integer arrays, items1 and items2, representing two sets of items. Each array items has the
+# following properties:
+#
+# items[i] = [valuei, weighti] where valuei represents the value and weighti represents the weight of the ith item.
+# The value of each item in items is unique.
+# Return a 2D integer array ret where ret[i] = [valuei, weighti], with weighti being the sum of weights of all
+# items with value valuei.
+#
+# Note: ret should be returned in ascending order by value.
+def mergeSimilarItems(items1, items2):
+
+    res = {}
+    for i in items1:
+        if i[0] not in res:
+            res[i[0]] = i[1]
+        else:
+            res[i[0]] += i[1]
+    for i in items2:
+        if i[0] not in res:
+            res[i[0]] = i[1]
+        else:
+            res[i[0]] += i[1]
+
+    resList = []
+    for k, v in res.items():
+        resList.append([k, v])
+
+    return sorted(resList)
