@@ -2665,3 +2665,27 @@ def minimumRecolors(blocks, k):
             res.append(blocks[i:i + k].count("W"))
 
         return min(res)
+
+# You are given an integer array nums of length n, and an integer array queries of length m.
+#
+# Return an array answer of length m where answer[i] is the maximum size of a subsequence that you can take from nums
+# such that the sum of its elements is less than or equal to queries[i].
+#
+# A subsequence is an array that can be derived from another array by deleting some or no elements without changing
+# the order of the remaining elements.
+#
+#
+def answerQueries(nums, queries):
+
+    nums = sorted(nums)
+    res = []
+    for i in queries:
+        sm = 0
+        size = 0
+        for j in range(len(nums)):
+            if sm + nums[j] <= i:
+                sm += nums[j]
+                size += 1
+        res.append(size)
+
+    return res
