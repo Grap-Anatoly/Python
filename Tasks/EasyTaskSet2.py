@@ -2689,3 +2689,34 @@ def answerQueries(nums, queries):
         res.append(size)
 
     return res
+
+# Easy
+# Topics
+# Companies
+# Hint
+# You are given a 0-indexed string s consisting of only lowercase English letters, where each letter in s appears
+# exactly twice. You are also given a 0-indexed integer array distance of length 26.
+#
+# Each letter in the alphabet is numbered from 0 to 25 (i.e. 'a' -> 0, 'b' -> 1, 'c' -> 2, ... , 'z' -> 25).
+#
+# In a well-spaced string, the number of letters between the two occurrences of the ith letter is distance[i]. If
+# the ith letter does not appear in s, then distance[i] can be ignored.
+#
+# Return true if s is a well-spaced string, otherwise return false.
+def checkDistances(s, distance):
+
+    s = list(s)
+    letters = {"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7, "h": 8, "i": 9, "j": 10, "k": 11,
+               "l": 12, "m": 13, "n": 14, "o": 15, "p": 16, "q": 17, "r": 18, "s": 19, "t": 20, "u": 21,
+               "v": 22, "w": 23, "x": 24, "y": 25, "z": 26}
+
+    for i in range(len(s)):
+        dist = 0
+        for j in range(i + 1, len(s)):
+            if s[j] != s[i]:
+                dist += 1
+            else:
+                if distance[letters[s[i]] - 1] != dist:
+                    return False
+
+    return True
