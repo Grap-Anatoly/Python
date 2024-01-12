@@ -2720,3 +2720,43 @@ def checkDistances(s, distance):
                     return False
 
     return True
+
+# Given a 0-indexed integer array nums, determine whether there exist two subarrays of length 2 with equal sum.
+# Note that the two subarrays must begin at different indices.
+#
+# Return true if these subarrays exist, and false otherwise.
+#
+# A subarray is a contiguous non-empty sequence of elements within an array.
+def findSubarrays(nums):
+
+    res = {}
+    for i in range(len(nums) - 1):
+        sm = sum(nums[i:i + 2])
+        if sm in res:
+            return True
+        else:
+            res[sm] = sm
+    return False
+
+# Given an integer array nums, return the most frequent even element.
+#
+# If there is a tie, return the smallest one. If there is no such element, return -1
+def mostFrequentEven(nums):
+
+    even = {}
+    for i in nums:
+        if i % 2 == 0:
+            even[i] = nums.count(i)
+
+    res = []
+    if len(even) > 0:
+        m = even[max(even, key=even.get)]
+        for k, v in even.items():
+            if v == m:
+                res.append(k)
+
+        return min(res)
+    else:
+        return -1
+
+
