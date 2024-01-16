@@ -2808,6 +2808,18 @@ def sortPeople(names, heights):
 
     return res
 
+# Given two positive integers a and b, return the number of common factors of a and b.
+#
+# An integer x is a common factor of a and b if x divides both a and b.
+def commonFactors(a, b):
+
+    res = 0
+    for i in range(1, max(a, b) + 1):
+        if a % i == 0 and b % i == 0:
+            res += 1
+
+    return res
+
 
 
 
