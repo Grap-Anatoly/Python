@@ -2820,6 +2820,33 @@ def commonFactors(a, b):
 
     return res
 
+# There are n employees, each with a unique id from 0 to n - 1.
+#
+# You are given a 2D integer array logs where logs[i] = [idi, leaveTimei] where:
+#
+# idi is the id of the employee that worked on the ith task, and
+# leaveTimei is the time at which the employee finished the ith task. All the values leaveTimei are unique.
+# Note that the ith task starts the moment right after the (i - 1)th task ends, and the 0th task starts at time 0.
+#
+# Return the id of the employee that worked the task with the longest time. If there is a tie between two or more
+# employees, return the smallest id among them.
+def hardestWorker(n, logs):
+
+    res = []
+    for i in range(len(logs)):
+        if i == 0:
+            res.append(logs[i][::-1])
+        else:
+            res.append([logs[i][1] - logs[i - 1][1], logs[i][0]])
+
+    ids = []
+    mx = sorted(res)[::-1][0]
+    for i in sorted(res)[::-1]:
+        if i[0] == mx[0]:
+            ids.append(i[1])
+
+    return min(ids)
+
 
 
 
