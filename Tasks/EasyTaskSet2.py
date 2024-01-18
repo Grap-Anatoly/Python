@@ -2847,6 +2847,22 @@ def hardestWorker(n, logs):
 
     return min(ids)
 
+# Given an integer array nums that does not contain any zeros, find the largest positive integer k such that -k
+# also exists in the array.
+#
+# Return the positive integer k. If there is no such integer, return -1.
+def findMaxK(nums):
+
+    res = []
+    for i in nums:
+        if i > 0 and (i * -1) in nums:
+            res.append(i)
+
+    if len(res) > 0:
+        return max(res)
+    else:
+        return -1
+
 
 
 
