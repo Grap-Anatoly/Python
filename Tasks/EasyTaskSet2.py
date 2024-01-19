@@ -2863,6 +2863,36 @@ def findMaxK(nums):
     else:
         return -1
 
+# You are given a 0-indexed string word, consisting of lowercase English letters. You need to select one index and
+# remove the letter at that index from word so that the frequency of every letter present in word is equal.
+#
+# Return true if it is possible to remove one letter so that the frequency of all letters in word are equal,
+# and false otherwise.
+#
+# Note:
+#
+# The frequency of a letter x is the number of times it occurs in the string.
+# You must remove exactly one letter and cannot choose to do nothing.
+def equalFrequency(word):
+
+    word = list(word)
+    temp = []
+    check = False
+
+    for i in range(len(word)):
+        temp = word[:i] + word[i + 1:]
+        check = True
+
+        f = temp.count(temp[0])
+        for i in temp:
+            if temp.count(i) != f:
+                check = False
+
+        if check == True:
+            return True
+
+    return False
+
 
 
 
