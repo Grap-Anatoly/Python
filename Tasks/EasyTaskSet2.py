@@ -2915,6 +2915,22 @@ def haveConflict(event1, event2):
 
     return True
 
+# Given an integer array nums of positive integers, return the average value of all even integers that are divisible
+# by 3.
+#
+# Note that the average of n elements is the sum of the n elements divided by n and rounded down to the nearest integer.
+def averageValue(nums):
+
+    res = []
+    for i in nums:
+        if i % 3 == 0 and i % 2 == 0:
+            res.append(i)
+
+    if len(res) > 0:
+        return sum(res) // len(res)
+    else:
+        return 0
+
 
 
 
