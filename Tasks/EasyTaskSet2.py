@@ -3000,6 +3000,29 @@ def convertTemperature(celsius):
 
     return [celsius + 273.15, celsius * 1.80 + 32.00]
 
+# You are given a 0-indexed integer array nums of even length.
+#
+# As long as nums is not empty, you must repetitively:
+#
+# Find the minimum number in nums and remove it.
+# Find the maximum number in nums and remove it.
+# Calculate the average of the two removed numbers.
+# The average of two numbers a and b is (a + b) / 2.
+#
+# For example, the average of 2 and 3 is (2 + 3) / 2 = 2.5.
+# Return the number of distinct averages calculated using the above process.
+def distinctAverages(nums):
+    res = []
+    nums = sorted(nums)
+
+    while len(nums) != 0:
+        res.append((nums[0] + nums[-1]) / 2)
+        nums.pop(0)
+        nums.pop(-1)
+
+    return len(set(res))
+
+
 
 
 
