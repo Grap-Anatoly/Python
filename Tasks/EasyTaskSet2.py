@@ -3022,6 +3022,25 @@ def distinctAverages(nums):
 
     return len(set(res))
 
+# You are given a 0-indexed array of positive integers nums. Find the number of triplets (i, j, k) that meet the
+# following conditions:
+#
+# 0 <= i < j < k < nums.length
+# nums[i], nums[j], and nums[k] are pairwise distinct.
+# In other words, nums[i] != nums[j], nums[i] != nums[k], and nums[j] != nums[k].
+# Return the number of triplets that meet the conditions.
+def unequalTriplets(nums):
+
+    res = 0
+    for i in range(len(nums)):
+        for j in range(i, len(nums)):
+            for k in range(j, len(nums)):
+                if nums[i] != nums[j] and nums[j] != nums[k] and nums[k] != nums[i]:
+                    res += 1
+
+    return res
+
+
 
 
 
