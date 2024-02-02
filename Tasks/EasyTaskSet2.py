@@ -3124,6 +3124,28 @@ def deleteGreatestValue(grid):
 
     return sum(res)
 
+# The value of an alphanumeric string can be defined as:
+#
+# The numeric representation of the string in base 10, if it comprises of digits only.
+# The length of the string, otherwise.
+# Given an array strs of alphanumeric strings, return the maximum value of any string in strs.
+def maximumValue(strs):
+
+    numbers = '1234567890'
+    res = []
+    for i in strs:
+        number = True
+        for j in i:
+            if j not in numbers:
+                number = False
+
+        if number == True:
+            res.append(int(i))
+        else:
+            res.append(len(i))
+
+    return max(res)
+
 
 
 
