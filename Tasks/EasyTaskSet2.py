@@ -3164,6 +3164,40 @@ def similarPairs(words):
 
     return res // 2
 
+# You are given a 0-indexed circular string array words and a string target. A circular array means that the
+# array's end connects to the array's beginning.
+#
+# Formally, the next element of words[i] is words[(i + 1) % n] and the previous element of words[i] is words
+# [(i - 1 + n) % n], where n is the length of words.
+# Starting from startIndex, you can move to either the next word or the previous word with 1 step at a time.
+#
+# Return the shortest distance needed to reach the string target. If the string target does not exist in words,
+# return -1.
+def closetTarget(words, target, startIndex):
+
+    if target in words:
+        right = 0
+        left = 0
+
+        lp, rp = startIndex, startIndex
+
+        for i in range(len(words)):
+            if rp >= len(words):
+                rp = 0
+            if words[rp] != target:
+                rp += 1
+                right += 1
+
+        for i in range(len(words)):
+            if words[lp] != target:
+                lp -= 1
+                left += 1
+
+        return min(right, left)
+    else:
+        return -1
+
+
 
 
 
