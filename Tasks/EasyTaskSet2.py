@@ -3245,6 +3245,18 @@ def captureForts(forts):
     else:
         return 0
 
+# Given an integer num, return the number of digits in num that divide num.
+#
+# An integer val divides nums if nums % val == 0.
+def countDigits(num):
+
+    res = 0
+    for i in str(num):
+        if num % int(i) == 0:
+            res += 1
+
+    return res
+
 
 
 
