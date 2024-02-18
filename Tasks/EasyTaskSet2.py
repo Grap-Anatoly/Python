@@ -3467,6 +3467,19 @@ def evenOddBit(n):
 
     return res
 
+# Given two arrays of unique digits nums1 and nums2, return the smallest number that contains at
+# least one digit from each array.
+def minNumber(nums1, nums2):
+
+    setCheck = set(nums1).intersection(set(nums2))
+
+    if len(setCheck) > 0:
+        return sorted(list(setCheck))[0]
+    else:
+        min1 = sorted(nums1)[0]
+        min2 = sorted(nums2)[0]
+        return int(str(min(min1, min2)) + str(max(min1, min2)))
+
 
 
 
