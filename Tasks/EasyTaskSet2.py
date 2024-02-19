@@ -3480,6 +3480,29 @@ def minNumber(nums1, nums2):
         min2 = sorted(nums2)[0]
         return int(str(min(min1, min2)) + str(max(min1, min2)))
 
+# You are given a 0-indexed m x n integer matrix grid. The width of a column is the maximum length of its integers.
+#
+# For example, if grid = [[-10], [3], [12]], the width of the only column is 3 since -10 is of length 3.
+# Return an integer array ans of size n where ans[i] is the width of the ith column.
+#
+# The length of an integer x with len digits is equal to len if x is non-negative, and len + 1 otherwise.
+def findColumnWidth(grid):
+
+    cols = []
+    counter = 0
+    while counter < len(grid[0]):
+        temp = []
+        for i in range(len(grid)):
+            temp.append(len(str(grid[i][counter])))
+        cols.append(temp)
+        counter += 1
+
+    res = []
+    for i in cols:
+        res.append(max(i))
+
+    return res
+
 
 
 
