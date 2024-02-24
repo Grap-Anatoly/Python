@@ -3584,6 +3584,37 @@ def pickGifts(gifts, k):
 
     return sum(gifts)
 
+# You are given two 0-indexed integer arrays nums and divisors.
+#
+# The divisibility score of divisors[i] is the number of indices j such that nums[j] is divisible by divisors[i].
+#
+# Return the integer divisors[i] with the maximum divisibility score. If there is more than one integer
+# with the maximum score, return the minimum of them.
+def maxDivScore(nums, divisors):
+
+    res = []
+    for i in divisors:
+        div = 0
+        for j in nums:
+            if j % i == 0:
+                div += 1
+
+        res.append([div, i])
+
+    res = sorted(res)[::-1]
+
+    if len(res) > 1:
+        if res[0][0] == res[1][0]:
+            temp = []
+            for i in res:
+                if i[0] == res[0][0]:
+                    temp.append(i[1])
+            return min(temp)
+        else:
+            return res[0][1]
+    else:
+        return res[0][1]
+
 
 
 
