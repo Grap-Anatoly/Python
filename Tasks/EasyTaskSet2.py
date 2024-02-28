@@ -3701,6 +3701,32 @@ def mergeArrays(nums1, nums2):
 
     return sorted(nums1)
 
+# Given a 0-indexed integer array nums, find a 0-indexed integer array answer where:
+#
+# answer.length == nums.length.
+# answer[i] = |leftSum[i] - rightSum[i]|.
+# Where:
+#
+# leftSum[i] is the sum of elements to the left of the index i in the array nums. If there is no such element,
+# leftSum[i] = 0.
+# rightSum[i] is the sum of elements to the right of the index i in the array nums. If there is no such element,
+# rightSum[i] = 0.
+# Return the array answer.
+def leftRightDifference(nums):
+
+    leftSum = []
+    rightSum = []
+    for i in range(len(nums)):
+        rightSum.append(sum(nums[i + 1:]))
+        leftSum.append(sum(nums[0:i]))
+
+    res = []
+    for i in range(len(nums)):
+        res.append(abs(leftSum[i] - rightSum[i]))
+
+    return res
+
+
 
 
 
