@@ -164,3 +164,34 @@ def cellsInRange(s):
             res.append("%s%d" % (list(letters.keys())[list(letters.values()).index(i)].upper(), j))
 
     return res
+
+
+"""
+ Check if number is Prime:
+
+    An integer is prime if it is greater than 1 and has no positive integer divisors other than 1 and itself.
+
+    Returns boolean value True or False
+    
+    Input: num = 4
+    Output: False
+
+    Input: num = -1
+    Output: False
+    
+    Input: num = 11
+    Output: True
+"""
+
+def isPrime(num):
+    prime = False
+
+    if num > 1:
+        for i in range(2, int(num/2)+1):
+            if (num % i) == 0:
+                return prime
+        else:
+            prime = True
+            return prime
+    else:
+        return prime

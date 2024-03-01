@@ -3742,6 +3742,84 @@ def kItemsWithMaximumSum(numOnes, numZeros, numNegOnes, k):
     lst = [1] * numOnes + [0] * numZeros + [-1] * numNegOnes
     return sum(lst[0:k])
 
+# You are given a 0-indexed two-dimensional integer array nums.
+#
+# Return the largest prime number that lies on at least one of the diagonals of nums.
+# In case, no prime is present on any of the diagonals, return 0.
+#
+# Note that:
+#
+# An integer is prime if it is greater than 1 and has no positive integer divisors other than 1 and itself.
+# An integer val is on one of the diagonals of nums if there exists an integer i for which nums[i][i] = val or
+# an i for which nums[i][nums.length - i - 1] = val.
+
+# SLOW
+def diagonalPrime(nums):
+
+    diag = []
+
+    counterL = -1
+    counterR = len(nums[0])
+    for i in nums:
+        counterL += 1
+        counterR -= 1
+        for j in range(len(i)):
+            if j == counterL:
+                diag.append(i[j])
+            elif j == counterR:
+                diag.append(i[j])
+
+    prime = []
+    for i in diag:
+        if isPrime(i) == True:
+            prime.append(i)
+
+    if len(prime) > 0:
+        return max(prime)
+    else:
+        return 0
+
+def isPrime(num):
+    prime = False
+
+    if num > 1:
+        for i in range(2, int(num/2)+1):
+            if (num % i) == 0:
+                return prime
+        else:
+            prime = True
+            return prime
+    else:
+        return prime
+
+# FAST
+
+def secondDiagonalPrimeFast(nums):
+
+    res = 0
+    n = len(nums)
+
+    for i in range(n):
+        if secondIsPrime(nums[i][i]):
+            res = max(res, nums[i][i])
+        if secondIsPrime(nums[i][n - i - 1]):
+            res = max(res, nums[i][n - i - 1])
+
+    return res
+
+def secondIsPrime(self, num):
+    if num <= 1:
+        return False
+    if num == 2:
+        return True
+    if num % 2 == 0:
+        return False
+    for i in range(3, int(num ** 0.5) + 1, 2):
+        if num % i == 0:
+            return False
+    return True
+
+
 
 
 
