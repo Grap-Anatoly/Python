@@ -3819,7 +3819,35 @@ def secondIsPrime(self, num):
             return False
     return True
 
+# You are given a binary string s consisting only of zeroes and ones.
+#
+# A substring of s is considered balanced if all zeroes are before ones and the number of zeroes is equal
+# to the number of ones inside the substring. Notice that the empty substring is considered a balanced substring.
+#
+# Return the length of the longest balanced substring of s.
+#
+# A substring is a contiguous sequence of characters within a string.
+def findTheLongestBalancedSubstring(s):
 
+    subs = set()
+    for i in range(len(s)):
+        for j in range(i, len(s)):
+            subs.add(s[i:j + 1])
+
+    res = []
+    for i in subs:
+        if len(i) % 2 == 0:
+            left = i[:len(i) // 2]
+            right = i[len(i) // 2:]
+
+            if left[0] == "0" and left.count(left[0]) == len(left):
+                if right[0] == "1" and right.count(right[0]) == len(right):
+                    res.append(len(i))
+
+    if len(res) > 0:
+        return max(res)
+    else:
+        return 0
 
 
 
