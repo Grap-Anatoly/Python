@@ -3898,6 +3898,54 @@ def rowAndMaximumOnes(mat):
 
     return [min(res), m]
 
+# You are given a positive integer arrivalTime denoting the arrival time of a train in hours,
+# and another positive integer delayedTime denoting the amount of delay in hours.
+#
+# Return the time when the train will arrive at the station.
+#
+# Note that the time in this problem is in 24-hours format.
+def findDelayedArrivalTime(arrivalTime, delayedTime):
+
+    res = arrivalTime + delayedTime
+
+    if res <= 24:
+        if res == 24:
+            return 0
+        else:
+            return res
+    else:
+        return res - 24
+
+# Given a positive integer n, find the sum of all integers in the range [1, n] inclusive that are divisible by 3, 5,
+# or 7.
+#
+# Return an integer denoting the sum of all numbers in the given range satisfying the constraint.
+def sumOfMultiples(n):
+
+    res = 0
+    for i in range(n + 1):
+        if i % 3 == 0 or i % 5 == 0 or i % 7 == 0:
+            res += i
+
+    return res
+
+# You are given an integer array prices representing the prices of various chocolates in a store.
+# You are also given a single integer money, which represents your initial amount of money.
+#
+# You must buy exactly two chocolates in such a way that you still have some non-negative leftover money.
+# You would like to minimize the sum of the prices of the two chocolates you buy.
+#
+# Return the amount of money you will have leftover after buying the two chocolates. If there is no way for you
+# to buy two chocolates without ending up in debt, return money. Note that the leftover must be non-negative.
+def buyChoco(prices, money):
+
+    prices = sorted(prices)
+
+    if money - sum(prices[:2]) < 0:
+        return money
+    else:
+        return money - sum(prices[:2])
+
 
 
 
