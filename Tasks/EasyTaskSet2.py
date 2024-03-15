@@ -4103,6 +4103,16 @@ def makeSmallestPalindrome(s):
 
     return "".join(s)
 
+# Given a positive integer num represented as a string, return the integer num without trailing zeros as a string.
+def removeTrailingZeros(num):
+
+    if num[-1] == "0":
+        while num[-1] == "0":
+            num = num[:-1]
+
+    return num
+
+
 
 
 
