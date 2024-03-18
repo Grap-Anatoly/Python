@@ -4143,6 +4143,24 @@ def minimizedStringLength(s):
 
     return len(set(s))
 
+# You are given a 0-indexed integer array nums. A pair of indices i, j where 0 <= i < j < nums.length is called
+# beautiful if the first digit of nums[i] and the last digit of nums[j] are coprime.
+#
+# Return the total number of beautiful pairs in nums.
+#
+# Two integers x and y are coprime if there is no integer greater than 1 that divides both of them. In other words,
+# x and y are coprime if gcd(x, y) == 1, where gcd(x, y) is the greatest common divisor of x and y.
+def countBeautifulPairs(nums):
+
+    res = 0
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            if i < j:
+                if math.gcd(int(str(nums[i])[0]), int(str(nums[j])[-1])) == 1:
+                    res += 1
+
+    return res
+
 
 
 
