@@ -4161,6 +4161,35 @@ def countBeautifulPairs(nums):
 
     return res
 
+# Given an integer array nums containing distinct positive integers, find and return any number from the array that is
+# neither the minimum nor the maximum value in the array, or -1 if there is no such number.
+#
+# Return the selected integer.
+def findNonMinOrMax(nums):
+
+    if len(nums) <= 2:
+        return -1
+    else:
+        return sorted(nums)[1]
+
+# You are given a 1-indexed integer array nums of length n.
+#
+# An element nums[i] of nums is called special if i divides n, i.e. n % i == 0.
+#
+# Return the sum of the squares of all special elements of nums.
+def sumOfSquares(nums):
+
+    res = 0
+    n = len(nums)
+
+    for i in range(n):
+        i += 1
+        if n % i == 0:
+            res += nums[i - 1] ** 2
+
+    return res
+
+
 
 
 
