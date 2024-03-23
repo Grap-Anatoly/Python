@@ -4262,6 +4262,64 @@ def longestAlternatingSubarray(nums, threshold):
 
     return res
 
+# You are given a 0-indexed integer array nums. A subarray s of length m is called alternating if:
+#
+# m is greater than 1.
+# s1 = s0 + 1.
+# The 0-indexed subarray s looks like [s0, s1, s0, s1,...,s(m-1) % 2]. In other words, s1 - s0 = 1, s2 - s1 = -1,
+# s3 - s2 = 1, s4 - s3 = -1, and so on up to s[m - 1] - s[m - 2] = (-1)m.
+# Return the maximum length of all alternating subarrays present in nums or -1 if no such subarray exists.
+#
+# A subarray is a contiguous non-empty sequence of elements within an array.
+def alternatingSubarray(nums):
+    sub = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums) + 1):
+            sub.append(nums[i:j])
+
+    res = []
+    for i in range(len(sub)):
+        if len(sub[i]) > 1:
+            if sub[i][1] > sub[i][0]:
+                odd = []
+                even = []
+                for j in range(len(sub[i])):
+                    if j % 2 == 0:
+                        odd.append(sub[i][j])
+                    else:
+                        even.append(sub[i][j])
+
+                if len(set(odd)) == len(set(even)) and len(set(odd)) == 1:
+                    res.append(sub[i])
+
+    if len(res) > 0:
+        return len(max(res, key=len))
+    else:
+        return -1
+
+def alternatingSubarray2(nums):
+    mx = 0
+    order = 1
+    left = 0
+    right = 1
+
+    while True:
+        if nums[right] - nums[right - 1] == order:
+            right += 1
+            order *= -1
+        else:
+            mx = max(mx, len(nums[left:right]))
+            left += 1
+            right = left + 1
+            order = 1
+
+        if right == len(nums):
+            mx = max(mx, len(nums[left:right]))
+            break
+
+    return -1 if mx == 1 else mx
+
+
 
 
 

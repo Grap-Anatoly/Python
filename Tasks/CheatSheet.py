@@ -195,3 +195,27 @@ def isPrime(num):
             return prime
     else:
         return prime
+
+
+"""
+ Get all possible sublists from list:
+
+    Sublist is an singular element or a number of elements from the list;
+    Without swapping symbols.
+
+    Returns list of sublists
+
+    Input: nums = [2,3,4,3,4]
+    Output: subs = [[2], [2, 3], [2, 3, 4], [2, 3, 4, 3], [2, 3, 4, 3, 4], 
+                    [3], [3, 4], [3, 4, 3], [3, 4, 3, 4], 
+                    [4], [4, 3], [4, 3, 4], [3], [3, 4], [4]]
+
+"""
+def getSublists(nums):
+    sub = []
+
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)+1):
+            sub.append(nums[i:j])
+
+    return sub
