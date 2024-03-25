@@ -4336,6 +4336,44 @@ def numberOfEmployeesWhoMetTarget(hours, target):
 
     return res
 
+# Given an array of strings words and a character separator, split each string in words by separator.
+#
+# Return an array of strings containing the new strings formed after the splits, excluding empty strings.
+#
+# Notes
+#
+# separator is used to determine where the split should occur, but it is not included as part of the resulting strings.
+# A split may result in more than two strings.
+# The resulting strings must maintain the same order as they were initially given.
+def splitWordsBySeparator(words, separator):
+
+    res = []
+    for i in words:
+        temp = i.split(separator)
+        for j in temp:
+            if j != "":
+                res.append(j)
+
+    return res
+
+
+# Your laptop keyboard is faulty, and whenever you type a character 'i' on it, it reverses the string that you
+# have written. Typing other characters works as expected.
+#
+# You are given a 0-indexed string s, and you type each character of s using your faulty keyboard.
+#
+# Return the final string that will be present on your laptop screen.
+def finalString(s):
+
+    res = ""
+    for i in list(s):
+        if i == "i":
+            res = res[::-1]
+        else:
+            res += i
+
+    return res
+
 
 
 
