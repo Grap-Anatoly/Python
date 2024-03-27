@@ -4393,6 +4393,31 @@ def isGood(nums):
     else:
         return False
 
+# You are given a 0-indexed integer array nums. You have to find the maximum sum of a pair of numbers from nums
+# such that the maximum digit in both numbers are equal.
+#
+# Return the maximum sum or -1 if no such pair exists.
+def maxSum(nums):
+
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            iMax = max(str(nums[i]))
+            jMax = max(str(nums[j]))
+
+            if i != j and iMax == jMax:
+                if sorted([nums[i], nums[j]]) not in pairs:
+                    pairs.append(sorted([nums[i], nums[j]]))
+
+    sm = 0
+    for i in pairs:
+        sm = max(sm, sum(i))
+
+    if sm == 0:
+        return -1
+    else:
+        return sm
+
 
 
 
