@@ -4419,7 +4419,52 @@ def maxSum(nums):
         return sm
 
 
+# Given a 0-indexed integer array nums of length n and an integer target, return the number of pairs (i, j) where 0
+# <= i < j < n and nums[i] + nums[j] < target.
+def countPairs(nums, target):
 
+    res = 0
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            if i < j and nums[i] + nums[j] < target:
+                res += 1
+
+        return res
+
+# Initially, you have a bank account balance of 100 dollars.
+#
+# You are given an integer purchaseAmount representing the amount you will spend on a purchase in dollars.
+#
+# At the store where you will make the purchase, the purchase amount is rounded to the nearest multiple of 10.
+# In other words, you pay a non-negative amount, roundedAmount, such that roundedAmount is a multiple of 10 and
+# abs(roundedAmount - purchaseAmount) is minimized.
+#
+# If there is more than one nearest multiple of 10, the largest multiple is chosen.
+#
+# Return an integer denoting your account balance after making a purchase worth purchaseAmount dollars from the store.
+#
+# Note: 0 is considered to be a multiple of 10 in this problem.
+def accountBalanceAfterPurchase(purchaseAmount):
+
+    if len(str(purchaseAmount)) == 2:
+
+        firstDigit = int(str(purchaseAmount)[0])
+        secondDigit = int(str(purchaseAmount)[1])
+
+        if secondDigit >= 5:
+            firstDigit += 1
+            purchaseAmount = int(str(firstDigit) + str("0"))
+        if secondDigit < 5:
+            purchaseAmount = int(str(firstDigit) + str("0"))
+
+    if len(str(purchaseAmount)) == 1:
+
+        if purchaseAmount >= 5:
+            purchaseAmount = 10
+        if purchaseAmount < 5:
+            purchaseAmount = 0
+
+    return 100 - purchaseAmount
 
 
 
