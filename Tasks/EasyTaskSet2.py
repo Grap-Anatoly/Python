@@ -4538,6 +4538,23 @@ def furthestDistanceFromOrigin(moves):
         return abs(rCount - lCount) + uCount
 
 
+# You are given a 0-indexed 2D integer array nums representing the coordinates of the cars parking on a number line.
+# For any index i, nums[i] = [starti, endi] where starti is the starting point of the ith car and endi is the
+# ending point of the ith car.
+#
+# Return the number of integer points on the line that are covered with any part of a car.
+def numberOfPoints(nums):
+
+    intersect = []
+    for i in nums:
+        for j in range(i[0], i[1] + 1):
+            if j not in intersect:
+                intersect.append(j)
+
+    return len(intersect)
+
+
+
 
 
 
