@@ -4553,6 +4553,27 @@ def numberOfPoints(nums):
 
     return len(intersect)
 
+# You are given an array nums of positive integers and an integer k.
+#
+# In one operation, you can remove the last element of the array and add it to your collection.
+#
+# Return the minimum number of operations needed to collect elements 1, 2, ..., k.
+#
+#
+def minOperations(nums, k):
+
+    nums = nums[::-1]
+    collection = [i for i in range(1, k + 1)]
+    res = 0
+    for i in nums:
+        if i in collection:
+            collection.remove(i)
+            res += 1
+        else:
+            res += 1
+        if len(collection) == 0:
+            return res
+
 
 
 
