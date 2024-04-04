@@ -4575,6 +4575,28 @@ def minOperations(nums, k):
             return res
 
 
+# You are given a 0-indexed array nums of length n containing distinct positive integers. Return the minimum
+# number of right shifts required to sort nums and -1 if this is not possible.
+#
+# A right shift is defined as shifting the element at index i to index (i + 1) % n, for all indices.
+def minimumRightShifts(nums):
+
+    res = 0
+    for i in range(len(nums)):
+
+        if sorted(nums) == nums:
+            return res
+
+        last = [nums[-1]]
+        nums = last + nums[:-1]
+        res += 1
+
+    if sorted(nums) == nums:
+        return res
+
+    return -1
+
+
 
 
 
