@@ -4596,6 +4596,32 @@ def minimumRightShifts(nums):
 
     return -1
 
+# You are given a binary string s that contains at least one '1'.
+#
+# You have to rearrange the bits in such a way that the resulting binary number is the maximum odd binary number
+# that can be created from this combination.
+#
+# Return a string representing the maximum odd binary number that can be created from the given combination.
+#
+# Note that the resulting string can have leading zeros.
+def maximumOddBinaryNumber(s):
+
+    last = sorted(s)[-1]
+    other = sorted(s)[:-1][::-1]
+
+    return "".join(other) + "".join(last)
+
+def maximumOddBinaryNumberSecond(s):
+
+    ones = s.count("1")
+    zeros = s.count("0")
+
+    if ones == 1:
+        return "0" * zeros + "1"
+    else:
+        return "1" * (ones - 1) + "0" * zeros + "1"
+
+
 
 
 
