@@ -4622,6 +4622,24 @@ def maximumOddBinaryNumberSecond(s):
         return "1" * (ones - 1) + "0" * zeros + "1"
 
 
+# You are given a 0-indexed integer array nums and an integer k.
+#
+# Return an integer that denotes the sum of elements in nums whose corresponding indices have exactly k set bits
+# in their binary representation.
+#
+# The set bits in an integer are the 1's present when it is written in binary.
+#
+# For example, the binary representation of 21 is 10101, which has 3 set bits.
+def sumIndicesWithKSetBits(nums, k):
+
+    res = []
+    for i in range(len(nums)):
+        if str(bin(i)[2:]).count("1") == k:
+            res.append(nums[i])
+
+    return (sum(res))
+
+
 
 
 
