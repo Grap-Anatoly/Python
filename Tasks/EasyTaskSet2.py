@@ -4686,6 +4686,27 @@ def maximumTripletValue(nums):
 
     return mx
 
+# You are given a 0-indexed integer array nums.
+#
+# The distinct count of a subarray of nums is defined as:
+#
+# Let nums[i..j] be a subarray of nums consisting of all the indices from i to j such that 0 <= i <= j < nums.length.
+# Then the number of distinct values in nums[i..j] is called the distinct count of nums[i..j].
+# Return the sum of the squares of distinct counts of all subarrays of nums.
+#
+# A subarray is a contiguous non-empty sequence of elements within an array.
+def sumCounts(nums):
+
+    subs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums) + 1):
+            subs.append(set(nums[i:j]))
+
+    res = 0
+    for i in subs:
+        res += len(i) ** 2
+
+    return res
 
 
 
