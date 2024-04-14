@@ -290,4 +290,15 @@ def groupAnagrams(strs):
 groupAnagramsForSmallLists(["eat","tea","tan","ate","nat","bat"])
 
 
+# Implement pow(x, n), which calculates x raised to the power n (i.e., xn).
+def myPow(x, n):
+    res = x
+    if n > 0:
+        for i in range(n - 1):
+            res *= x
+    else:
+        for i in range(abs(n) + 1):
+            res /= x
+
+    return res
 

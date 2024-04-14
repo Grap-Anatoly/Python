@@ -4778,7 +4778,27 @@ def differenceOfSums(n, m):
 
     return num1 - num2
 
+# You are given a 0-indexed array nums of integers.
+#
+# A triplet of indices (i, j, k) is a mountain if:
+#
+# i < j < k
+# nums[i] < nums[j] and nums[k] < nums[j]
+# Return the minimum possible sum of a mountain triplet of nums. If no such triplet exists, return -1.
+def minimumSum(nums):
 
+    res = []
+
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            for k in range(len(nums)):
+                if i < j < k:
+                    if nums[i] < nums[j] and nums[k] < nums[j]:
+                        res.append(nums[i] + nums[j] + nums[k])
+    if len(res) > 0:
+        return min(res)
+    else:
+        return -1
 
 
 
