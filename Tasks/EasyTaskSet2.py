@@ -4800,6 +4800,56 @@ def minimumSum(nums):
     else:
         return -1
 
+# You are given an integer array nums, and an integer k. Let's introduce K-or operation by extending the standard
+# bitwise OR. In K-or, a bit position in the result is set to 1 if at least k numbers in nums have a 1 in that position.
+#
+# Return the K-or of nums.
+def findKOr(nums, k):
+
+    bit = []
+    m = 0
+
+    for i in nums:
+        bit.append(list(bin(i)[2:]))
+        m = max(m, len(list(bin(i)[2:])))
+
+    for i in range(len(bit)):
+        if len(bit[i]) != m:
+            while len(bit[i]) < m:
+                bit[i] == bit[i].insert(0, 0)
+
+    res = [0 for i in range(len(bit[0]))]
+
+    for i in bit:
+        for j in range(len(i)):
+            res[j] += int(i[j])
+
+    for i in range(len(res)):
+        if res[i] < k:
+            res[i] = "0"
+        else:
+            res[i] = "1"
+
+    return int("".join(res), 2)
+
+
+# There are n teams numbered from 0 to n - 1 in a tournament.
+#
+# Given a 0-indexed 2D boolean matrix grid of size n * n. For all i, j that 0 <= i, j <= n - 1 and i != j team i is
+# stronger than team j if grid[i][j] == 1, otherwise, team j is stronger than team i.
+#
+# Team a will be the champion of the tournament if there is no team b that is stronger than team a.
+#
+# Return the team that will be the champion of the tournament.
+def findChampion(grid):
+
+    res = []
+    for i in grid:
+        res.append(i.count(1))
+
+    return res.index(max(res))
+
+
 
 
 
