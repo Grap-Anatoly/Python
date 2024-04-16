@@ -4849,8 +4849,43 @@ def findChampion(grid):
 
     return res.index(max(res))
 
+# You are given a 0-indexed integer array nums. A pair of integers x and y is called a strong pair if it satisfies
+# the condition:
+#
+# |x - y| <= min(x, y)
+# You need to select two integers from nums such that they form a strong pair and their bitwise XOR is the maximum
+# among all strong pairs in the array.
+#
+# Return the maximum XOR value out of all possible strong pairs in the array nums.
+#
+# Note that you can pick the same integer twice to form a pair.
+def maximumStrongPairXor(nums):
 
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(i, len(nums)):
+            if abs(nums[i] - nums[j]) <= min(nums[i], nums[j]):
+                pairs.append([nums[i], nums[j]])
 
+    res = 0
+    for i in pairs:
+        res = max(res, i[0] ^ i[1])
+
+    return res
+
+# You are given a 0-indexed array of strings words and a character x.
+#
+# Return an array of indices representing the words that contain the character x.
+#
+# Note that the returned array may be in any order.
+def findWordsContaining(words, x):
+
+    res = []
+    for i in range(len(words)):
+        if x in words[i]:
+            res.append(i)
+
+    return res
 
 
 
