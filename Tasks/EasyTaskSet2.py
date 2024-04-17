@@ -4887,6 +4887,21 @@ def findWordsContaining(words, x):
 
     return res
 
+# You are given two positive integers n and limit.
+#
+# Return the total number of ways to distribute n candies among 3 children such that no child gets more than limit
+# candies.
+def distributeCandies(n, limit):
+
+    store = 0
+
+    for candy1 in range(limit + 1):
+        for candy2 in range(limit + 1):
+            candy3 = n - candy1 - candy2
+            if candy3 >= 0 and candy3 <= limit:
+                store += 1
+    return store
+
 
 
 
