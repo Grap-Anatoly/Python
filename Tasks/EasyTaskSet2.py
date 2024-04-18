@@ -4902,6 +4902,25 @@ def distributeCandies(n, limit):
                 store += 1
     return store
 
+# You are given two 0-indexed integer arrays nums1 and nums2 of sizes n and m, respectively.
+#
+# Consider calculating the following values:
+#
+# The number of indices i such that 0 <= i < n and nums1[i] occurs at least once in nums2.
+# The number of indices i such that 0 <= i < m and nums2[i] occurs at least once in nums1.
+# Return an integer array answer of size 2 containing the two values in the above order.
+def findIntersectionValues(nums1, nums2):
+
+    res = [0, 0]
+    for i in nums1:
+        if i in nums2:
+            res[0] += 1
+    for i in nums2:
+        if i in nums1:
+            res[1] += 1
+    return res
+
+
 
 
 
