@@ -4920,7 +4920,32 @@ def findIntersectionValues(nums1, nums2):
             res[1] += 1
     return res
 
+# You are given three strings: s1, s2, and s3. In one operation you can choose one of these strings and delete its
+# rightmost character. Note that you cannot completely empty a string.
+#
+# Return the minimum number of operations required to make the strings equal. If it is impossible to make them equal,
+# return -1.
+def findMinimumOperations(s1, s2, s3):
 
+    if s1[0] == s2[0] and s2[0] == s3[0]:
+
+        wl = 0
+        res = 0
+
+        m = min([len(s1), len(s2), len(s3)])
+        for i in range(m):
+            if s1[i] == s2[i] and s2[i] == s3[i]:
+                wl += 1
+            else:
+                break
+
+        res += len(s1) - wl
+        res += len(s2) - wl
+        res += len(s3) - wl
+
+        return res
+    else:
+        return -1
 
 
 
