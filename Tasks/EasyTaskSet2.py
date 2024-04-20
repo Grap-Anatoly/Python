@@ -4947,6 +4947,33 @@ def findMinimumOperations(s1, s2, s3):
     else:
         return -1
 
+# You are given a 0-indexed m x n integer matrix mat and an integer k. You have to cyclically right shift odd indexed
+# rows k times and cyclically left shift even indexed rows k times.
+#
+# Return true if the initial and final matrix are exactly the same and false otherwise.
+def areSimilar(mat, k):
+
+    copy = []
+    for i in mat:
+        copy.append(i)
+
+    if k > k % len(mat[0]):
+        k = k % len(mat[0])
+
+    for i in range(k):
+        for j in range(len(copy)):
+            if j % 2 != 0:
+                f = copy[j][0]
+                copy[j] = copy[j][1:]
+                copy[j].append(f)
+            else:
+                l = copy[j][-1]
+                copy[j] = copy[j][:-1]
+                copy[j].insert(0, l)
+
+    return mat == copy
+
+
 
 
 
