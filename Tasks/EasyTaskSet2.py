@@ -5069,6 +5069,42 @@ def findMissingAndRepeatedValues(grid):
 
     return res
 
+# You are given a 0-indexed array of integers nums.
+#
+# A prefix nums[0..i] is sequential if, for all 1 <= j <= i, nums[j] = nums[j - 1] + 1. In particular,
+# the prefix consisting only of nums[0] is sequential.
+#
+# Return the smallest integer x missing from nums such that x is greater than or equal to the sum of the
+# longest sequential prefix.
+def missingInteger(nums):
+
+    pref = []
+
+    if len(nums) == 1:
+        pref = nums
+    else:
+        for i in range(len(nums)):
+            if i == len(nums) - 1:
+                if nums[i - 1] == nums[i] - 1:
+                    pref.append(nums[i])
+                break
+            else:
+                if nums[i] + 1 == nums[i + 1]:
+                    pref.append(nums[i])
+                else:
+                    pref.append(nums[i])
+                    break
+
+    prefSum = sum(pref)
+
+    for i in range(len(nums)):
+        if prefSum not in nums:
+            return prefSum
+        else:
+            prefSum += 1
+
+    return prefSum
+
 
 
 
