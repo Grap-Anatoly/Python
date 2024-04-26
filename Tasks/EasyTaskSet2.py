@@ -5105,6 +5105,26 @@ def missingInteger(nums):
 
     return prefSum
 
+# You are given an array nums consisting of positive integers.
+#
+# Return the total frequencies of elements in nums such that those elements all have the maximum frequency.
+#
+# The frequency of an element is the number of occurrences of that element in the array.
+#
+#
+def maxFrequencyElements(nums):
+
+    mx = 0
+    for i in nums:
+        mx = max(mx, nums.count(i))
+
+    res = 0
+    for i in set(nums):
+        if nums.count(i) == mx:
+            res += mx
+
+    return res
+
 
 
 
