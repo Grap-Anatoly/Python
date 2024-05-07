@@ -68,3 +68,30 @@ def countKeyChanges(s):
             res += 1
 
     return res
+
+# Given an array of integers called nums, you can perform the following operation while nums contains at least 2
+# elements:
+#
+# Choose the first two elements of nums and delete them.
+# The score of the operation is the sum of the deleted elements.
+#
+# Your task is to find the maximum number of operations that can be performed, such that all operations have
+# the same score.
+#
+# Return the maximum number of operations possible that satisfy the condition mentioned above.
+def maxOperations(nums):
+
+    sums = []
+    counter = 0
+    for i in range(len(nums) // 2):
+        if len(sums) == 0:
+            sums.append(nums[counter] + nums[counter + 1])
+            counter += 2
+        else:
+            if nums[counter] + nums[counter + 1] == sums[-1]:
+                sums.append(nums[counter] + nums[counter + 1])
+                counter += 2
+            else:
+                break
+
+    return len(sums)
