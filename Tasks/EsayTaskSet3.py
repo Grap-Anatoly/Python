@@ -130,3 +130,28 @@ def isPossibleToSplit(nums):
             return False
 
     return True
+
+# Given a 0-indexed m x n integer matrix matrix, create a new 0-indexed matrix called answer. Make answer equal to
+# matrix, then replace each element with the value -1 with the maximum element in its respective column.
+#
+# Return the matrix answer.
+def modifiedMatrix(matrix):
+
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            if matrix[i][j] == -1:
+                m = 0
+                for k in range(len(matrix)):
+                    m = max(m, matrix[k][j])
+                matrix[i][j] = m
+
+    return matrix
+
+# You are given a 0-indexed integer array nums, and an integer k.
+#
+# In one operation, you can remove one occurrence of the smallest element of nums.
+#
+# Return the minimum number of operations needed so that all elements of the array are greater than or equal to k.
+def minOperations(nums, k):
+
+    return len(nums) - len([i for i in nums if i >= k])
