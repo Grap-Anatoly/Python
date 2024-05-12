@@ -155,3 +155,23 @@ def modifiedMatrix(matrix):
 def minOperations(nums, k):
 
     return len(nums) - len([i for i in nums if i >= k])
+
+
+# You are given an array apple of size n and an array capacity of size m.
+#
+# There are n packs where the ith pack contains apple[i] apples. There are m boxes as well, and the ith box has a
+# capacity of capacity[i] apples.
+#
+# Return the minimum number of boxes you need to select to redistribute these n packs of apples into boxes.
+#
+# Note that, apples from the same pack can be distributed into different boxes.
+def minimumBoxes(apple, capacity):
+    capacity = sorted(capacity)[::-1]
+    apples = sum(apple)
+
+    res = 0
+    while apples > 0:
+        apples -= capacity[res]
+        res += 1
+
+    return res
