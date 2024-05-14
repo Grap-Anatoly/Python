@@ -199,3 +199,23 @@ def resultArray(nums):
             arr2.append(nums[i])
 
     return arr1 + arr2
+
+# Given a string s, return the maximum length of a substring such that it contains at most two occurrences of each
+# character.
+def maximumLengthSubstring(s):
+
+    subs = []
+    for i in range(len(s)):
+        for j in range(i + 1, len(s) + 1):
+            subs.append(s[i:j])
+
+    res = 0
+    for i in subs:
+        t = True
+        for j in i:
+            if i.count(j) > 2:
+                t = False
+        if t == True:
+            res = max(res, len(i))
+
+    return res
