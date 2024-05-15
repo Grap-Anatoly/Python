@@ -219,3 +219,19 @@ def maximumLengthSubstring(s):
             res = max(res, len(i))
 
     return res
+
+# Given a string s, find any substring of length 2 which is also present in the reverse of s.
+# Return true if such a substring exists, and false otherwise.
+def isSubstringPresent(s):
+
+    subs = []
+    for i in range(len(s)):
+        for j in range(i + 1, len(s) + 1):
+            if len(s[i:j]) == 2:
+                subs.append(s[i:j][::-1])
+
+    for i in subs:
+        if i in s:
+            return True
+
+    return False
