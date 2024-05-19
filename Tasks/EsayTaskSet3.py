@@ -291,3 +291,17 @@ def sumOfEncryptedInt(nums):
         res.append(int(temp))
 
     return sum(res)
+
+
+# An integer divisible by the sum of its digits is said to be a Harshad number. You are given an integer x. Return
+# the sum of the digits of x if x is a Harshad number, otherwise, return -1.
+def sumOfTheDigitsOfHarshadNumber(x):
+
+    digitSum = 0
+    for i in str(x):
+        digitSum += int(i)
+
+    if x % digitSum == 0:
+        return digitSum
+    else:
+        return -1
