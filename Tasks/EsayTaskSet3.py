@@ -305,3 +305,20 @@ def sumOfTheDigitsOfHarshadNumber(x):
         return digitSum
     else:
         return -1
+
+# You are given an array of integers nums. Return the length of the longest subarray of nums which is either
+# strictly increasing or strictly decreasing.
+def longestMonotonicSubarray(nums):
+
+    subs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums) + 1):
+            if len(nums[i:j]) == len(set(nums[i:j])):
+                subs.append(nums[i:j])
+
+    m = 0
+    for i in subs:
+        if i == sorted(i) or i == sorted(i)[::-1]:
+            m = max(m, len(i))
+
+    return m
