@@ -322,3 +322,15 @@ def longestMonotonicSubarray(nums):
             m = max(m, len(i))
 
     return m
+
+# You are given a string s. The score of a string is defined as the sum of the absolute difference between the
+# ASCII values of adjacent characters.
+#
+# Return the score of s.
+def scoreOfString(s):
+
+    sm = 0
+    for i in range(len(s) - 1):
+        sm += abs(ord(s[i]) - ord(s[i + 1]))
+
+    return sm
