@@ -334,3 +334,34 @@ def scoreOfString(s):
         sm += abs(ord(s[i]) - ord(s[i + 1]))
 
     return sm
+
+# You are given an array nums of non-negative integers and an integer k.
+#
+# An array is called special if the bitwise OR of all of its elements is at least k.
+#
+# Return the length of the shortest special non-empty
+# subarray
+#  of nums, or return -1 if no special subarray exists.
+def minimumSubarrayLength(nums, k):
+
+    subs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums) + 1):
+            subs.append(nums[i:j])
+
+    m = 0
+    for i in subs:
+        temp = 0
+        for j in range(len(i)):
+            temp |= i[j]
+
+        if temp >= k:
+            if m == 0:
+                m = len(i)
+            else:
+                m = min(m, len(i))
+
+    if m != 0:
+        return m
+    else:
+        return -1
