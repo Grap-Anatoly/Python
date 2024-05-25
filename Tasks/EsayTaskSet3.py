@@ -421,3 +421,26 @@ def isValid(word):
 def addedInteger(nums1, nums2):
 
     return min(nums2) - min(nums1)
+
+
+# ou are given a 2D matrix grid of size 3 x 3 consisting only of characters 'B' and 'W'. Character 'W' represents
+# the white color, and character 'B' represents the black color.
+#
+# Your task is to change the color of at most one cell so that the matrix has a 2 x 2 square where all cells
+# are of the same color.
+#
+# Return true if it is possible to create a 2 x 2 square of the same color, otherwise, return false.
+#
+#
+def canMakeSquare(grid):
+
+    squares = [[grid[0][0], grid[0][1], grid[1][0], grid[1][1]],
+               [grid[0][1], grid[0][2], grid[1][1], grid[1][2]],
+               [grid[1][0], grid[1][1], grid[2][0], grid[2][1]],
+               [grid[1][1], grid[1][2], grid[2][1], grid[2][2]]]
+
+    for i in squares:
+        if i.count("B") >= 3 or i.count("W") >= 3:
+            return True
+
+    return False
