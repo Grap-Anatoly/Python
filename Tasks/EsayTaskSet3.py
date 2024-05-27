@@ -456,3 +456,23 @@ def numberOfSpecialChars(word):
             res += 1
 
     return res
+
+
+# You are given two strings s and t such that every character occurs at most once in s and t is a permutation of s.
+#
+# The permutation difference between s and t is defined as the sum of the absolute difference between the index of
+# the occurrence of each character in s and the index of the occurrence of the same character in t.
+#
+# Return the permutation difference between s and t.
+#
+#
+def findPermutationDifference(s, t):
+
+    res = 0
+    s = list(s)
+    t = list(t)
+
+    for i in s:
+        res += abs(s.index(i) - t.index(i))
+
+    return res
