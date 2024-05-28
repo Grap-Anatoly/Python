@@ -476,3 +476,41 @@ def findPermutationDifference(s, t):
         res += abs(s.index(i) - t.index(i))
 
     return res
+
+
+# You are given a 2D matrix grid of size m x n. You need to check if each cell grid[i][j] is:
+#
+# Equal to the cell below it, i.e. grid[i][j] == grid[i + 1][j] (if it exists).
+# Different from the cell to its right, i.e. grid[i][j] != grid[i][j + 1] (if it exists).
+# Return true if all the cells satisfy these conditions, otherwise, return false.
+def satisfiesConditions(grid):
+
+    if len(grid) == 1:
+        for i in range(len(grid[0]) - 1):
+            if grid[0][i] == grid[0][i + 1]:
+                return False
+
+        return True
+
+    if len(grid[0]) == 1:
+        if grid[0] == grid[1]:
+            return True
+
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+
+            if i != len(grid) - 1:
+                if grid[i][j] != grid[i + 1][j]:
+                    return False
+            else:
+                if grid[i][j] != grid[i - 1][j]:
+                    return False
+            if j != len(grid[i]) - 1:
+                if grid[i][j] == grid[i][j + 1]:
+                    return False
+            else:
+                if grid[i][j] == grid[i][j - 1]:
+                    return False
+
+    return True
+
