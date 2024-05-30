@@ -514,3 +514,15 @@ def satisfiesConditions(grid):
 
     return True
 
+
+# You are given an array nums, where each number in the array appears either once or twice.
+#
+# Return the bitwise XOR of all the numbers that appear twice in the array, or 0 if no number appears twice.
+def duplicateNumbersXOR(nums):
+
+    xor = 0
+    for i in set(nums):
+        if nums.count(i) == 2:
+            xor ^= i
+
+    return xor
