@@ -518,7 +518,7 @@ def satisfiesConditions(grid):
 # You are given an array nums, where each number in the array appears either once or twice.
 #
 # Return the bitwise XOR of all the numbers that appear twice in the array, or 0 if no number appears twice.
-def duplicateNumbersXOR(nums):
+def dulicateNumbersXOR(nums):
 
     xor = 0
     for i in set(nums):
@@ -526,3 +526,19 @@ def duplicateNumbersXOR(nums):
             xor ^= i
 
     return xor
+
+# An array is considered special if every pair of its adjacent elements contains two numbers with different parity.
+#
+# You are given an array of integers nums. Return true if nums is a special array, otherwise, return false.
+def isArraySpecial(nums):
+
+    if len(nums) == 1:
+        return True
+
+    for i in range(len(nums) - 1):
+        if nums[i] % 2 == 0 and nums[i + 1] % 2 == 0:
+            return False
+        if nums[i] % 2 != 0 and nums[i + 1] % 2 != 0:
+            return False
+
+    return True
