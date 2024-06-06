@@ -302,3 +302,22 @@ def myPow(x, n):
 
     return res
 
+# Given a string s, find the length of the longest substring without repeating characters.
+def lengthOfLongestSubstring(s):
+
+    check = {}
+    left = 0
+    res = 0
+
+    for i in range(len(s)):
+        if s[i] not in check:
+            res = max(res, i - left + 1)
+        else:
+            if check[s[i]] < left:
+                res = max(res, i - left + 1)
+            else:
+                left = check[s[i]] + 1
+        check[s[i]] = i
+
+    return res
+
