@@ -321,6 +321,7 @@ def lengthOfLongestSubstring(s):
 
     return res
 
+
 # Given a string s, return the longest palindromic substring in s.
 def longestPalindrome(s):
 
@@ -337,3 +338,35 @@ def longestPalindrome(s):
 
     return ms
 
+
+# The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (
+# you may want to display this pattern in a fixed font for better legibility)
+#
+# P   A   H   N
+# A P L S I I G
+# Y   I   R
+# And then read line by line: "PAHNAPLSIIGYIR"
+#
+# Write the code that will take a string and make this conversion given a number of rows:
+#
+# string convert(string s, int numRows);
+def convert(s, numRows):
+
+    if numRows == 1:
+        return s
+
+    res = [""] * numRows
+    add = 0
+    inc = 1
+
+    for i in s:
+        res[add] += i
+
+        if add == 0:
+            inc = 1
+        elif add == numRows - 1:
+            inc = -1
+
+        add += inc
+
+    return "".join(res)
