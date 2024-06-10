@@ -389,3 +389,28 @@ def reverse(x):
         return x
     else:
         return 0
+
+# Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k,
+# and j != k, and nums[i] + nums[j] + nums[k] == 0.
+#
+# Notice that the solution set must not contain duplicate triplets.
+def threeSum(nums):
+
+    res = set()
+    nums = sorted(nums)[::-1]
+    for i in range(len(nums) - 1):
+        t = -nums[i]
+        j = i + 1
+        k = len(nums) - 1
+        while j < k:
+
+            if nums[j] + nums[k] == t:
+                res.add((nums[i], nums[j], nums[k]))
+                j += 1
+                k -= 1
+            else:
+                if nums[j] + nums[k] > t:
+                    j += 1
+                else:
+                    k -= 1
+    return res
