@@ -454,3 +454,36 @@ def threeSumClosestTwoPointer(nums, target):
                 closest = s
 
     return closest
+
+
+# Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number
+# could represent. Return the answer in any order.
+def letterCombinations(digits):
+
+    if len(digits) == 0:
+        return digits
+
+    letters = {"2": "abc",
+               "3": "def",
+               "4": "ghi",
+               "5": "jkl",
+               "6": "mno",
+               "7": "pqrs",
+               "8": "tuv",
+               "9": "wxyz"}
+
+    res = []
+    curr = []
+
+    def back(s):
+        if s == len(digits):
+            res.append("".join(curr))
+        else:
+            for l in letters[digits[s]]:
+                curr.append(l)
+                back(s + 1)
+                curr.pop()
+
+    back(0)
+
+    return res
