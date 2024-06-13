@@ -487,3 +487,16 @@ def letterCombinations(digits):
     back(0)
 
     return res
+
+# Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+def generateParenthesis(n):
+
+    res = {"()"}
+    for i in range(n - 1):
+        temp = set()
+        for j in res:
+            for k in range(len(j) + 1):
+                temp.add(j[:k] + "()" + j[k:])
+            res = temp
+
+    return [i for i in res]
