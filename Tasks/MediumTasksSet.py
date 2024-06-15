@@ -500,3 +500,15 @@ def generateParenthesis(n):
             res = temp
 
     return [i for i in res]
+
+# Given an integer array nums, find the
+# subarray
+#  with the largest sum, and return its sum.
+def maxSubArray(nums):
+
+    mx = 0
+    prevMx = -inf
+    for i in nums:
+        mx = max(i, mx + i)
+        prevMx = max(prevMx, mx)
+    return prevMx
