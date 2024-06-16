@@ -512,3 +512,24 @@ def maxSubArray(nums):
         mx = max(i, mx + i)
         prevMx = max(prevMx, mx)
     return prevMx
+
+# Given an array nums of distinct integers, return all the possible permutations.
+# You can return the answer in any order.
+def permute(nums):
+
+    if len(nums) == 1:
+        return [nums[:]]
+
+    res = []
+
+    for i in range(len(nums)):
+        n = nums.pop(0)
+        perms = self.permute(nums)
+
+        for p in perms:
+            p.append(n)
+
+        res.extend(perms)
+        nums.append(n)
+
+    return res
