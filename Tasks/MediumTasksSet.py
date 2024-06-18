@@ -533,3 +533,52 @@ def permute(nums):
         nums.append(n)
 
     return res
+
+
+# Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals,
+# and return an array of the non-overlapping intervals that cover all the intervals in the input.
+def merge(intervals):
+
+    if len(intervals) <= 1:
+        return intervals
+
+    res = []
+    counter = 0
+    for i in range(len(intervals)):
+
+        if counter < len(intervals) - 1:
+            if intervals[counter][1] < intervals[counter + 1][0]:
+                res.append(intervals[counter])
+                counter += 1
+            else:
+                if intervals[counter][0] > intervals[counter + 1][0]:
+                    res.append([intervals[counter + 1][0], max(intervals[counter][1], intervals[counter + 1][1])])
+                    counter += 2
+                elif intervals[counter][1] >= intervals[counter + 1][0]:
+                    res.append([intervals[counter][0], max(intervals[counter][1], intervals[counter + 1][1])])
+                    counter += 2
+
+        else:
+            if counter == len(intervals):
+                return res
+            else:
+                res.append(intervals[counter])
+                return res
+
+def simpleMerge(intervals):
+
+    res = []
+    intervals = sorted(intervals)
+
+    prev = intervals[0]
+
+    for i in intervals[1:]:
+        if i[0] <= prev[1]:
+            prev[1] = max(prev[1], i[1])
+        else:
+            res.append(prev)
+            prev = i
+
+    res.append(prev)
+
+    return res
