@@ -582,3 +582,24 @@ def simpleMerge(intervals):
     res.append(prev)
 
     return res
+
+# Given an integer array nums of unique elements, return all possible subsets (the power set).
+#
+# The solution set must not contain duplicate subsets. Return the solution in any order.
+def subsets(nums):
+    res = []
+    sub = []
+
+    def createSubset(i):
+        if i == len(nums):
+            res.append(sub[:])
+            return
+
+        sub.append(nums[i])
+        createSubset(i + 1)
+
+        sub.pop()
+        createSubset(i + 1)
+
+    createSubset(0)
+    return res
