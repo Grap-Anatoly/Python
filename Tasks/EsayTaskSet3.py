@@ -580,3 +580,15 @@ def minimumChairs(s):
             res.append("")
 
     return len(res)
+
+# You are given an integer array nums. In one operation, you can add or subtract 1 from any element of nums.
+#
+# Return the minimum number of operations to make all elements of nums divisible by 3.
+def minimumOperations(nums):
+
+    res = 0
+    for i in nums:
+        if i % 3 != 0:
+            res += 1
+
+    return res
