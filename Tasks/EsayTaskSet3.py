@@ -592,3 +592,22 @@ def minimumOperations(nums):
             res += 1
 
     return res
+
+# You have an array of floating point numbers averages which is initially empty. You are given an array nums of n
+# integers where n is even.
+#
+# You repeat the following procedure n / 2 times:
+#
+# Remove the smallest element, minElement, and the largest element maxElement, from nums.
+# Add (minElement + maxElement) / 2 to averages.
+# Return the minimum element in averages.
+def minimumAverage(nums):
+
+    avg = []
+    nums = sorted(nums)
+    for i in range(len(nums) // 2):
+        avg.append((nums[0] + nums[-1]) / 2)
+        nums.pop(0)
+        nums.pop(-1)
+
+    return min(avg)
