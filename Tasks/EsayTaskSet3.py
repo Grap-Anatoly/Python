@@ -646,3 +646,25 @@ def shortestToChar(s, c):
             temp.append(abs(i - j))
         res.append(min(temp))
     return res
+
+# In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different order.
+# The order of the alphabet is some permutation of lowercase letters.
+#
+# Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only
+# if the given words are sorted lexicographically in this alien language.
+def isAlienSorted(words, order):
+
+    enumerated = {}
+    for i, letter in enumerate(order):
+        enumerated[letter] = i
+
+    for i in range(len(words) - 1):
+        for j in range(len(words[i])):
+            if j >= len(words[i + 1]):
+                return False
+            if words[i][j] != words[i + 1][j]:
+                if enumerated[words[i][j]] > enumerated[words[i + 1][j]]:
+                    return False
+                break
+
+    return True
