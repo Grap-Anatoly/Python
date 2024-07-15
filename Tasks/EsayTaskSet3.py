@@ -668,3 +668,23 @@ def isAlienSorted(words, order):
                 break
 
     return True
+
+# The array-form of an integer num is an array representing its digits in left to right order.
+#
+# For example, for num = 1321, the array form is [1,3,2,1].
+# Given num, the array-form of an integer, and an integer k, return the array-form of the integer num + k.
+def addToArrayForm(num, k):
+
+    import sys
+    sys.set_int_max_str_digits(100000)
+
+    intNum = ""
+    for i in num:
+        intNum += str(i)
+
+    newNum = str(int(intNum) + k)
+    res = []
+    for i in str(newNum):
+        res.append(int(i))
+
+    return res
