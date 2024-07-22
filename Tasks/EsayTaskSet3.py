@@ -780,3 +780,23 @@ def countCharacters(words, chars):
 
     return res
 
+# Given a string date representing a Gregorian calendar date formatted as YYYY-MM-DD, return the day number of the year.
+def dayOfYear(date):
+    days = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
+
+    res = 0
+    if int(date[5:7]) != 1:
+        for i in range(1, int(date[5:7])):
+            if i == 2:
+                if int(date[0:4]) % 400 == 0:
+                    res += days[i] + 1
+                elif int(date[0:4]) % 4 == 0 and int(date[0:4]) % 100 != 0:
+                    res += days[i] + 1
+                else:
+                    res += days[i]
+            else:
+                res += days[i]
+
+    res += int(date[8:10])
+
+    return res
