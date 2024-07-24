@@ -822,3 +822,32 @@ def minCostToMoveChips(position):
             odd += 1
 
     return min(even, odd)
+
+
+# Return the number of permutations of 1 to n so that prime numbers are at prime indices (1-indexed.)
+#
+# (Recall that an integer is prime if and only if it is greater than 1, and cannot be written as a product of
+# two positive integers both smaller than it.)
+#
+# Since the answer may be large, return the answer modulo 10^9 + 7.
+def numPrimeArrangements(n):
+
+    def isPrime(num):
+        if num == 0 or num == 1:
+            return False
+        for x in range(2, num):
+            if num % x == 0:
+                return False
+        else:
+            return True
+
+    p = []
+    np = []
+
+    for i in range(1, n + 1):
+        if isPrime(i) == True:
+            p.append(i)
+        else:
+            np.append(i)
+
+    return math.factorial(len(p)) * math.factorial(len(np)) % (10 ** 9 + 7)
