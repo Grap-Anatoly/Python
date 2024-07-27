@@ -219,3 +219,31 @@ def getSublists(nums):
             sub.append(nums[i:j])
 
     return sub
+
+"""
+
+ Stack example
+    Convert default string into string without duplicate values
+    
+    Duplicate: only 2 occurrences of the same letter > "aa" or "bb", not "aaa" or "bbbb"
+    
+    Returns string
+    
+    Input: str = "abbaca"
+    Output: res = "ca"
+    
+"""
+def removeDuplicates(s):
+
+    res = []
+
+    for i in s:
+        if len(res) != 0:
+            if res[-1] == i:
+                res.pop()
+            else:
+                res.append(i)
+        else:
+            res.append(i)
+
+    return "".join(res)
