@@ -247,3 +247,35 @@ def removeDuplicates(s):
             res.append(i)
 
     return "".join(res)
+
+# There is an m x n matrix that is initialized to all 0's. There is also a 2D array indices where each indices[i] =
+# [ri, ci] represents a 0-indexed location to perform some increment operations on the matrix.
+#
+# For each location indices[i], do both of the following:
+#
+# Increment all the cells on row ri.
+# Increment all the cells on column ci.
+# Given m, n, and indices, return the number of odd-valued cells in the matrix after applying the increment to all
+# locations in indices.
+def oddCells(m, n, indices):
+
+    array = []
+    for i in range(m):
+        t = []
+        for j in range(n):
+            t.append(0)
+        array.append(t)
+
+    for i in indices:
+        for j in range(len(array)):
+            for k in range(len(array[j])):
+                if j == i[0]:
+                    array[j][k] += 1
+                if k == i[1]:
+                    array[j][k] += 1
+
+    res = 0
+    for i in array:
+        for j in i:
+            if j % 2 != 0:
+                res += 1
