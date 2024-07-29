@@ -279,3 +279,27 @@ def oddCells(m, n, indices):
         for j in i:
             if j % 2 != 0:
                 res += 1
+
+# The k-beauty of an integer num is defined as the number of substrings of num when it is read as a string that
+# meet the following conditions:
+#
+# It has a length of k.
+# It is a divisor of num.
+# Given integers num and k, return the k-beauty of num.
+#
+# Note:
+#
+# Leading zeros are allowed.
+# 0 is not a divisor of any value.
+# A substring is a contiguous sequence of characters in a string.
+def divisorSubstrings(num, k):
+
+    res = 0
+    num = str(num)
+    for i in range(len(num) - k + 1):
+        divisor = int(num[i:i + k])
+        if divisor != 0:
+            if int(num) % divisor == 0:
+                res += 1
+
+    return res
