@@ -1078,3 +1078,26 @@ def isPathCrossing(path):
             return True
 
     return False
+
+# You are given an integer n.
+#
+# Each number from 1 to n is grouped according to the sum of its digits.
+#
+# Return the number of groups that have the largest size.
+def countLargestGroup(n):
+
+    dct = {}
+
+    for i in range(1, n + 1):
+        curr = sum(map(int, list(str(i))))
+
+        if curr not in dct:
+            dct[curr] = 1
+        else:
+            dct[curr] += 1
+
+    print(dct)
+
+    m = max(dct.values())
+
+    return sum(1 for i in dct.values() if i >= m)
