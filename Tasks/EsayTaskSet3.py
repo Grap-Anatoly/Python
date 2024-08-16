@@ -1101,3 +1101,29 @@ def countLargestGroup(n):
     m = max(dct.values())
 
     return sum(1 for i in dct.values() if i >= m)
+
+
+# Given an m x n binary matrix mat, return the number of special positions in mat.
+#
+# A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column j are
+# 0 (rows and columns are 0-indexed).
+def numSpecial(mat):
+
+    res = 0
+    for i in range(len(mat)):
+        for j in range(len(mat[i])):
+            if mat[i][j] == 1:
+
+                column = True
+                for k in range(len(mat)):
+                    if k != i and mat[k][j] == 1:
+                        column = False
+                        break
+                row = True
+                if mat[i].count(1) > 1:
+                    row = False
+
+                if column == True and row == True:
+                    res += 1
+
+    return res
