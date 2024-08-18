@@ -1147,3 +1147,18 @@ def numWaterBottles(numBottles, numExchange):
             numBottles = numBottles // numExchange
 
     return res
+
+# Given an array of integers nums, sort the array in increasing order based on the frequency of the values.
+# If multiple values have the same frequency, sort them in decreasing order.
+#
+# Return the sorted array.
+def frequencySort(nums):
+
+    dct = {}
+    for i in set(nums):
+        dct[i] = nums.count(i)
+
+    nums.sort(reverse=True)
+    nums.sort(key=lambda x: dct[x])
+
+    return nums
