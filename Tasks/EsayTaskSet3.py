@@ -1192,8 +1192,8 @@ def maxWidthOfVerticalArea(points):
 # This continues until none of the queue students want to take the top sandwich and are thus unable to eat.
 #
 # You are given two integer arrays students and sandwiches where sandwiches[i] is the type of the
-# i​​​​​​th sandwich in the stack (i = 0 is the top of the stack) and students[j] is the preference
-# of the j​​​​​​th student in the initial queue (j = 0 is the front of the queue).
+# i th sandwich in the stack (i = 0 is the top of the stack) and students[j] is the preference
+# of the j th student in the initial queue (j = 0 is the front of the queue).
 # Return the number of students that are unable to eat.
 def countStudents(students, sandwiches):
 
@@ -1209,3 +1209,35 @@ def countStudents(students, sandwiches):
             break
 
     return len(students)
+
+# A string s is nice if, for every letter of the alphabet that s contains, it appears both in uppercase and
+# lowercase. For example, "abABB" is nice because 'A' and 'a' appear, and 'B' and 'b' appear. However,
+# "abA" is not because 'b' appears, but 'B' does not.
+#
+# Given a string s, return the longest substring of s that is nice. If there are multiple, return the
+# substring of the earliest occurrence. If there are none, return an empty string.
+def longestNiceSubstring(s):
+
+    subs = []
+    for i in range(len(s)):
+        for j in range(i + 1, len(s) + 1):
+            subs.append(s[i:j])
+
+    res = []
+    for i in subs:
+        nice = True
+        for j in i:
+            if j == j.upper():
+                if j.lower() not in i:
+                    nice = False
+            elif j == j.lower():
+                if j.upper() not in i:
+                    nice = False
+
+        if nice == True:
+            res.append(i)
+
+    if res != []:
+        return max(res, key=len)
+    else:
+        return ""
