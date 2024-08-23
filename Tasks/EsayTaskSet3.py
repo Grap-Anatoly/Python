@@ -1241,3 +1241,20 @@ def longestNiceSubstring(s):
         return max(res, key=len)
     else:
         return ""
+
+# You are given two strings s1 and s2 of equal length. A string swap is an operation where you choose
+# two indices in a string (not necessarily different) and swap the characters at these indices.
+#
+# Return true if it is possible to make both strings equal by performing at most one string swap on
+# exactly one of the strings. Otherwise, return false.
+def areAlmostEqual(s1, s2):
+
+    uneq = 0
+    for i in range(len(s1)):
+        if s1[i] != s2[i]:
+            uneq += 1
+
+    if uneq == 0 or uneq == 2:
+        return sorted(s1) == sorted(s2)
+    else:
+        return False
