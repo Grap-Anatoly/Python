@@ -1258,3 +1258,18 @@ def areAlmostEqual(s1, s2):
         return sorted(s1) == sorted(s2)
     else:
         return False
+
+# There is a special typewriter with lowercase English letters 'a' to 'z' arranged in a circle with a pointer.
+# A character can only be typed if the pointer is pointing to that character.
+# The pointer is initially pointing to the character 'a'.
+def minTimeToType(word):
+
+    res = len(word)
+    pointer = "a"
+
+    for i in word:
+        diff = abs(ord(i) - ord(pointer))
+        res += min(diff, 26 - diff)
+        pointer = i
+
+    return res
