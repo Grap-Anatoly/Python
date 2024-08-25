@@ -248,4 +248,32 @@ def removeDuplicates(s):
 
     return "".join(res)
 
+"""
+
+ Get all possible subsets from the list
+ 
+    Given a list: 
+    [0, 1, 2, 3]
+    
+    We get a list of combinations(subsets or sublists): 
+    [[], [1], [2], [2, 1], [3], [3, 1], [3, 2], [3, 2, 1], [4], [4, 1], 
+    [4, 2], [4, 2, 1], [4, 3], [4, 3, 1], [4, 3, 2], [4, 3, 2, 1]]
+
+    Returns list of subsets 
+
+    Input: list = [5,1,6]
+    Output: subs = [[], [5], [1], [1, 5], [6], [6, 5], [6, 1], [6, 1, 5]]
+
+"""
+def getSubsets(lst):
+
+    if len(lst) == 0:
+        return [[]]
+
+    subs = []
+    for i in getSubsets(lst[1:]):
+        subs += [i, i + [lst[0]]]
+
+    return subs
+
 
