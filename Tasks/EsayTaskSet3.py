@@ -1302,3 +1302,20 @@ def subsetXORSum(nums):
         res += t
 
     return res
+
+
+# You are given a string num, representing a large integer. Return the largest-valued odd integer (as a string)
+# that is a non-empty substring of num, or an empty string "" if no odd integer exists.
+#
+# A substring is a contiguous sequence of characters within a string.
+def largestOddNumber(num):
+
+    import sys
+    sys.set_int_max_str_digits(0)
+
+    for i in range(len(num), -1, -1):
+        s = num[:i + 1]
+        if int(s) % 2 != 0:
+            return s
+
+    return ""
