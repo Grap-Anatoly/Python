@@ -1319,3 +1319,23 @@ def largestOddNumber(num):
             return s
 
     return ""
+
+# You are given a 0-indexed integer array nums, where nums[i] represents the score of the ith student.
+# You are also given an integer k.
+#
+# Pick the scores of any k students from the array so that the difference between the highest and the
+# lowest of the k scores is minimized.
+#
+# Return the minimum possible difference.
+def minimumDifference(nums, k):
+
+    if k <= 1:
+        return 0
+    else:
+        nums = sorted(nums)
+        res = nums[k - 1] - nums[0]
+
+        for i in range(k, len(nums)):
+            res = min(res, nums[i] - nums[i - k + 1])
+
+        return res
