@@ -1361,3 +1361,32 @@ def minMovesToSeat(seats, students):
         res += abs(students[i] - seats[i])
 
     return res
+
+# A substring is a contiguous (non-empty) sequence of characters within a string.
+#
+# A vowel substring is a substring that only consists of vowels ('a', 'e', 'i', 'o',
+# and 'u') and has all five vowels present in it.
+#
+# Given a string word, return the number of vowel substrings in word.
+def countVowelSubstrings(word):
+
+    vowel = "aeiou"
+
+    subs = []
+    for i in range(len(word)):
+        for j in range(i + 1, len(word) + 1):
+            s = word[i:j]
+            if len(s) >= 5:
+                vow = True
+                for l in s:
+                    if l not in vowel:
+                        vow = False
+                if vow == True:
+                    subs.append(word[i:j])
+
+    res = 0
+    for i in subs:
+        if set(i) == set(vowel):
+            res += 1
+
+    return res
