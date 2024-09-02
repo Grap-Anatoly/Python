@@ -1409,3 +1409,54 @@ def countCompleteDayPairs(hours):
                     res.append([hours[i], hours[j]])
 
     return len(res)
+
+# Given a non-empty array of non-negative integers nums, the degree of this array is defined as the maximum
+# frequency of any one of its elements.
+#
+# Your task is to find the smallest possible length of a (contiguous) subarray of nums, that has the same
+# degree as nums.
+def findShortestSubArray(nums):
+
+    mx = 0
+    for i in set(nums):
+        mx = max(nums.count(i), mx)
+
+    mxValues = []
+    for i in set(nums):
+        if nums.count(i) == mx:
+            mxValues.append(i)
+
+    mn = len(nums)
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums) + 1):
+            s = nums[i:j]
+            if len(s) >= mx:
+                for m in mxValues:
+                    if s.count(m) == mx:
+                        mn = min(mn, len(s))
+
+            if mn == mx:
+                return mn
+
+    return mn
+
+def findShortestSubArrayFast(nums):
+
+    d = {}
+    for i, n in enumerate(nums):
+        if n not in d:
+            d[n] = [1, i, i]
+        else:
+            d[n][0] += 1
+            d[n][2] = i
+
+    m = 0
+    mn = 0
+    for v in d.values():
+        if v[0] > m:
+            m = v[0]
+            mn = v[2] - v[1] + 1
+        elif v[0] == m:
+            mn = min(mn, v[2] - v[1] + 1)
+
+    return mn
