@@ -1460,3 +1460,23 @@ def findShortestSubArrayFast(nums):
             mn = min(mn, v[2] - v[1] + 1)
 
     return mn
+
+
+# Given an array of points on the X-Y plane points where points[i] = [xi, yi], return the area of the largest
+# triangle that can be formed by any three different points. Answers within 10-5 of the actual answer will be accepted.
+def largestTriangleArea(points):
+
+    m = 0
+
+    for i in range(len(points) - 2):
+        for j in range(i + 1, len(points) - 1):
+            for k in range(j + 1, len(points)):
+                x1, y1 = points[i]
+                x2, y2 = points[j]
+                x3, y3 = points[k]
+
+                area = 1 / 2 * abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2))
+
+                m = max(m, area)
+
+    return m
