@@ -1480,3 +1480,32 @@ def largestTriangleArea(points):
                 m = max(m, area)
 
     return m
+
+# Given two strings s and goal, return true if you can swap two letters in s so the result is equal to goal,
+# otherwise, return false.
+#
+# Swapping letters is defined as taking two indices i and j (0-indexed) such that i != j and swapping the
+# characters at s[i] and s[j].
+#
+# For example, swapping at indices 0 and 2 in "abcd" results in "cbad".
+def buddyStrings(s, goal):
+
+    if len(s) != len(goal):
+        return False
+    else:
+        if s == goal:
+            f = False
+            for i in s:
+                if s.count(i) > 1:
+                    f = True
+            return f
+        else:
+            res = []
+            for i in range(len(s)):
+                if s[i] != goal[i]:
+                    res.append(i)
+
+            if len(res) > 2:
+                return False
+
+            return len(res) == 2 and s[res[0]] == goal[res[1]] and s[res[1]] == goal[res[0]]
