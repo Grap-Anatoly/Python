@@ -1509,3 +1509,15 @@ def buddyStrings(s, goal):
                 return False
 
             return len(res) == 2 and s[res[0]] == goal[res[1]] and s[res[1]] == goal[res[0]]
+
+# Given an m x n matrix, return true if the matrix is Toeplitz. Otherwise, return false.
+#
+# A matrix is Toeplitz if every diagonal from top-left to bottom-right has the same elements.
+def isToeplitzMatrix(matrix):
+
+    for i in range(len(matrix) - 1):
+        for j in range(len(matrix[0]) - 1):
+            if matrix[i][j] != matrix[i + 1][j + 1]:
+                return False
+
+    return True
