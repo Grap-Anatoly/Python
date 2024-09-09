@@ -1536,3 +1536,44 @@ def isBoomerang(points):
     area = 1 / 2 * abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2))
 
     return area != 0
+
+# You are given a string s.
+#
+# Your task is to remove all digits by doing this operation repeatedly:
+#
+# Delete the first digit and the closest non-digit character to its left.
+# Return the resulting string after removing all digits.
+def clearDigits(s):
+
+    m = []
+    n = []
+    for i in range(len(s)):
+        if s[i] in '1234567890':
+            n.append(i)
+            p = i
+            for j in range(len(s)):
+                if s[p] in '1234567890':
+                    p -= 1
+                else:
+                    if p in m:
+                        p -= 1
+                    else:
+                        m.append(p)
+                        break
+
+    res = []
+    s = list(s)
+
+    for i in m:
+        s[i] = ""
+
+    for i in n:
+        s[i] = ""
+
+    return "".join(s)
+
+
+
+
+
+
