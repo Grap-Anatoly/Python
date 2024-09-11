@@ -1572,6 +1572,49 @@ def clearDigits(s):
 
     return "".join(s)
 
+# An image smoother is a filter of the size 3 x 3 that can be applied to each cell of an image by rounding down
+# the average of the cell and the eight surrounding cells (i.e., the average of the nine cells in the blue smoother).
+# If one or more of the surrounding cells of a cell is not present, we do not consider it in the average (i.e.,
+# the average of the four cells in the red smoother).
+def imageSmoother(img):
+
+    n = len(img)
+    m = len(img[0])
+    res = []
+    for i in range(n):
+        t = []
+        for j in range(m):
+            c = 1
+            sm = img[i][j]
+            if i - 1 >= 0 and j - 1 >= 0:
+                sm += img[i - 1][j - 1]
+                c += 1
+            if j - 1 >= 0:
+                sm = sm + img[i][j - 1]
+                c += 1
+            if i + 1 <= n - 1 and j - 1 >= 0:
+                sm += img[i + 1][j - 1]
+                c += 1
+            if i + 1 <= n - 1:
+                sm += img[i + 1][j]
+                c += 1
+            if i + 1 <= n - 1 and j + 1 <= m - 1:
+                sm += img[i + 1][j + 1]
+                c += 1
+            if j + 1 <= m - 1:
+                sm += img[i][j + 1]
+                c += 1
+            if i - 1 >= 0 and j + 1 <= m - 1:
+                sm += img[i - 1][j + 1]
+                c += 1
+            if i - 1 >= 0:
+                sm += img[i - 1][j]
+                c += 1
+
+            t.append(sm // c)
+        res.append(t)
+    return res
+
 
 
 
