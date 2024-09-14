@@ -1658,6 +1658,34 @@ def surfaceArea(grid):
 
     return res
 
+# For two strings s and t, we say "t divides s" if and only if s = t + t + t + ... + t + t (i.e., t is
+# concatenated with itself one or more times).
+#
+# Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+def gcdOfStrings(str1, str2):
+
+    res = ""
+    if len(str1) >= len(str2):
+        for i in range(len(str2)):
+            t = str2[:i + 1]
+            if len(str1) % len(t) == 0:
+                l = len(str1) // len(t)
+                l2 = len(str2) // len(t)
+                if t * l == str1 and t * l2 == str2:
+                    if len(t) > len(res):
+                        res = t
+    else:
+        for i in range(len(str1)):
+            t = str1[:i + 1]
+            if len(str2) % len(t) == 0:
+                l = len(str2) // len(t)
+                l2 = len(str1) // len(t)
+                if t * l == str2 and t * l2 == str1:
+                    if len(t) > len(res):
+                        res = t
+
+    return res
+
 
 
 
