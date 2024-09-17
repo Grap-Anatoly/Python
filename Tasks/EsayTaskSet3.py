@@ -1700,6 +1700,25 @@ def findOcurrences(text, first, second):
 
     return res
 
-
-
+# Given a fixed-length integer array arr, duplicate each occurrence of zero, shifting the remaining elements to the
+# right.
+#
+# Note that elements beyond the length of the original array are not written. Do the above modifications to the
+# input array in place and do not return anything.
+def duplicateZeros(arr):
+    """
+    Do not return anything, modify arr in-place instead.
+    """
+    counter = 0
+    while counter < len(arr) - 1:
+        if arr[counter] == 0:
+            t = arr[counter + 1]
+            arr[counter + 1] = 0
+            counter += 2
+            for i in range(counter, len(arr)):
+                t2 = arr[i]
+                arr[i] = t
+                t = t2
+        else:
+            counter += 1
 
