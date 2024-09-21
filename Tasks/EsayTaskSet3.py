@@ -1819,3 +1819,64 @@ def daysBetweenDates(date1, date2):
     return res
 
 
+# You are given two strings current and correct representing two 24-hour times.
+#
+# 24-hour times are formatted as "HH:MM", where HH is between 00 and 23, and MM is between 00 and 59.
+# The earliest 24-hour time is 00:00, and the latest is 23:59.
+#
+# In one operation you can increase the time current by 1, 5, 15, or 60 minutes.
+# You can perform this operation any number of times.
+#
+# Return the minimum number of operations needed to convert current to correct.
+def convertTime(current, correct):
+
+    res = 0
+
+    if current == correct:
+        return res
+    else:
+        h1, m1 = current.split(":")
+        h2, m2 = correct.split(":")
+
+        h1, m1, h2, m2 = int(h1), int(m1), int(h2), int(m2)
+
+        if m1 > m2:
+
+            while h1 < h2 - 1:
+                h1 += 1
+                res += 1
+
+            d = 60 - m1 + m2
+
+            while d != 0:
+                if d % 15 == 0:
+                    d -= 15
+                    res += 1
+                elif d % 5 == 0:
+                    d -= 5
+                    res += 1
+                else:
+                    d -= 1
+                    res += 1
+        else:
+
+            while h1 < h2:
+                h1 += 1
+                res += 1
+
+            d = m2 - m1
+
+            while d != 0:
+                if d % 15 == 0:
+                    d -= 15
+                    res += 1
+                elif d % 5 == 0:
+                    d -= 5
+                    res += 1
+                else:
+                    d -= 1
+                    res += 1
+
+        return res
+
+
