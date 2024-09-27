@@ -1909,7 +1909,7 @@ def numberOfAlternatingGroups(colors):
 #
 # For each character c in s, replace c with the kth character after c in the string (in a cyclic manner).
 # Return the encrypted string
-def getEncryptedString(self, s: str, k: int) -> str:
+def getEncryptedString(s, k):
 
         if len(set(s)) == 1:
             return s
@@ -1919,5 +1919,66 @@ def getEncryptedString(self, s: str, k: int) -> str:
                 res.append(s[(i+k) % len(s)])
             
             return "".join(res)
+
+
+# You are given two integers red and blue representing the count of red and blue colored balls. 
+# You have to arrange these balls to form a triangle such that the 1st row will have 1 ball, the 2nd row will have 2 balls, 
+# the 3rd row will have 3 balls, and so on.
+# 
+# All the balls in a particular row should be the same color, and adjacent rows should have different colors.
+# 
+# Return the maximum height of the triangle that can be achieved.
+def maxHeightOfTriangle(red, blue):
+
+        resR = 0
+        resB = 0
+
+        r1 = red
+        r2 = red
+        b1 = blue
+        b2 = blue
+
+        counter = 1
+        redCheck = True
+        for i in range(max(r1,b1)):
+            if redCheck == True:
+                if r1 < counter: 
+                    break
+                else:
+                    resR += 1
+                    r1 -= counter
+                    counter += 1
+                    redCheck = False
+            else:
+                if b1 < counter:
+                    break
+                else:
+                    resR += 1
+                    b1 -= counter
+                    counter += 1
+                    redCheck = True
+
+        counter = 1
+        blueCheck = True
+        for i in range(max(r2,b2)):
+            if blueCheck == True:
+                if b2 < counter: 
+                    break
+                else:
+                    resB += 1
+                    b2 -= counter
+                    counter += 1
+                    blueCheck = False
+            else:
+                if r2 < counter:
+                    break
+                else:
+                    resB += 1
+                    r2 -= counter
+                    counter += 1
+                    blueCheck = True
+
+        return max(resR, resB)
+
 
 
