@@ -2008,3 +2008,27 @@ def getSmallestString(s):
     return "".join(s)
 
 
+# You are given two positive integers n and k.
+# 
+# You can choose any bit in the binary representation of n that is equal to 1 and change it to 0.
+# 
+# Return the number of changes needed to make n equal to k. If it is impossible, return -1.
+def minChanges(n, k):
+
+        res = 0
+        bN = list(bin(n)[2:])
+        bK = list(bin(k)[2:])
+
+        if len(bK) < len(bN):
+            while len(bK) < len(bN): 
+                bK.insert(0, '0')
+
+        for i in range(len(bN)):
+            if bK[i] != bN[i]:
+                bN[i] = '0'
+                res += 1
+
+        if bN == bK:
+            return res
+        else:
+            return -1
