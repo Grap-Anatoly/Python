@@ -2040,11 +2040,32 @@ def minChanges(n, k):
 # If the player is unable to do so, they lose the game.
 #
 # Return the name of the player who wins the game if both players play optimally.
-def losingPlayer(self, x: int, y: int) -> str:
+def losingPlayer(x, y):
 
     if min(x,y // 4) % 2 == 0:
         return "Bob"
     else:
         return "Alice"
+
+# You are given an array of positive integers nums.
+# 
+# Alice and Bob are playing a game. In the game, Alice can choose either all single-digit numbers or all double-digit numbers 
+# from nums, and the rest of the numbers are given to Bob. Alice wins if the sum of her numbers is strictly greater than the 
+# sum of Bob's numbers.
+# 
+# Return true if Alice can win this game, otherwise, return false.
+def canAliceWin(nums):
+
+    nums = sorted(nums)
+    d = []
+    s = []
+    for i in range(len(nums)):
+        if len(str(nums[i])) == 1:
+            s.append(nums[i])
+        else:
+            d = nums[i:]
+            break
+
+   return sum(s) != sum(d)
 
        	
