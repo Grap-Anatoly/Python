@@ -2099,4 +2099,22 @@ balls = {}
      return res
 
 
+# You are given a binary string s and an integer k.
+# 
+# A binary string satisfies the k-constraint if either of the following conditions holds:
+# 
+# The number of 0's in the string is at most k.
+# The number of 1's in the string is at most k.
+# Return an integer denoting the number of substrings of s that satisfy the k-constraint.
+def countKConstraintSubstrings(s, k):
+
+    res = 0
+        
+    for i in range(len(s)):
+        for j in range(i+1, len(s)+1):
+            sub = s[i:j]
+            if sub.count("0") <= k or sub.count("1") <= k: 
+                res += 1
+        
+    return res
        	
