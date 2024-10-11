@@ -2117,4 +2117,24 @@ def countKConstraintSubstrings(s, k):
                 res += 1
         
     return res
-       	
+
+
+# You are given two strings, coordinate1 and coordinate2, representing the coordinates of a square on an 8 x 8 chessboard.
+# 
+# Return true if these two squares have the same color and false otherwise.
+# 
+# The coordinate will always represent a valid chessboard square. The coordinate will always have the letter first (indicating its column), 
+# and the number second (indicating its row).
+def checkTwoChessboards(self, coordinate1: str, coordinate2: str) -> bool:
+
+    letters = {"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7, "h": 8}
+
+    cord1 = int(coordinate1[1]) + letters[coordinate1[0]]
+    cord2 = int(coordinate2[1]) + letters[coordinate2[0]]
+
+    if cord1 % 2 == 0 and cord2 % 2 == 0:
+        return True
+    elif cord1 % 2 != 0 and cord2 % 2 != 0:
+        return True
+    else:
+        return False      	
