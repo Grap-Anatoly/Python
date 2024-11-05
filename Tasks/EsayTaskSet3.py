@@ -2270,3 +2270,19 @@ def minBitwiseArray(nums):
             res.append(t[-1]) 
     
     return res
+
+# You are given an integer array nums.
+# 
+# You replace each element in nums with the sum of its digits.
+# 
+# Return the minimum element in nums after all replacements.
+def minElement(nums):
+    
+    res = max(nums)
+    for i in nums:
+        t = 0
+        for j in str(i):
+            t += int(j)
+        res = min(res,t)
+    
+    return res
