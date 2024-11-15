@@ -603,3 +603,18 @@ def subsets(nums):
 
     createSubset(0)
     return res
+
+# You are given a string num consisting of only digits. A string of digits is called balanced if the sum of the digits at even indices is equal to the sum of digits at odd indices.
+#
+# Return true if num is balanced, otherwise return false.
+def isBalanced(num):
+
+    even = 0
+    odd = 0
+    for i in range(len(num)):
+        if i % 2 == 0:
+            even += int(num[i])
+        else:
+            odd += int(num[i]) 
+
+    return even == odd 
