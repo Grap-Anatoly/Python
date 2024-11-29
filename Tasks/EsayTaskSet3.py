@@ -2317,3 +2317,22 @@ def possibleStringCount(word):
             res += 1
         prev = i
     return res + 1
+
+# You are given an integer array nums and two integers l and r. Your task is to find the minimum sum of a subarray whose size is between l and r (inclusive) and whose sum is greater than 0.
+# Return the minimum sum of such a subarray. If no such subarray exists, return -1.
+# A subarray is a contiguous non-empty sequence of elements within an array.
+def minimumSumSubarray(nums, l, r):
+
+    res = []
+
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)+1):
+            sub = nums[i:j]
+            if len(sub) >= l and len(sub) <= r:
+                if sum(sub) > 0:
+                    res.append(sum(sub))
+
+    if len(res) > 0:
+        return min(res) 
+    else:
+        return -1
