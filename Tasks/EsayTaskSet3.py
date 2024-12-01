@@ -2336,3 +2336,16 @@ def minimumSumSubarray(nums, l, r):
         return min(res) 
     else:
         return -1
+
+# You are given a positive number n.
+#
+# Return the smallest number x greater than or equal to n, such that the binary representation of x contains only set bits.
+# 
+# A set bit refers to a bit in the binary representation of a number that has a value of 1.
+def smallestNumber(n):
+
+    counter = n
+    while set(str(bin(counter)[2:])) != set(str(1)):
+        counter += 1
+
+    return counter
