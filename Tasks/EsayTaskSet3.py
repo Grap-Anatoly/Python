@@ -2374,3 +2374,35 @@ def canAliceWin(n):
             return False
         else:
             return True
+
+# There is a snake in an n x n matrix grid and can move in four possible directions. Each cell in the grid is identified by the position: grid[i][j] = (i * n) + j.
+# 
+# The snake starts at cell 0 and follows a sequence of commands.
+# 
+# You are given an integer n representing the size of the grid and an array of strings commands where each command[i] is either "UP", "RIGHT", "DOWN", and "LEFT". It's guaranteed that the snake will remain within the grid boundaries throughout its movement.
+# 
+# Return the position of the final cell where the snake ends up after executing commands.
+def finalPositionOfSnake(n, commands):
+
+    grid = []
+    counter = 0
+    for i in range(n):
+        temp = []
+        for j in range(n):
+            temp.append(counter)
+            counter += 1
+        grid.append(temp)
+
+    res = [0,0]
+
+    for i in commands:
+        if i == "UP":
+            res[0] -= 1
+        elif i == "RIGHT":
+            res[1] += 1
+        elif i == "DOWN":
+            res[0] += 1
+        else:
+            res[1] -= 1
+
+    return grid[res[0]][res[1]]
